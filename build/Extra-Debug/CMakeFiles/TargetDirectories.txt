@@ -1,0 +1,9 @@
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/GamePhase.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/edit_cache.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/rebuild_cache.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/list_install_components.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/install.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/install/local.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/install/strip.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/GamePhase_autogen_timestamp_deps.dir
+/home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/CMakeFiles/GamePhase_autogen.dir
