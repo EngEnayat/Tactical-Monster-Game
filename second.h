@@ -1,12 +1,13 @@
 #ifndef SECOND_H
 #define SECOND_H
 
-#include <QMainWindow>
+#include <QDialog>
+
 namespace Ui {
 class second;
 }
 
-class second : public QMainWindow
+class second : public QDialog
 {
     Q_OBJECT
 
@@ -14,8 +15,8 @@ public:
     explicit second(QWidget *parent = nullptr);
     ~second();
 
-public slots:
-    void on_pvpMatch_clicked();
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::second *ui;

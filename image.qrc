@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>play.png</file>
+        <file>screen.png</file>
+        <file>second.png</file>
+        <file>Hexagonal.png</file>
+        <file>gallery.png</file>
+    </qresource>
+</RCC>
