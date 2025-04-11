@@ -377,6 +377,12 @@ CMakeFiles/GamePhase.dir/main.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qcursor.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbitmap.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/second.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QMainWindow \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qmainwindow.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtabwidget.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/gallery.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QApplication \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qapplication.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qcoreapplication.h \

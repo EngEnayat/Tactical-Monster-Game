@@ -2,6 +2,8 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include "second.h"
+#include "gallery.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,5 +24,7 @@ public slots:
 
 private:
     Ui::Widget *ui;
+    second *s;
+    Gallery *g;
 };
 #endif // WIDGET_H

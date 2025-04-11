@@ -1,5 +1,7 @@
 /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/EWIEGA46WW/moc_widget.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/widget.h \
   /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/moc_predefs.h \
+  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/gallery.h \
+  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/second.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20functional.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20iterator.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20memory.h \
@@ -144,8 +146,11 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtguiglobal.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtransform.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QMainWindow \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qmainwindow.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtabwidget.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtwidgetsexports.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \

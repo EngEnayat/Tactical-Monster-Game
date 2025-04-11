@@ -386,4 +386,6 @@ CMakeFiles/GamePhase.dir/GamePhase_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/EWIEGA46WW/moc_widget.cpp \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/EWIEGA46WW/../../../../widget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/EWIEGA46WW/../../../../second.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/EWIEGA46WW/../../../../gallery.h

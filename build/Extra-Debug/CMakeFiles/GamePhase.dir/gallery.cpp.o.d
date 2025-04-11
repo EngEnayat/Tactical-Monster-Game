@@ -414,4 +414,5 @@ CMakeFiles/GamePhase.dir/gallery.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/widget.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/second.h

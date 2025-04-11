@@ -377,6 +377,12 @@ CMakeFiles/GamePhase.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qcursor.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbitmap.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/second.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QMainWindow \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qmainwindow.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtabwidget.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/gallery.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/build/Extra-Debug/GamePhase_autogen/include/./ui_widget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QVariant \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qvariant.h \
@@ -396,7 +402,6 @@ CMakeFiles/GamePhase.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qiodevice.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
@@ -404,8 +409,4 @@ CMakeFiles/GamePhase.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qpushbutton.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractbutton.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/GamePhase/second.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QMainWindow \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qmainwindow.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtabwidget.h
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget

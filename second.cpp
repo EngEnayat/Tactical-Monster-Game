@@ -16,7 +16,7 @@ second::~second()
 void second::on_pvpMatch_clicked()
 {
     hide();
-    Gallery* g = new Gallery();
+    Gallery *g = new Gallery(this);
     g->show();
 }
 
