@@ -1,3 +1,4 @@
+// for name gatter
 #include "widget.h"
 #include <QLineEdit>
 #include <QLabel>
