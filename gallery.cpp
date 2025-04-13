@@ -1,6 +1,7 @@
 #include "gallery.h"
 #include "ui_gallery.h"
 #include "widget.h"
+#include <iostream>//for io standard
 Gallery::Gallery(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Gallery)
