@@ -1,7 +1,7 @@
 #ifndef GALLERY_H
 #define GALLERY_H
 
-#include <QMainWindow>
+#include <QMainWindow>//for import the qt main window
 
 namespace Ui {
 class Gallery;
