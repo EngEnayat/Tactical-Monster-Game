@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/grids">
+        <file>grid1.txt</file>
+    </qresource>
+</RCC>
