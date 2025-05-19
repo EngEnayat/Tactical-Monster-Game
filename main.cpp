@@ -5,6 +5,7 @@
 #include <QDebug>
 int main(int argc, char *argv[])
 {
+ 	// this is for debugin
     QApplication a(argc, argv);
     qDebug() << "Launching the app...";
 =======
