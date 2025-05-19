@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_PointerBoard_FILE /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard)
+set(__QT_DEPLOY_TARGET_PointerBoard_TYPE EXECUTABLE)

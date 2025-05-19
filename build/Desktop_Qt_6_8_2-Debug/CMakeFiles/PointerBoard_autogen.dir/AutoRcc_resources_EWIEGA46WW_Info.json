@@ -1,0 +1,34 @@
+{
+	"BUILD_DIR" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen",
+	"CMAKE_BINARY_DIR" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard",
+	"CMAKE_SOURCE_DIR" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard",
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Salih.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/W51.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Character.png",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Gobi.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Thor.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Kabu.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/valorant-header-1 (1).webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/imageGPT.png",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Colonel_baba.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/youtubers_headline.webp",
+		"/home/enayatullah-balaghi/Downloads/QT/mainBoardCopy/PointerBoard/imageGPT.png",
+		"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grid1.txt"
+	],
+	"LOCK_FILE" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/PointerBoard_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/PointerBoard_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/resources.qrc",
+	"VERBOSITY" : 0
+}
