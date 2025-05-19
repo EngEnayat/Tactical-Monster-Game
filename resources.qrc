@@ -1,4 +1,5 @@
 <RCC>
+<<<<<<< HEAD
     <qresource prefix="/grids">
         <file>grid1.txt</file>
     </qresource>
@@ -16,5 +17,10 @@
         <file>Character.png</file>
         <file>youtubers_headline.webp</file>
         <file>valorant-header-1 (1).webp</file>
+=======
+    <qresource prefix="/">
+        <file>first.jpeg</file>
+        <file>header.jpg</file>
+>>>>>>> d860567a9f431f0d31d092f380ceb9e0905486fc
     </qresource>
 </RCC>

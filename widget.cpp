@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "./ui_widget.h"
+<<<<<<< HEAD
 #include <QFile>
 #include <QGraphicsScene>
 #include <QDebug>
@@ -12,10 +13,14 @@
 #include <QGraphicsProxyWidget>
 #include <QMessageBox>
 #include <QGraphicsItem>
+=======
+#include "second.h"
+>>>>>>> d860567a9f431f0d31d092f380ceb9e0905486fc
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
+<<<<<<< HEAD
 
     ui->setupUi(this);
     ui->agentOne->setMinimumWidth(150);
@@ -305,9 +310,25 @@ hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos)
         }
     }
     return nullptr;
+=======
+    ui->setupUi(this);
+
+>>>>>>> d860567a9f431f0d31d092f380ceb9e0905486fc
 }
 
 Widget::~Widget()
 {
     delete ui;
 }
+<<<<<<< HEAD
+=======
+
+void Widget::on_pushButton_clicked()
+{
+    hide();
+    second *s = new second();
+    s->show();
+
+}
+
+>>>>>>> d860567a9f431f0d31d092f380ceb9e0905486fc

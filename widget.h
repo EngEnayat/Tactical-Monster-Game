@@ -2,12 +2,18 @@
 #define WIDGET_H
 
 #include <QWidget>
+<<<<<<< HEAD
 #include <QGraphicsPolygonItem>
 #include "hexagonitems.h"
 #include <QMouseEvent>
 #include "clickablepixmapitem.h"
 #include <QGraphicsView>
 #include "hexagonagents.h"
+=======
+#include "second.h"
+#include "gallery.h"
+
+>>>>>>> d860567a9f431f0d31d092f380ceb9e0905486fc
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Widget;
@@ -19,6 +25,7 @@ class Widget : public QWidget
     Q_OBJECT
 
 public:
+<<<<<<< HEAD
     void createHexagon(qreal x, qreal y, QChar ch, int row, int col);
     QPair<int, int> convertScenePosToGrid(const QPointF& pos);
     Widget(QWidget *parent = nullptr);
@@ -55,3 +62,17 @@ private slots:
 
 };
 #endif
+=======
+    Widget(QWidget *parent = nullptr);
+    ~Widget();
+
+public slots:
+    void on_pushButton_clicked();
+
+private:
+    Ui::Widget *ui;
+    second *s;
+    Gallery *g;
+};
+#endif // WIDGET_H
+>>>>>>> d860567a9f431f0d31d092f380ceb9e0905486fc
