@@ -371,4 +371,7 @@ CMakeFiles/PointerBoard.dir/hexagonitems.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QColor \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qcolor.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QBrush \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qcoreevent.h

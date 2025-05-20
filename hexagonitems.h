@@ -15,6 +15,7 @@ public:
     void getPro();
     void resetColor();
     int PlayerOwn() const;
+
 private:
     char type = '\0';
     bool occupied = false;

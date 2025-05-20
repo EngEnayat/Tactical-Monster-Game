@@ -440,7 +440,6 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qinputmethod.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qlocale.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qguiapplication_platform.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../clickablepixmapitem.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsview.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \

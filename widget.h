@@ -5,7 +5,6 @@
 #include <QGraphicsPolygonItem>
 #include "hexagonitems.h"
 #include <QMouseEvent>
-#include "clickablepixmapitem.h"
 #include <QGraphicsView>
 #include "hexagonagents.h"
 QT_BEGIN_NAMESPACE
@@ -25,7 +24,6 @@ public:
     ~Widget();
     bool eventFilter(QObject *obj, QEvent *event);
     HexagonItems* getHexagonAtPosition(const QPointF &pos);
-    void setBackground();
     QPixmap getCircularPixmap(const QPixmap &src, int size);
     hexagonAgents* getAgentHexagonAtPosition(const QPointF &pos);
     void addAgentToggleButton();
@@ -38,6 +36,7 @@ private:
     QGraphicsPolygonItem *buttom;
     QGraphicsPolygonItem *buttomLeft;
     QGraphicsPolygonItem *buttomRight;
+
     QGraphicsScene* scene;
     const qreal hexWidth = 80;
     const qreal hexHeight = 69.4;
@@ -51,7 +50,7 @@ private:
     QVector<hexagonAgents*> agentsOne;
     QVector<hexagonAgents*> agentsTwo;
     int turn;
-private slots:
-
+    void HoverHexagon(QPointF);
+    void ClickHexagon(QPointF);
 };
 #endif

@@ -1,6 +1,7 @@
 #include "hexagonitems.h"
 #include <QColor>
 #include <QBrush>
+#include <QGraphicsSceneMouseEvent>
 HexagonItems::HexagonItems(const QPolygonF& polygon, int row, int col)
     : QGraphicsPolygonItem(polygon), row(row), col(col) {}
 
@@ -15,6 +16,8 @@ void HexagonItems::getPro()
     qDebug() << " Player: " << this->player;
     qDebug() << " occupied: " << (this->occupied ? "Yes" : "No") ;
 }
+
+
 int HexagonItems::PlayerOwn() const
 {
     return player;

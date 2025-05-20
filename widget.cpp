@@ -21,24 +21,6 @@ Widget::Widget(QWidget *parent)
     ui->agentOne->setMinimumWidth(150);
     ui->agentTwo->setMinimumWidth(150);
 
-    this->setStyleSheet(
-        "QLabel {"
-        "  background: qlineargradient(x1:0, y1:0, x2:1, y2:1,"
-        "      stop:0 rgba(30, 30, 30, 220),"
-        "      stop:1 rgba(60, 60, 80, 240));"
-        "  color: #FFD700;"  // Tactical gold
-        "  font-size: 26px;"
-        "  font-weight: 700;"
-        "  font-family: 'Segoe UI', 'Orbitron', 'Arial';"
-        "  border: 2px solid #FFD700;"
-        "  border-radius: 14px;"
-        "  padding: 10px 20px;"
-        "  letter-spacing: 1px;"
-        "}"
-        );
-
-
-
     ui->graphicsView->viewport()->installEventFilter(this);
     ui->graphicsView->viewport()->setMouseTracking(true);
     ui->agentOne->viewport()->setMouseTracking(true);
@@ -118,7 +100,6 @@ void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
     } else {
         hexItem->setBrush(Qt::white);
     }
-
     hexMap[{row, col}] = hexItem;
 
     hexItem->setPen(QPen(Qt::black, 1));
@@ -142,29 +123,8 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             QPointF scenePos = view->mapToScene(mouseEvent->pos());
 
             if (view == ui->graphicsView) {
-                if (lastHoveredHex && lastHoveredHex != getHexagonAtPosition(scenePos)) {
-                    lastHoveredHex->resetColor();
-                    lastHoveredHex = nullptr;
-                }
-
-                HexagonItems* hex = getHexagonAtPosition(scenePos);
-                if (hex && hex != lastHoveredHex) {
-                    if (hex->PlayerOwn() == 1)
-                    {
-                        hex->setScale(1.05);
-                        hex->setBrush(QColor(44, 118, 41));
-                    }
-                    else if (hex->PlayerOwn() == 2)
-                        {
-                        hex->setScale(1.05);
-                            hex->setBrush(QColor(223, 238, 25));
-                     }
-                    else
-                        hex->setBrush(QColor(50, 146, 140));
-                    lastHoveredHex = hex;
-                }
+                HoverHexagon(scenePos);
             }
-
             return false;
         }
 
@@ -175,7 +135,7 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             if (view == ui->graphicsView) {
                 HexagonItems* hex = getHexagonAtPosition(scenePos);
                 if (hex)
-                    qDebug() << "Clicked old hex at:" << hex->row << hex->col;
+                    this->ClickHexagon(scenePos);
                 else{
                     QMessageBox msgBox;
                      msgBox.setText("NO hex on that position.");
@@ -194,7 +154,6 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             {
                 hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos);
                 if (agentHex){
-                    //qDebug() << "Clicked agent hex at position:" << agentHex->pos();
                     agentHex->HideAgents(agentHidden2, agentsTwo);
                     agentHidden2 = !agentHidden2;
                 }
@@ -211,9 +170,51 @@ HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
         if (hex->contains(hex->mapFromScene(pos))) {
             return hex;
         }
-
     }
     return nullptr;
+}
+void Widget::ClickHexagon(QPointF scenePos)
+{
+    if(!hexagonAgents::getSelectedAgent())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("NO Agent has selected!\nPlease first select one.");
+        msgBox.exec();
+        return;
+    }
+    HexagonItems *hexItem = getHexagonAtPosition(scenePos);
+    // hexagonAgents *hex = hexagonAgents::getSelectedAgent();
+    // QPixmap agentPixmap =QPixmap(hex->getAgentAddress(scenePos));
+    QPixmap agentPixmap = QPixmap(":/near/Colonel_baba.webp");
+    hexItem->setBrush(QBrush(agentPixmap.scaled(
+        hexItem->boundingRect().size().toSize(),
+        Qt::IgnoreAspectRatio,
+        Qt::SmoothTransformation
+        )));
+}
+
+void Widget::HoverHexagon(QPointF scenePos)
+{
+    if (lastHoveredHex && lastHoveredHex != getHexagonAtPosition(scenePos)) {
+        lastHoveredHex->resetColor();
+        lastHoveredHex = nullptr;
+    }
+    HexagonItems* hex = getHexagonAtPosition(scenePos);
+    if (hex && hex != lastHoveredHex) {
+        if (hex->PlayerOwn() == 1)
+        {
+            hex->setScale(1.05);
+            hex->setBrush(QColor(44, 118, 41));
+        }
+        else if (hex->PlayerOwn() == 2)
+        {
+            hex->setScale(1.05);
+            hex->setBrush(QColor(223, 238, 25));
+        }
+        else
+            hex->setBrush(QColor(50, 146, 140));
+        lastHoveredHex = hex;
+    }
 }
 
 void Widget::LoadingAgents(QGraphicsView *agent)
@@ -254,14 +255,47 @@ void Widget::LoadingAgents(QGraphicsView *agent)
                                     {100, 4.5 * hDist},
                                       };
     }
+
+    QStringList agentImages = {
+        ":/near/Colonel_baba.webp",
+        ":/near/Gobi.webp",
+        ":/near/Kabu.webp",
+        ":/near/Kabu.webp",
+        ":/near/Salih.webp",
+        ":/near/Thor.webp"
+    };
     for (const QPointF& pos : positions) {
         hexagonAgents* hex;
-        if(positions[0] == pos) hex = new hexagonAgents(hexSize, ":/near/Colonel_baba.webp");
-        else if(positions[1] == pos) hex = new hexagonAgents(hexSize, ":/near/Gobi.webp");
-        else if(positions[2] == pos) hex = new hexagonAgents(hexSize, ":/near/Kabu.webp");
-        else if(positions[3] == pos) hex = new hexagonAgents(hexSize, ":/near/Kabu.webp");
-        else if(positions[4] == pos) hex = new hexagonAgents(hexSize, ":/near/Salih.webp");
-        else if(positions[5] == pos) hex = new hexagonAgents(hexSize, ":/near/Thor.webp");
+        if(positions[0] == pos){
+            hex = new hexagonAgents(hexSize, agentImages[0]);
+            hex->StoreAddress(pos, agentImages[0]);
+        }
+        else if(positions[1] == pos)
+        {
+            hex = new hexagonAgents(hexSize, agentImages[1]);
+            hex->StoreAddress(pos, agentImages[1]);
+        }
+        else if(positions[2] == pos)
+        {
+            hex = new hexagonAgents(hexSize, agentImages[2]);
+            hex->StoreAddress(pos, agentImages[2]);
+        }
+        else if(positions[3] == pos)
+        {
+            hex = new hexagonAgents(hexSize, agentImages[3]);
+            hex->StoreAddress(pos, agentImages[3]);
+        }
+        else if(positions[4] == pos)
+        {
+            hex = new hexagonAgents(hexSize, agentImages[4]);
+            hex->StoreAddress(pos, agentImages[4]);
+        }
+        else if(positions[5] == pos)
+        {
+            hex = new hexagonAgents(hexSize, agentImages[5]);
+            hex->StoreAddress(pos, agentImages[5]);
+        }
+
         else
         {
         if(agent == ui->agentOne) hex = new hexagonAgents(hexSize+ 7, ":/near/youtubers_headline.webp");
@@ -275,7 +309,6 @@ void Widget::LoadingAgents(QGraphicsView *agent)
         }
         else if(agent == ui->agentTwo) agentsTwo.append(hex);
         this->agentHexList.append(hex);
-
     }
     QLabel* status;
     if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
@@ -309,5 +342,9 @@ hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos)
 
 Widget::~Widget()
 {
+    for(int i=0; i<agentHexList.size();i++)
+    {
+        delete agentHexList[i];
+    }
     delete ui;
 }

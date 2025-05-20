@@ -416,9 +416,6 @@ CMakeFiles/PointerBoard.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qinputmethod.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qlocale.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qguiapplication_platform.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/clickablepixmapitem.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QObject \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsview.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
@@ -441,6 +438,7 @@ CMakeFiles/PointerBoard.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agents.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QString \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qstring.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/include/./ui_widget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QVariant \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qvariant.h \
