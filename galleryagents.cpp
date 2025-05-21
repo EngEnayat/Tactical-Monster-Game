@@ -3,8 +3,10 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QMessageBox>
+#include "widget.h"
 
-
+int GalleryAgents::agentCount = 0;
 GalleryAgents::GalleryAgents(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::GalleryAgents)
@@ -202,6 +204,7 @@ void GalleryAgents::setButtonImage(QPushButton* button, const QString& imagePath
     )").arg(imagePath));
 }
 
+
 void GalleryAgents::on_Kabu_clicked()
 {
 
@@ -209,6 +212,23 @@ void GalleryAgents::on_Kabu_clicked()
 
 void GalleryAgents::showProperties(int hp, int mobility, QString type, int Damage, int AttackRange, QString name, QString path)
 {
+    if(agentCount > 11)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("All Agents have selected.\n Click on start button to start");
+        msgBox.exec();
+        qDebug() << "Player one Selected Agents: ";
+        for(QString &str : PlayerOneAgents)
+        {
+            qDebug() << str << "\n";
+        }
+        qDebug() << "Player two Selected Agents: ";
+        for(QString &str : PlayerTwoAgents)
+        {
+            qDebug() << str << "\n";
+        }
+        return;
+    }
     QDialog dialog(this);
     dialog.setWindowTitle("Agent Info");
     dialog.setFixedSize(500, 320);
@@ -296,7 +316,10 @@ void GalleryAgents::showProperties(int hp, int mobility, QString type, int Damag
     connect(buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
 
-    QLabel* headerLabel = new QLabel("Agent Details");
+    QString playerWEl = "";
+    if(agentCount <= 4) playerWEl = "Player ONE Choose your " + QString::number(agentCount + 1) + "th" + " agent";
+    else if(agentCount > 4) playerWEl= "Player TWO Choose your " + QString::number(agentCount-4) + "th" + " agent";
+    QLabel* headerLabel = new QLabel(playerWEl);
     headerLabel->setFont(QFont("Segoe UI", 14, QFont::Bold));
     headerLabel->setStyleSheet("color: #333; margin-bottom: 10px;");
 
@@ -307,9 +330,45 @@ void GalleryAgents::showProperties(int hp, int mobility, QString type, int Damag
     int result = dialog.exec();
 
     if (result == QDialog::Accepted) {
-        qDebug() << "User chose" << name << "as agent.";
-        // Handle agent selection logic here
+        if(agentCount <=5)
+        {       PlayerOneAgents.append(name);
+                agentCount++;
+            this->AddAddress(name, 1);
+        }
+        else if(agentCount>5 && agentCount <= 11)
+        {
+            PlayerTwoAgents.append(name);
+            agentCount++;;
+            this->AddAddress(name, 2);
+        }
     } else {
         qDebug() << "User canceled.";
     }
 }
+
+void GalleryAgents::AddAddress(QString name, int Player)
+{
+    QString adjustedName = nameToFilename.contains(name) ? nameToFilename[name] : name;
+    QString path = ":/preAgent/Agents/" + adjustedName + ".webp";
+
+    if (Player == 1)
+        PlayerOneImages.append(path);
+    else if (Player == 2)
+        PlayerTwoImages.append(path);
+    qDebug() << "the image path: "<< path;
+}
+
+void GalleryAgents::on_StartButton_clicked()
+{
+    if(agentCount <=11)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("PLEASE try after completion of selection");
+        msgBox.exec();
+        return;
+    }
+    Widget *w = new Widget(PlayerOneImages, PlayerTwoImages);
+    w->show();
+    this->hide();
+}
+

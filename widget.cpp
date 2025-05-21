@@ -12,8 +12,9 @@
 #include <QGraphicsProxyWidget>
 #include <QMessageBox>
 #include <QGraphicsItem>
+#include "grounded.h"
 int Widget::PlayerTurn = 1;
-Widget::Widget(QWidget *parent)
+Widget::Widget(QStringList PathImages,QStringList imageAddres2,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
@@ -67,8 +68,8 @@ Widget::Widget(QWidget *parent)
     }
 
 
-    this->LoadingAgents(ui->agentOne);
-    this->LoadingAgents(ui->agentTwo);
+    this->LoadingAgents(ui->agentOne, PathImages);
+    this->LoadingAgents(ui->agentTwo, imageAddres2);
     agentsTwo[6]->setVisible(true);
     agentsOne[6]->setVisible(true);
 }
@@ -221,6 +222,8 @@ void Widget::ClickHexagon(QPointF scenePos)
     }
 
     QPixmap agentPixmap;
+    QString add = hex->getAgentAddress(hex->pos());
+    Grounded *m = new Grounded(25, add);
     if(hexItem->isOccupied())
     {
         QMessageBox msgBox;
@@ -228,9 +231,12 @@ void Widget::ClickHexagon(QPointF scenePos)
         msgBox.exec();
         return;
     }
+
     else if (hex && (hexItem->HexType() != '~' && hexItem->HexType() != '#' && hexItem->HexType() !=' ')){
-        agentPixmap = QPixmap(hex->getAgentAddress(scenePos));
+        agentPixmap = QPixmap(add);
         hexItem->setBrush(Qt::NoBrush);
+        qDebug() << add << "is the grounded one";
+        qDebug() << "\n" << hex->getAgentAddress(hex->pos());
     }
     else return;
 
@@ -270,7 +276,7 @@ void Widget::HoverHexagon(QPointF scenePos)
     }
 }
 
-void Widget::LoadingAgents(QGraphicsView *agent)
+void Widget::LoadingAgents(QGraphicsView *agent, QStringList agentImages)
 {
     QGraphicsScene* scene = new QGraphicsScene(this);
     agent->setScene(scene);
@@ -309,61 +315,36 @@ void Widget::LoadingAgents(QGraphicsView *agent)
                                       };
     }
 
-    QStringList agentImages = {
-        ":/near/Colonel_baba.webp",
-        ":/near/Gobi.webp",
-        ":/near/Kabu.webp",
-        ":/near/Kabu.webp",
-        ":/near/Salih.webp",
-        ":/near/Thor.webp"
-    };
-    for (const QPointF& pos : positions) {
+    for (int i = 0; i < positions.size() ; ++i) {
         hexagonAgents* hex;
-        if(positions[0] == pos){
-            hex = new hexagonAgents(hexSize, agentImages[0]);
-            hex->StoreAddress(pos, agentImages[0]);
-        }
-        else if(positions[1] == pos)
-        {
-            hex = new hexagonAgents(hexSize, agentImages[1]);
-            hex->StoreAddress(pos, agentImages[1]);
-        }
-        else if(positions[2] == pos)
-        {
-            hex = new hexagonAgents(hexSize, agentImages[2]);
-            hex->StoreAddress(pos, agentImages[2]);
-        }
-        else if(positions[3] == pos)
-        {
-            hex = new hexagonAgents(hexSize, agentImages[3]);
-            hex->StoreAddress(pos, agentImages[3]);
-        }
-        else if(positions[4] == pos)
-        {
-            hex = new hexagonAgents(hexSize, agentImages[4]);
-            hex->StoreAddress(pos, agentImages[4]);
-        }
-        else if(positions[5] == pos)
-        {
-            hex = new hexagonAgents(hexSize, agentImages[5]);
-            hex->StoreAddress(pos, agentImages[5]);
+
+        if (i < agentImages.size() ) {
+            hex = new hexagonAgents(hexSize, agentImages[i]);
+            hex->StoreAddress(positions[i], agentImages[i]);
+        } else {
+            // Fill with placeholders if not enough agents were selected
+            QString placeholder = (agent == ui->agentOne)
+                                      ? ":/near/youtubers_headline.webp"
+                                      : ":/near/valorant-header-1 (1).webp";
+            hex = new hexagonAgents(hexSize + 7, placeholder);
         }
 
-        else
-        {
-        if(agent == ui->agentOne) hex = new hexagonAgents(hexSize+ 7, ":/near/youtubers_headline.webp");
-        else if(agent == ui->agentTwo) hex = new hexagonAgents(hexSize+ 7, ":/near/valorant-header-1 (1).webp");
-        }
-        hex->setPos(pos);
+        hex->setPos(positions[i]);
         scene->addItem(hex);
-        if(agent == ui->agentOne)
-        {
+
+        if (agent == ui->agentOne)
             agentsOne.append(hex);
-        }
-        else if(agent == ui->agentTwo) agentsTwo.append(hex);
-        this->agentHexList.append(hex);
+        else if (agent == ui->agentTwo)
+            agentsTwo.append(hex);
+
+        agentHexList.append(hex);
         hex->InActive(agentsTwo);
     }
+
+
+
+
+
     QLabel* status;
     if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
     else if(agent == ui->agentTwo) status = new QLabel("👑 Karim Benzima");

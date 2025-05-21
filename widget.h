@@ -20,7 +20,7 @@ class Widget : public QWidget
 public:
     void createHexagon(qreal x, qreal y, QChar ch, int row, int col);
     QPair<int, int> convertScenePosToGrid(const QPointF& pos);
-    Widget(QWidget *parent = nullptr);
+    Widget(QStringList imageAddress1 = QStringList(),QStringList imageAddress2 = QStringList(),QWidget *parent = nullptr);
     ~Widget();
     bool eventFilter(QObject *obj, QEvent *event);
     HexagonItems* getHexagonAtPosition(const QPointF &pos);
@@ -43,7 +43,7 @@ private:
     Ui::Widget *ui;
     QMap<QPair<int, int>, HexagonItems*> hexMap;
 
-    void LoadingAgents(QGraphicsView *);
+    void LoadingAgents(QGraphicsView *, QStringList);
     QList<hexagonAgents*> agentHexList;
     QVector<hexagonAgents*> agentsOne;
     QVector<hexagonAgents*> agentsTwo;

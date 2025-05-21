@@ -19,7 +19,6 @@ hexagonAgents::hexagonAgents(qreal size, const QString& imagePath, QGraphicsItem
     if (imagePath == "f")
         this->setBrush(QColor(44,139,33));
     setPen(QPen(Qt::black, 1));
-    this->setVisible(false);
 }
 
 hexagonAgents* hexagonAgents::getSelectedAgent()
@@ -65,7 +64,6 @@ void hexagonAgents::HideAgents(QVector<hexagonAgents*> agentsList)
         return;
     }
 
-    // Handle normal agent selection
     for (int i = 0; i < 6; ++i) {
         if (this == agentsList[i]) {
             if (SelectedAgents && SelectedAgents != this) {
@@ -83,6 +81,7 @@ void hexagonAgents::HideAgents(QVector<hexagonAgents*> agentsList)
         }
     }
 }
+
 void hexagonAgents::StoreAddress(QPointF pos, QString path)
 {
     HexAddress.insert(qMakePair(pos.x(), pos.y()), path);
@@ -123,5 +122,15 @@ void hexagonAgents::EnableAll(QVector<hexagonAgents *> agents)
     {
         agents[i]->setEnabled(true);
     }
+}
+
+void hexagonAgents::SetType(QString t)
+{
+    Type = t;
+}
+
+QString hexagonAgents::getType()
+{
+    return Type;
 }
 

@@ -22,6 +22,8 @@ public:
     static int PlayerTurn();
     void InActive( QVector<hexagonAgents*>);
     void EnableAll(QVector<hexagonAgents*>);
+    void SetType(QString);
+    QString getType();
 protected:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override
     {
@@ -35,6 +37,7 @@ protected:
         painter->drawPolygon(polygon());
     }
 private:
+    QString Type;
     static int CurrentPlayer;
     bool IsDropped = false;
     QMap<QPair<int,int>, QString> HexAddress;

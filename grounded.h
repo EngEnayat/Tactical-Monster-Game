@@ -4,7 +4,7 @@
 class Grounded : public hexagonAgents
 {
 public:
-    Grounded();
+    Grounded(qreal, const QString&, QGraphicsItem* parent = nullptr);
 private:
     QString Name; // Billy, Abgus, ...
     int HP;
@@ -13,5 +13,4 @@ private:
     int AttackRange;
     int PlayerOwn;
 };
-
 #endif
