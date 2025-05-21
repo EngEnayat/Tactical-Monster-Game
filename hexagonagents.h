@@ -15,9 +15,15 @@ class hexagonAgents : public QObject, public QGraphicsPolygonItem {
 public:
     explicit hexagonAgents(qreal size, const QString& imagePath, QGraphicsItem* parent = nullptr);
     static hexagonAgents* getSelectedAgent();
-    void HideAgents(bool, QVector<hexagonAgents*>);
+    void HideAgents(QVector<hexagonAgents*>);
     void StoreAddress(QPointF, QString);
     QString getAgentAddress(QPointF);
+    void setDropped(bool b){IsDropped = b;}
+    void CleanSelection();
+    void ChangePlayer();
+    static int PlayerTurn();
+    void InActive( QVector<hexagonAgents*>);
+    void EnableAll(QVector<hexagonAgents*>);
 protected:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override
     {
@@ -31,9 +37,11 @@ protected:
         painter->drawPolygon(polygon());
     }
 private:
+    static int CurrentPlayer;
+    bool IsDropped = false;
     QMap<QPair<int,int>, QString> HexAddress;
-    QMap<QPair<int,int>, Agents*> PlayerOneAgents;
-    QMap<QPair<int,int>, Agents*> PlayerTwoAgents;
+    // QMap<QPair<int,int>, Agents*> PlayerOneAgents;
+    // QMap<QPair<int,int>, Agents*> PlayerTwoAgents;
     static hexagonAgents *SelectedAgents;
 };
 

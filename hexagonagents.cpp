@@ -2,7 +2,7 @@
 #include <QDebug>
 
 hexagonAgents* hexagonAgents::SelectedAgents = nullptr;
-
+int hexagonAgents::CurrentPlayer = 1;
 
 hexagonAgents::hexagonAgents(qreal size, const QString& imagePath, QGraphicsItem* parent)
     : QGraphicsPolygonItem(parent), pix(imagePath)
@@ -27,35 +27,62 @@ hexagonAgents* hexagonAgents::getSelectedAgent()
     return SelectedAgents;
 }
 
-void hexagonAgents::HideAgents(bool isHide, QVector<hexagonAgents*> agents)
+void hexagonAgents::HideAgents(QVector<hexagonAgents*> agentsList)
 {
-    bool isAgent = false;
+    if (agentsList.size() < 7) return;
+    if(!agentsList[6]->isEnabled()) return;
+    if (this == agentsList[6]) {
+        bool allDropped = true;
 
-    if (agents.contains(this)) {
-        if (this == agents[6]) {
-            for (auto it : agents) {
-                it->setVisible(!isHide);
+        for (int i = 0; i < 6; ++i) {
+            if (!agentsList[i]->IsDropped) {
+                allDropped = false;
+                break;
             }
-        } else {
-            isAgent = true;
         }
-    }
-    agents[6]->setVisible(true);
 
-    if (isAgent) {
-        if (SelectedAgents && SelectedAgents != this) {
-            SelectedAgents->setScale(1.0);
+        if (allDropped) {
+            this->setVisible(false);
+            return;
         }
-        if (SelectedAgents == this) {
-            this->setScale(1.0);
-            SelectedAgents = nullptr;
-        } else {
-            this->setScale(1.1);
-            SelectedAgents = this;
+
+        bool anyVisible = false;
+        for (int i = 0; i < 6; ++i) {
+            if (!agentsList[i]->IsDropped && agentsList[i]->isVisible()) {
+                anyVisible = true;
+                break;
+            }
+        }
+
+        bool newState = !anyVisible;
+
+        for (int i = 0; i < 6; ++i) {
+            if (!agentsList[i]->IsDropped) {
+                agentsList[i]->setVisible(newState);
+            }
+        }
+        this->setVisible(true);
+        return;
+    }
+
+    // Handle normal agent selection
+    for (int i = 0; i < 6; ++i) {
+        if (this == agentsList[i]) {
+            if (SelectedAgents && SelectedAgents != this) {
+                SelectedAgents->setScale(1.0);
+            }
+
+            if (SelectedAgents == this) {
+                this->setScale(1.0);
+                SelectedAgents = nullptr;
+            } else {
+                this->setScale(1.1);
+                SelectedAgents = this;
+            }
+            break;
         }
     }
 }
-
 void hexagonAgents::StoreAddress(QPointF pos, QString path)
 {
     HexAddress.insert(qMakePair(pos.x(), pos.y()), path);
@@ -63,5 +90,38 @@ void hexagonAgents::StoreAddress(QPointF pos, QString path)
 
 QString hexagonAgents::getAgentAddress(QPointF pos)
 {
-
+    QString path =  HexAddress[qMakePair(this->x(), this->y())];
+    return path;
 }
+
+void hexagonAgents::CleanSelection()
+{
+    SelectedAgents = nullptr;
+}
+
+void hexagonAgents::ChangePlayer()
+{
+    CurrentPlayer = (CurrentPlayer == 1) ? 2 : 1;
+}
+
+int hexagonAgents::PlayerTurn()
+{
+    return CurrentPlayer;
+}
+
+void hexagonAgents::InActive(QVector<hexagonAgents *> agents)
+{
+    for(int i=0; i<agents.size() -1 ;++i)
+    {
+        agents[i]->setEnabled(false);
+    }
+}
+
+void hexagonAgents::EnableAll(QVector<hexagonAgents *> agents)
+{
+    for(int i=0; i<agents.size() -1 ;++i)
+    {
+        agents[i]->setEnabled(true);
+    }
+}
+

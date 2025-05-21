@@ -45,11 +45,9 @@ private:
 
     void LoadingAgents(QGraphicsView *);
     QList<hexagonAgents*> agentHexList;
-    bool agentHidden1 = false;
-    bool agentHidden2 = false;
     QVector<hexagonAgents*> agentsOne;
     QVector<hexagonAgents*> agentsTwo;
-    int turn;
+    static int PlayerTurn ;
     void HoverHexagon(QPointF);
     void ClickHexagon(QPointF);
 };

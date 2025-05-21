@@ -8,7 +8,6 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QRect \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QSize \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QSizeF \
-  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QString \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20functional.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20iterator.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20memory.h \
@@ -184,7 +183,6 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qvector2d.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qvectornd.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qwindowdefs.h \
-  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView \

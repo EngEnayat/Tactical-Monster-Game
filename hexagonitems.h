@@ -12,9 +12,12 @@ public:
     int col;
 
     void setProperties(int player, bool occupied, char type);
-    void getPro();
+    void getPro() const;
     void resetColor();
     int PlayerOwn() const;
+    void ChangeOccupied(bool b){occupied = b;}
+    bool isOccupied() const{return occupied;}
+    char HexType() const {return type;}
 
 private:
     char type = '\0';

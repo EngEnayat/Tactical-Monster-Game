@@ -12,6 +12,7 @@
 #include <QGraphicsProxyWidget>
 #include <QMessageBox>
 #include <QGraphicsItem>
+int Widget::PlayerTurn = 1;
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -98,11 +99,13 @@ void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
         hexItem->setProperties(0, true, '~');
         hexItem->setBrush(QColor(189, 40, 117));
     } else {
+        hexItem->setProperties(10, false, ' ');
         hexItem->setBrush(Qt::white);
     }
     hexMap[{row, col}] = hexItem;
 
     hexItem->setPen(QPen(Qt::black, 1));
+    hexItem->setScale(0.9);
     scene->addItem(hexItem);
 }
 
@@ -146,16 +149,14 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
                 hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos);
                 if (agentHex){
                     qDebug() << "Clicked agent hex at position:" << agentHex->pos();
-                        agentHex->HideAgents(agentHidden1, agentsOne);
-                        agentHidden1 = !agentHidden1;
+                        agentHex->HideAgents(agentsOne);
                 }
             }
             else if(view == ui->agentTwo)
             {
                 hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos);
                 if (agentHex){
-                    agentHex->HideAgents(agentHidden2, agentsTwo);
-                    agentHidden2 = !agentHidden2;
+                    agentHex->HideAgents(agentsTwo);
                 }
             }
             return false;
@@ -173,8 +174,10 @@ HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
     }
     return nullptr;
 }
+
 void Widget::ClickHexagon(QPointF scenePos)
 {
+
     if(!hexagonAgents::getSelectedAgent())
     {
         QMessageBox msgBox;
@@ -182,15 +185,62 @@ void Widget::ClickHexagon(QPointF scenePos)
         msgBox.exec();
         return;
     }
+
+    // if(hexagonAgents::PlayerTurn() != this->PlayerTurn)
+    // {
+    //     QMessageBox msgBox;
+    //     msgBox.setText("NO Agent has selected!\nPlease first select one.");
+    //     msgBox.exec();
+    //     return;
+    // }
+
     HexagonItems *hexItem = getHexagonAtPosition(scenePos);
-    // hexagonAgents *hex = hexagonAgents::getSelectedAgent();
-    // QPixmap agentPixmap =QPixmap(hex->getAgentAddress(scenePos));
-    QPixmap agentPixmap = QPixmap(":/near/Colonel_baba.webp");
+    hexagonAgents *hex = hexagonAgents::getSelectedAgent();
+
+    if(agentsOne.size()>=7 && PlayerTurn == 1)
+    {
+        agentsTwo[6]->setScale(1);
+        agentsOne[6]->setEnabled(true);
+        agentsTwo[6]->setEnabled(false);
+        hex->InActive(agentsTwo);
+        hex->EnableAll(agentsOne);
+    }
+    if(agentsTwo.size()>=7 && PlayerTurn == 2)
+    {
+        agentsOne[6]->setScale(1);
+        agentsTwo[6]->setScale(1.1);
+        agentsTwo[6]->setEnabled(true);
+        agentsOne[6]->setEnabled(false);
+        hex->InActive(agentsOne);
+        hex->EnableAll(agentsTwo);
+    }
+
+    QPixmap agentPixmap;
+    if(hexItem->isOccupied())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("CELL is already occupied, try another.");
+        msgBox.exec();
+        return;
+    }
+    else if (hex && (hexItem->HexType() != '~' && hexItem->HexType() != '#' && hexItem->HexType() !=' ')){
+        agentPixmap = QPixmap(hex->getAgentAddress(scenePos));
+        hexItem->setBrush(Qt::NoBrush);
+    }
+    else return;
+
     hexItem->setBrush(QBrush(agentPixmap.scaled(
         hexItem->boundingRect().size().toSize(),
         Qt::IgnoreAspectRatio,
         Qt::SmoothTransformation
         )));
+    hex->setVisible(false);
+    hex->setDropped(true);
+    hex->setEnabled(false);
+    hex->CleanSelection();
+    hexItem->ChangeOccupied(true);
+    hexItem->setScale(0.9);
+    PlayerTurn = ((PlayerTurn == 1) ? 2 : 1);
 }
 
 void Widget::HoverHexagon(QPointF scenePos)
@@ -201,18 +251,16 @@ void Widget::HoverHexagon(QPointF scenePos)
     }
     HexagonItems* hex = getHexagonAtPosition(scenePos);
     if (hex && hex != lastHoveredHex) {
-        if (hex->PlayerOwn() == 1)
+        if (hex->PlayerOwn() == 1 && !hex->isOccupied())
         {
             hex->setScale(1.05);
             hex->setBrush(QColor(44, 118, 41));
         }
-        else if (hex->PlayerOwn() == 2)
+        else if (hex->PlayerOwn() == 2 && !hex->isOccupied())
         {
             hex->setScale(1.05);
             hex->setBrush(QColor(223, 238, 25));
         }
-        else
-            hex->setBrush(QColor(50, 146, 140));
         lastHoveredHex = hex;
     }
 }
@@ -310,6 +358,7 @@ void Widget::LoadingAgents(QGraphicsView *agent)
         else if(agent == ui->agentTwo) agentsTwo.append(hex);
         this->agentHexList.append(hex);
     }
+    if(agentsTwo.size()>=7) agentsTwo[6]->setEnabled(false);
     QLabel* status;
     if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
     else if(agent == ui->agentTwo) status = new QLabel("👑 Karim Benzima");
@@ -326,7 +375,7 @@ void Widget::LoadingAgents(QGraphicsView *agent)
         "}"
         );
     QGraphicsProxyWidget* statusItem = scene->addWidget(status);
-    statusItem->setZValue(100); // bring to front
+    statusItem->setZValue(100);
     statusItem->setPos(-70, scene->height() + 70);
 }
 
@@ -334,6 +383,7 @@ hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos)
 {
     for (auto agentHex : agentHexList) {
         if (agentHex->contains(agentHex->mapFromScene(pos))) {
+            if(!agentHex->isEnabled()) return nullptr;
             return agentHex;
         }
     }

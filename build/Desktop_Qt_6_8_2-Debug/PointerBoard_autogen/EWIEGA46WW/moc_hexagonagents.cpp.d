@@ -1,7 +1,6 @@
 /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_hexagonagents.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h \
   /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/moc_predefs.h \
   /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agents.h \
-  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QString \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20functional.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20iterator.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20memory.h \
@@ -147,7 +146,6 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtguiglobal.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtransform.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qwindowdefs.h \
-  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsitem.h \

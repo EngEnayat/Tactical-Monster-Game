@@ -382,8 +382,5 @@ CMakeFiles/PointerBoard.dir/hexagonagents.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontinfo.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontmetrics.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agents.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QString \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qstring.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QDebug \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qdebug.h

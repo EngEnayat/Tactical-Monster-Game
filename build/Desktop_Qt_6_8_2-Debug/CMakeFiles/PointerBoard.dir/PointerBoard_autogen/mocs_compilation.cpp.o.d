@@ -392,8 +392,6 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontinfo.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontmetrics.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../agents.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QString \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qstring.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_widget.cpp \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../widget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \

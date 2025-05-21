@@ -436,9 +436,6 @@ CMakeFiles/PointerBoard.dir/main.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agents.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QString \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qstring.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QApplication \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qapplication.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QDebug \
