@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-c4596ab04293a0cf064f.json",
+					"jsonFile" : "directory-.-Debug-6e7997f2a8f68da6a1ed.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "PointerBoard::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-PointerBoard-Debug-e8fe6322727416a109e2.json",
+					"jsonFile" : "target-PointerBoard-Debug-727592cbd28f999f14ed.json",
 					"name" : "PointerBoard",
 					"projectIndex" : 0
 				},

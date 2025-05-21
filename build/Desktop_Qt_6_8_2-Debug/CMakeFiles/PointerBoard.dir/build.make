@@ -90,6 +90,31 @@ PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Dow
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/youtubers_headline.webp
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/mainBoardCopy/PointerBoard/imageGPT.png
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grid1.txt
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Lamorak.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Tusk.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Kanar.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Frost.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Salih.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Angus.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Duraham.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Medusa.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Khan.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Reketon.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Karissa.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Elsa.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Sabrina.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Boi.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/death.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Bunka.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Kabu.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Billy.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Rajakal.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Sanka.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Colonel_baba.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Sir\ philiph.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Eloi.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Rambo.webp
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Eloi\ (1).webp
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for resources.qrc"
 	/usr/bin/cmake -E cmake_autorcc /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles/PointerBoard_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Debug
@@ -206,10 +231,80 @@ CMakeFiles/PointerBoard.dir/hexagonagents.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PointerBoard.dir/hexagonagents.cpp.s"
 	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.cpp -o CMakeFiles/PointerBoard.dir/hexagonagents.cpp.s
 
+CMakeFiles/PointerBoard.dir/grounded.cpp.o: CMakeFiles/PointerBoard.dir/flags.make
+CMakeFiles/PointerBoard.dir/grounded.cpp.o: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp
+CMakeFiles/PointerBoard.dir/grounded.cpp.o: CMakeFiles/PointerBoard.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/PointerBoard.dir/grounded.cpp.o"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PointerBoard.dir/grounded.cpp.o -MF CMakeFiles/PointerBoard.dir/grounded.cpp.o.d -o CMakeFiles/PointerBoard.dir/grounded.cpp.o -c /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp
+
+CMakeFiles/PointerBoard.dir/grounded.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PointerBoard.dir/grounded.cpp.i"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp > CMakeFiles/PointerBoard.dir/grounded.cpp.i
+
+CMakeFiles/PointerBoard.dir/grounded.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PointerBoard.dir/grounded.cpp.s"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp -o CMakeFiles/PointerBoard.dir/grounded.cpp.s
+
+CMakeFiles/PointerBoard.dir/flying.cpp.o: CMakeFiles/PointerBoard.dir/flags.make
+CMakeFiles/PointerBoard.dir/flying.cpp.o: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp
+CMakeFiles/PointerBoard.dir/flying.cpp.o: CMakeFiles/PointerBoard.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/PointerBoard.dir/flying.cpp.o"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PointerBoard.dir/flying.cpp.o -MF CMakeFiles/PointerBoard.dir/flying.cpp.o.d -o CMakeFiles/PointerBoard.dir/flying.cpp.o -c /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp
+
+CMakeFiles/PointerBoard.dir/flying.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PointerBoard.dir/flying.cpp.i"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp > CMakeFiles/PointerBoard.dir/flying.cpp.i
+
+CMakeFiles/PointerBoard.dir/flying.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PointerBoard.dir/flying.cpp.s"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp -o CMakeFiles/PointerBoard.dir/flying.cpp.s
+
+CMakeFiles/PointerBoard.dir/floating.cpp.o: CMakeFiles/PointerBoard.dir/flags.make
+CMakeFiles/PointerBoard.dir/floating.cpp.o: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp
+CMakeFiles/PointerBoard.dir/floating.cpp.o: CMakeFiles/PointerBoard.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/PointerBoard.dir/floating.cpp.o"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PointerBoard.dir/floating.cpp.o -MF CMakeFiles/PointerBoard.dir/floating.cpp.o.d -o CMakeFiles/PointerBoard.dir/floating.cpp.o -c /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp
+
+CMakeFiles/PointerBoard.dir/floating.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PointerBoard.dir/floating.cpp.i"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp > CMakeFiles/PointerBoard.dir/floating.cpp.i
+
+CMakeFiles/PointerBoard.dir/floating.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PointerBoard.dir/floating.cpp.s"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp -o CMakeFiles/PointerBoard.dir/floating.cpp.s
+
+CMakeFiles/PointerBoard.dir/waterwalking.cpp.o: CMakeFiles/PointerBoard.dir/flags.make
+CMakeFiles/PointerBoard.dir/waterwalking.cpp.o: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp
+CMakeFiles/PointerBoard.dir/waterwalking.cpp.o: CMakeFiles/PointerBoard.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/PointerBoard.dir/waterwalking.cpp.o"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PointerBoard.dir/waterwalking.cpp.o -MF CMakeFiles/PointerBoard.dir/waterwalking.cpp.o.d -o CMakeFiles/PointerBoard.dir/waterwalking.cpp.o -c /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp
+
+CMakeFiles/PointerBoard.dir/waterwalking.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PointerBoard.dir/waterwalking.cpp.i"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp > CMakeFiles/PointerBoard.dir/waterwalking.cpp.i
+
+CMakeFiles/PointerBoard.dir/waterwalking.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PointerBoard.dir/waterwalking.cpp.s"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp -o CMakeFiles/PointerBoard.dir/waterwalking.cpp.s
+
+CMakeFiles/PointerBoard.dir/galleryagents.cpp.o: CMakeFiles/PointerBoard.dir/flags.make
+CMakeFiles/PointerBoard.dir/galleryagents.cpp.o: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp
+CMakeFiles/PointerBoard.dir/galleryagents.cpp.o: CMakeFiles/PointerBoard.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/PointerBoard.dir/galleryagents.cpp.o"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PointerBoard.dir/galleryagents.cpp.o -MF CMakeFiles/PointerBoard.dir/galleryagents.cpp.o.d -o CMakeFiles/PointerBoard.dir/galleryagents.cpp.o -c /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp
+
+CMakeFiles/PointerBoard.dir/galleryagents.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PointerBoard.dir/galleryagents.cpp.i"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp > CMakeFiles/PointerBoard.dir/galleryagents.cpp.i
+
+CMakeFiles/PointerBoard.dir/galleryagents.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PointerBoard.dir/galleryagents.cpp.s"
+	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp -o CMakeFiles/PointerBoard.dir/galleryagents.cpp.s
+
 CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o: CMakeFiles/PointerBoard.dir/flags.make
 CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o: PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp
 CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o: CMakeFiles/PointerBoard.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o"
 	/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o -MF CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o.d -o CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o -c /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp
 
 CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.i: cmake_force
@@ -230,6 +325,11 @@ PointerBoard_OBJECTS = \
 "CMakeFiles/PointerBoard.dir/clickablepixmapitem.cpp.o" \
 "CMakeFiles/PointerBoard.dir/agentitem.cpp.o" \
 "CMakeFiles/PointerBoard.dir/hexagonagents.cpp.o" \
+"CMakeFiles/PointerBoard.dir/grounded.cpp.o" \
+"CMakeFiles/PointerBoard.dir/flying.cpp.o" \
+"CMakeFiles/PointerBoard.dir/floating.cpp.o" \
+"CMakeFiles/PointerBoard.dir/waterwalking.cpp.o" \
+"CMakeFiles/PointerBoard.dir/galleryagents.cpp.o" \
 "CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o"
 
 # External object files for target PointerBoard
@@ -243,6 +343,11 @@ PointerBoard: CMakeFiles/PointerBoard.dir/agents.cpp.o
 PointerBoard: CMakeFiles/PointerBoard.dir/clickablepixmapitem.cpp.o
 PointerBoard: CMakeFiles/PointerBoard.dir/agentitem.cpp.o
 PointerBoard: CMakeFiles/PointerBoard.dir/hexagonagents.cpp.o
+PointerBoard: CMakeFiles/PointerBoard.dir/grounded.cpp.o
+PointerBoard: CMakeFiles/PointerBoard.dir/flying.cpp.o
+PointerBoard: CMakeFiles/PointerBoard.dir/floating.cpp.o
+PointerBoard: CMakeFiles/PointerBoard.dir/waterwalking.cpp.o
+PointerBoard: CMakeFiles/PointerBoard.dir/galleryagents.cpp.o
 PointerBoard: CMakeFiles/PointerBoard.dir/PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp.o
 PointerBoard: CMakeFiles/PointerBoard.dir/build.make
 PointerBoard: /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/lib/libQt6Widgets.so.6.8.2
@@ -251,7 +356,7 @@ PointerBoard: /usr/lib/x86_64-linux-gnu/libGLX.so
 PointerBoard: /usr/lib/x86_64-linux-gnu/libOpenGL.so
 PointerBoard: /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/lib/libQt6Core.so.6.8.2
 PointerBoard: CMakeFiles/PointerBoard.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable PointerBoard"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable PointerBoard"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PointerBoard.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

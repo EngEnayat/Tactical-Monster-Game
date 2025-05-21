@@ -375,34 +375,39 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QObject \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qobject.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_hexagonagents.cpp \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfont.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qendian.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QBrush \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontinfo.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontmetrics.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../agents.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_widget.cpp \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../widget.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_galleryagents.cpp \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../galleryagents.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qaction.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qkeysequence.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qicon.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpalette.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfont.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qendian.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontmetrics.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontinfo.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qcursor.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbitmap.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qpushbutton.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_hexagonagents.cpp \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QBrush \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_widget.cpp \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../widget.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonitems.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPolygonF \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpolygon.h \
@@ -444,6 +449,5 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qscrollarea.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qwidget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h

@@ -320,6 +320,102 @@ clickablepixmapitem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/clickablepixmapitem.cpp.s
 .PHONY : clickablepixmapitem.cpp.s
 
+floating.o: floating.cpp.o
+.PHONY : floating.o
+
+# target to build an object file
+floating.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/floating.cpp.o
+.PHONY : floating.cpp.o
+
+floating.i: floating.cpp.i
+.PHONY : floating.i
+
+# target to preprocess a source file
+floating.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/floating.cpp.i
+.PHONY : floating.cpp.i
+
+floating.s: floating.cpp.s
+.PHONY : floating.s
+
+# target to generate assembly for a file
+floating.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/floating.cpp.s
+.PHONY : floating.cpp.s
+
+flying.o: flying.cpp.o
+.PHONY : flying.o
+
+# target to build an object file
+flying.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/flying.cpp.o
+.PHONY : flying.cpp.o
+
+flying.i: flying.cpp.i
+.PHONY : flying.i
+
+# target to preprocess a source file
+flying.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/flying.cpp.i
+.PHONY : flying.cpp.i
+
+flying.s: flying.cpp.s
+.PHONY : flying.s
+
+# target to generate assembly for a file
+flying.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/flying.cpp.s
+.PHONY : flying.cpp.s
+
+galleryagents.o: galleryagents.cpp.o
+.PHONY : galleryagents.o
+
+# target to build an object file
+galleryagents.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/galleryagents.cpp.o
+.PHONY : galleryagents.cpp.o
+
+galleryagents.i: galleryagents.cpp.i
+.PHONY : galleryagents.i
+
+# target to preprocess a source file
+galleryagents.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/galleryagents.cpp.i
+.PHONY : galleryagents.cpp.i
+
+galleryagents.s: galleryagents.cpp.s
+.PHONY : galleryagents.s
+
+# target to generate assembly for a file
+galleryagents.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/galleryagents.cpp.s
+.PHONY : galleryagents.cpp.s
+
+grounded.o: grounded.cpp.o
+.PHONY : grounded.o
+
+# target to build an object file
+grounded.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/grounded.cpp.o
+.PHONY : grounded.cpp.o
+
+grounded.i: grounded.cpp.i
+.PHONY : grounded.i
+
+# target to preprocess a source file
+grounded.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/grounded.cpp.i
+.PHONY : grounded.cpp.i
+
+grounded.s: grounded.cpp.s
+.PHONY : grounded.s
+
+# target to generate assembly for a file
+grounded.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/grounded.cpp.s
+.PHONY : grounded.cpp.s
+
 hexagonagents.o: hexagonagents.cpp.o
 .PHONY : hexagonagents.o
 
@@ -392,6 +488,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+waterwalking.o: waterwalking.cpp.o
+.PHONY : waterwalking.o
+
+# target to build an object file
+waterwalking.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/waterwalking.cpp.o
+.PHONY : waterwalking.cpp.o
+
+waterwalking.i: waterwalking.cpp.i
+.PHONY : waterwalking.i
+
+# target to preprocess a source file
+waterwalking.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/waterwalking.cpp.i
+.PHONY : waterwalking.cpp.i
+
+waterwalking.s: waterwalking.cpp.s
+.PHONY : waterwalking.s
+
+# target to generate assembly for a file
+waterwalking.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PointerBoard.dir/build.make CMakeFiles/PointerBoard.dir/waterwalking.cpp.s
+.PHONY : waterwalking.cpp.s
+
 widget.o: widget.cpp.o
 .PHONY : widget.o
 
@@ -446,6 +566,18 @@ help:
 	@echo "... clickablepixmapitem.o"
 	@echo "... clickablepixmapitem.i"
 	@echo "... clickablepixmapitem.s"
+	@echo "... floating.o"
+	@echo "... floating.i"
+	@echo "... floating.s"
+	@echo "... flying.o"
+	@echo "... flying.i"
+	@echo "... flying.s"
+	@echo "... galleryagents.o"
+	@echo "... galleryagents.i"
+	@echo "... galleryagents.s"
+	@echo "... grounded.o"
+	@echo "... grounded.i"
+	@echo "... grounded.s"
 	@echo "... hexagonagents.o"
 	@echo "... hexagonagents.i"
 	@echo "... hexagonagents.s"
@@ -455,6 +587,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... waterwalking.o"
+	@echo "... waterwalking.i"
+	@echo "... waterwalking.s"
 	@echo "... widget.o"
 	@echo "... widget.i"
 	@echo "... widget.s"

@@ -186,33 +186,38 @@ void Widget::ClickHexagon(QPointF scenePos)
         return;
     }
 
-    // if(hexagonAgents::PlayerTurn() != this->PlayerTurn)
-    // {
-    //     QMessageBox msgBox;
-    //     msgBox.setText("NO Agent has selected!\nPlease first select one.");
-    //     msgBox.exec();
-    //     return;
-    // }
 
     HexagonItems *hexItem = getHexagonAtPosition(scenePos);
     hexagonAgents *hex = hexagonAgents::getSelectedAgent();
 
+    if(hexItem->PlayerOwn() == 1 && PlayerTurn == 2)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("PLEASE set your agents on your own CELLS");
+        msgBox.exec();
+        return;
+    }
+    else if(hexItem->PlayerOwn() == 2 && PlayerTurn == 1)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("PLEASE set your agents on your own CELLS");
+        msgBox.exec();
+        return;
+    }
     if(agentsOne.size()>=7 && PlayerTurn == 1)
     {
         agentsTwo[6]->setScale(1);
         agentsOne[6]->setEnabled(true);
-        agentsTwo[6]->setEnabled(false);
-        hex->InActive(agentsTwo);
-        hex->EnableAll(agentsOne);
+        hex->InActive(agentsOne);
+        hex->EnableAll(agentsTwo);
     }
     if(agentsTwo.size()>=7 && PlayerTurn == 2)
     {
         agentsOne[6]->setScale(1);
         agentsTwo[6]->setScale(1.1);
         agentsTwo[6]->setEnabled(true);
-        agentsOne[6]->setEnabled(false);
-        hex->InActive(agentsOne);
-        hex->EnableAll(agentsTwo);
+        hex->InActive(agentsTwo);
+        hex->EnableAll(agentsOne);
     }
 
     QPixmap agentPixmap;
@@ -251,12 +256,12 @@ void Widget::HoverHexagon(QPointF scenePos)
     }
     HexagonItems* hex = getHexagonAtPosition(scenePos);
     if (hex && hex != lastHoveredHex) {
-        if (hex->PlayerOwn() == 1 && !hex->isOccupied())
+        if (hex->PlayerOwn() == 1 && !hex->isOccupied() && PlayerTurn == 1)
         {
             hex->setScale(1.05);
             hex->setBrush(QColor(44, 118, 41));
         }
-        else if (hex->PlayerOwn() == 2 && !hex->isOccupied())
+        else if (hex->PlayerOwn() == 2 && !hex->isOccupied() && PlayerTurn == 2)
         {
             hex->setScale(1.05);
             hex->setBrush(QColor(223, 238, 25));
@@ -270,7 +275,7 @@ void Widget::LoadingAgents(QGraphicsView *agent)
     QGraphicsScene* scene = new QGraphicsScene(this);
     agent->setScene(scene);
 
-    qreal hexSize = 30;
+    qreal hexSize = 25;
 
     qreal hDist = hexSize * std::sqrt(10);
 
@@ -357,8 +362,8 @@ void Widget::LoadingAgents(QGraphicsView *agent)
         }
         else if(agent == ui->agentTwo) agentsTwo.append(hex);
         this->agentHexList.append(hex);
+        hex->InActive(agentsTwo);
     }
-    if(agentsTwo.size()>=7) agentsTwo[6]->setEnabled(false);
     QLabel* status;
     if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
     else if(agent == ui->agentTwo) status = new QLabel("👑 Karim Benzima");

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/PointerBoard_autogen"
+  "PointerBoard_autogen/include/ui_galleryagents.h"
   "PointerBoard_autogen/include/ui_widget.h"
   "PointerBoard_autogen/mocs_compilation.cpp"
   "PointerBoard_autogen/timestamp"

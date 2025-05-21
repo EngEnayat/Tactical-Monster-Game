@@ -14,9 +14,14 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agentitem.cpp" "CMakeFiles/PointerBoard.dir/agentitem.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/agentitem.cpp.o.d"
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agents.cpp" "CMakeFiles/PointerBoard.dir/agents.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/agents.cpp.o.d"
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/clickablepixmapitem.cpp" "CMakeFiles/PointerBoard.dir/clickablepixmapitem.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/clickablepixmapitem.cpp.o.d"
+  "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp" "CMakeFiles/PointerBoard.dir/floating.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/floating.cpp.o.d"
+  "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp" "CMakeFiles/PointerBoard.dir/flying.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/flying.cpp.o.d"
+  "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp" "CMakeFiles/PointerBoard.dir/galleryagents.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/galleryagents.cpp.o.d"
+  "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp" "CMakeFiles/PointerBoard.dir/grounded.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/grounded.cpp.o.d"
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.cpp" "CMakeFiles/PointerBoard.dir/hexagonagents.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/hexagonagents.cpp.o.d"
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonitems.cpp" "CMakeFiles/PointerBoard.dir/hexagonitems.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/hexagonitems.cpp.o.d"
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/main.cpp" "CMakeFiles/PointerBoard.dir/main.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/main.cpp.o.d"
+  "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp" "CMakeFiles/PointerBoard.dir/waterwalking.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/waterwalking.cpp.o.d"
   "/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/widget.cpp" "CMakeFiles/PointerBoard.dir/widget.cpp.o" "gcc" "CMakeFiles/PointerBoard.dir/widget.cpp.o.d"
   )
 

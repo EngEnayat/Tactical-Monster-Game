@@ -30,6 +30,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         clickablepixmapitem.h clickablepixmapitem.cpp
         agentitem.h agentitem.cpp
         hexagonagents.h hexagonagents.cpp
+        grounded.h grounded.cpp
+        flying.h flying.cpp
+        floating.h floating.cpp
+        waterwalking.h waterwalking.cpp
+        galleryagents.h galleryagents.cpp galleryagents.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET PointerBoard APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

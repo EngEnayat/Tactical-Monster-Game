@@ -17,4 +17,31 @@
         <file>youtubers_headline.webp</file>
         <file>valorant-header-1 (1).webp</file>
     </qresource>
+    <qresource prefix="/preAgent">
+        <file>Agents/Tusk.webp</file>
+        <file>Agents/Sir philiph.webp</file>
+        <file>Agents/Sanka.webp</file>
+        <file>Agents/Salih.webp</file>
+        <file>Agents/Sabrina.webp</file>
+        <file>Agents/Reketon.webp</file>
+        <file>Agents/Rajakal.webp</file>
+        <file>Agents/Medusa.webp</file>
+        <file>Agents/Lamorak.webp</file>
+        <file>Agents/Khan.webp</file>
+        <file>Agents/Karissa.webp</file>
+        <file>Agents/Kanar.webp</file>
+        <file>Agents/Kabu.webp</file>
+        <file>Agents/Elsa.webp</file>
+        <file>Agents/Eloi.webp</file>
+        <file>Agents/Duraham.webp</file>
+        <file>Agents/Colonel_baba.webp</file>
+        <file>Agents/Bunka.webp</file>
+        <file>Agents/Boi.webp</file>
+        <file>Agents/Billy.webp</file>
+        <file>Agents/Angus.webp</file>
+        <file>Agents/Rambo.webp</file>
+        <file>Agents/Frost.webp</file>
+        <file>Agents/Eloi (1).webp</file>
+        <file>Agents/death.webp</file>
+    </qresource>
 </RCC>

@@ -10,12 +10,22 @@ PointerBoard_autogen/timestamp: \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/moc_predefs.h \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/clickablepixmapitem.cpp \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/clickablepixmapitem.h \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.h \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.h \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.h \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.h \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.cpp \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonitems.cpp \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonitems.h \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/main.cpp \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/resources.qrc \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.h \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/widget.cpp \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/widget.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QList \
@@ -203,12 +213,15 @@ PointerBoard_autogen/timestamp: \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView \
+	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
+	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractbutton.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsitem.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qpushbutton.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qscrollarea.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h \
 	/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
@@ -761,5 +774,6 @@ PointerBoard_autogen/timestamp: \
 	/usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake \
 	/usr/share/cmake-3.28/Modules/Platform/Linux.cmake \
 	/usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake \
+	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.ui \
 	/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/widget.ui \
 	/usr/bin/cmake

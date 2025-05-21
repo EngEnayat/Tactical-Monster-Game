@@ -463,6 +463,30 @@
 			null
 		],
 		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.h",
+			"MU",
+			"EWIEGA46WW/moc_floating.cpp",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.h",
+			"MU",
+			"EWIEGA46WW/moc_flying.cpp",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.h",
+			"MU",
+			"EWIEGA46WW/moc_galleryagents.cpp",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.h",
+			"MU",
+			"EWIEGA46WW/moc_grounded.cpp",
+			null
+		],
+		[
 			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h",
 			"MU",
 			"EWIEGA46WW/moc_hexagonagents.cpp",
@@ -472,6 +496,12 @@
 			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonitems.h",
 			"MU",
 			"EWIEGA46WW/moc_hexagonitems.cpp",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.h",
+			"MU",
+			"EWIEGA46WW/moc_waterwalking.cpp",
 			null
 		],
 		[
@@ -556,6 +586,26 @@
 			null
 		],
 		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.cpp",
+			"MU",
+			null
+		],
+		[
 			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.cpp",
 			"MU",
 			null
@@ -567,6 +617,11 @@
 		],
 		[
 			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/main.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.cpp",
 			"MU",
 			null
 		],

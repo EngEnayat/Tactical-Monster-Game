@@ -7,13 +7,11 @@
 #include <QPixmap>
 #include <cmath>
 #include <QPainter>
-#include "agents.h"
-
 class hexagonAgents : public QObject, public QGraphicsPolygonItem {
     QPixmap pix;
     Q_OBJECT;
 public:
-    explicit hexagonAgents(qreal size, const QString& imagePath, QGraphicsItem* parent = nullptr);
+    explicit hexagonAgents(qreal size =0 , const QString& imagePath = "", QGraphicsItem* parent = nullptr);
     static hexagonAgents* getSelectedAgent();
     void HideAgents(QVector<hexagonAgents*>);
     void StoreAddress(QPointF, QString);
@@ -40,8 +38,6 @@ private:
     static int CurrentPlayer;
     bool IsDropped = false;
     QMap<QPair<int,int>, QString> HexAddress;
-    // QMap<QPair<int,int>, Agents*> PlayerOneAgents;
-    // QMap<QPair<int,int>, Agents*> PlayerTwoAgents;
     static hexagonAgents *SelectedAgents;
 };
 

@@ -1,6 +1,5 @@
 /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/moc_hexagonagents.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h \
   /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/moc_predefs.h \
-  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/agents.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20functional.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20iterator.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/q20memory.h \
