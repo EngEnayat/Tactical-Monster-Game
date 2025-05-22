@@ -15,7 +15,6 @@ public:
     explicit hexagonAgents(qreal size =0 , const QString& imagePath = "",QGraphicsItem* parent = nullptr);
     static hexagonAgents* getSelectedAgent();
     void AgentClicked(QVector<hexagonAgents*>);
-
     static QString ImagePath(QString);
 
     void setDropped(bool b){IsDropped = b;}
@@ -29,7 +28,7 @@ public:
     QString getType();
 
     static void getSelectedAgents();
-    virtual ~hexagonAgents() override {}
+    virtual ~hexagonAgents() override {delete SelectedAgents;}
     void SetName(QString);
     QString GetName();
 protected:

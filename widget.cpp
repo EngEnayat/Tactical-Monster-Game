@@ -27,6 +27,7 @@
 
 
 int Widget::PlayerTurn = 1;
+
 Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelectedAgents ,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -211,14 +212,13 @@ void Widget::ClickHexagon(QPointF scenePos)
         return;
     }
 
-    if (agentsOne.size() >= 7 && PlayerTurn == 1) {
-        // hex->InActive(agentsOne);
-
-        // hex->EnableAll(agentsTwo);
+    if (PlayerTurn == 1) {
+        for(auto it: agentsOne) it->setEnabled(false);
+        for(auto it: agentsTwo) it->setEnabled(true);
     }
-    if (agentsTwo.size() >= 7 && PlayerTurn == 2) {
-        // hex->InActive(agentsTwo);
-        // hex->EnableAll(agentsOne);
+    if (PlayerTurn == 2) {
+        for(auto it: agentsOne) it->setEnabled(true);
+        for(auto it: agentsTwo) it->setEnabled(false);
     }
 
     if (hexItem->isOccupied()) {
@@ -301,8 +301,8 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
     qreal hexSize = 25;
     qreal hDist = hexSize * std::sqrt(10);
     QVector<QPointF> positions = (agent == ui->agentOne)
-                                     ? QVector<QPointF>({ {0, 0}, {0, hDist * 0.7}, {0, hDist * 1.4}, {0, hDist * 2.1}, {0, hDist * 2.8}, {0, 3.5 * hDist}, {0, 4.5 * hDist} })
-                                     : QVector<QPointF>({ {100, 0}, {100, hDist * 0.7}, {100, hDist * 1.4}, {100, hDist * 2.1}, {100, hDist * 2.8}, {100, 3.5 * hDist}, {100, 4.5 * hDist} });
+                                     ? QVector<QPointF>({ {0, 0}, {0, hDist * 0.7}, {0, hDist * 1.4}, {0, hDist * 2.1}, {0, hDist * 2.8}, {0, 3.5 * hDist} })
+                                     : QVector<QPointF>({ {100, 0}, {100, hDist * 0.7}, {100, hDist * 1.4}, {100, hDist * 2.1}, {100, hDist * 2.8}, {100, 3.5 * hDist} });
 
     qDebug() << "Player " << CurrentTurn << " Agent Types";
 
@@ -369,27 +369,8 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
     QGraphicsProxyWidget* statusItem = scene->addWidget(status);
     statusItem->setZValue(100);
     statusItem->setPos(-70, scene->height() + 70);
-
 }
 
-// QLabel* status;
-// if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
-// else if(agent == ui->agentTwo) status = new QLabel("👑 Karim Benzima");
-// status->setStyleSheet(
-//     "QLabel {"
-//     "  background-color: rgba(30, 30, 30, 180);"
-//     "  color: white;"
-//     "  font-size: 20px;"
-//     "  font-weight: bold;"
-//     "  border: 2px solid #FFD700;"
-//     "  border-radius: 10px;"
-//     "  padding: 6px 12px;"
-//     "  font-family: 'Segoe UI', 'Arial';"
-//     "}"
-//     );
-// QGraphicsProxyWidget* statusItem = scene->addWidget(status);
-// statusItem->setZValue(100);
-// statusItem->setPos(-70, scene->height() + 70);
 
 hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos, QGraphicsView* currentView)
 {
