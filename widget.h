@@ -20,12 +20,12 @@ class Widget : public QWidget
 public:
     void createHexagon(qreal x, qreal y, QChar ch, int row, int col);
     QPair<int, int> convertScenePosToGrid(const QPointF& pos);
-    Widget(QStringList imageAddress1 = QStringList(),QStringList imageAddress2 = QStringList(),QWidget *parent = nullptr);
+    Widget(QStringList PlayerOneSelectedAgents = QStringList(),QStringList PlayerTwoSelectedAgents = QStringList(),QWidget *parent = nullptr);
     ~Widget();
     bool eventFilter(QObject *obj, QEvent *event);
     HexagonItems* getHexagonAtPosition(const QPointF &pos);
     QPixmap getCircularPixmap(const QPixmap &src, int size);
-    hexagonAgents* getAgentHexagonAtPosition(const QPointF &pos);
+    hexagonAgents* getAgentHexagonAtPosition(const QPointF &pos, QGraphicsView*);
     void addAgentToggleButton();
 private:
     HexagonItems* lastHoveredHex = nullptr;
@@ -42,13 +42,16 @@ private:
     const qreal hexHeight = 69.4;
     Ui::Widget *ui;
     QMap<QPair<int, int>, HexagonItems*> hexMap;
-
+    QMap<QPair<int, int>, hexagonAgents*> Player1;
     void LoadingAgents(QGraphicsView *, QStringList);
+
     QList<hexagonAgents*> agentHexList;
     QVector<hexagonAgents*> agentsOne;
     QVector<hexagonAgents*> agentsTwo;
     static int PlayerTurn ;
     void HoverHexagon(QPointF);
     void ClickHexagon(QPointF);
+
+    QVector<hexagonAgents*> activeAgents;
 };
 #endif

@@ -4,7 +4,7 @@
 class Flying : public hexagonAgents
 {
 public:
-    Flying();
+    Flying(qreal size, const QString &imagePath, QGraphicsItem *parent = nullptr);
 private:
     QString Name; // Billy, Abgus, ...
     int HP;

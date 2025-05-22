@@ -1,7 +1,9 @@
 #include "waterwalking.h"
 
 
-WaterWalking::WaterWalking()
+WaterWalking::WaterWalking(qreal size, const QString &imagePath, QGraphicsItem *parent):
+    hexagonAgents(size, imagePath, parent)
 {
 
 }
+

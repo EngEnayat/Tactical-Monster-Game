@@ -1,3 +1,8 @@
 #include "flying.h"
 
-Flying::Flying() {}
+Flying::Flying(qreal size, const QString &imagePath, QGraphicsItem *parent):
+    hexagonAgents(size, imagePath, parent)
+{
+
+}
+

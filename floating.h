@@ -4,7 +4,7 @@
 class Floating : public hexagonAgents
 {
 public:
-    Floating();
+    Floating(qreal size, const QString &imagePath, QGraphicsItem *parent = nullptr);
 private:
     QString Name; // Billy, Abgus, ...
     int HP;

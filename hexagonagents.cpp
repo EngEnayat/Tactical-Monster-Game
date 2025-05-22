@@ -3,6 +3,53 @@
 
 hexagonAgents* hexagonAgents::SelectedAgents = nullptr;
 int hexagonAgents::CurrentPlayer = 1;
+QMap<QString, QString> hexagonAgents::nameToFilename =
+     {
+        {"Sir Lamorak", "Lamorak"},
+        {"Eloi", "Eloi (1)"},
+        {"Sir Philip", "Sir philiph"},
+        {"Frust", "Frost"},
+        {"Death", "death"},
+        {"Rambu", "Rambo"},
+        {"Colonel Baba", "Colonel_baba"}
+};
+QStringList hexagonAgents::FlyingList =
+    {
+        "Rambu"
+};
+QStringList hexagonAgents::GroundedList =
+    {
+        "Kabu",
+        "Sir Lamorak",
+        "Rajakal",
+        "Salih",
+        "Khan",
+        "Boi",  // 6
+        "Eloi",   // 7
+        "Kanar",
+        "Elsa",
+        "Karissa",
+        "Sir Philip",
+        "Frust",
+        "Tusk"  // 13
+};
+
+QStringList hexagonAgents::WaterAgentsList =
+    {
+        "Billy",
+        "Reketon",
+        "Duraham",
+        "Angus",
+        "Colonel Baba",
+        "Medusa",
+        "Bunka",
+        "Sanka"
+};
+QStringList hexagonAgents::FloatingList =
+    {
+        "Sabrina",
+        "Death"
+};
 
 hexagonAgents::hexagonAgents(qreal size, const QString& imagePath, QGraphicsItem* parent)
     : QGraphicsPolygonItem(parent), pix(imagePath)
@@ -16,8 +63,6 @@ hexagonAgents::hexagonAgents(qreal size, const QString& imagePath, QGraphicsItem
         hexagon << QPointF(x, y);
     }
     setPolygon(hexagon);
-    if (imagePath == "f")
-        this->setBrush(QColor(44,139,33));
     setPen(QPen(Qt::black, 1));
 }
 
@@ -26,70 +71,47 @@ hexagonAgents* hexagonAgents::getSelectedAgent()
     return SelectedAgents;
 }
 
-void hexagonAgents::HideAgents(QVector<hexagonAgents*> agentsList)
+void hexagonAgents::AgentClicked(QVector<hexagonAgents*> agentsList)
 {
-    if (agentsList.size() < 7) return;
-    if(!agentsList[6]->isEnabled()) return;
-    if (this == agentsList[6]) {
-        bool allDropped = true;
+    qDebug() << this->GetName() << " Clicked";
 
-        for (int i = 0; i < 6; ++i) {
-            if (!agentsList[i]->IsDropped) {
-                allDropped = false;
-                break;
-            }
+    if (!this->isVisible()) return;
+
+    bool isSelected = false;
+
+    for (auto* agent : agentsList) {
+        if (agent == this) {
+            isSelected = true;
         }
-
-        if (allDropped) {
-            this->setVisible(false);
-            return;
-        }
-
-        bool anyVisible = false;
-        for (int i = 0; i < 6; ++i) {
-            if (!agentsList[i]->IsDropped && agentsList[i]->isVisible()) {
-                anyVisible = true;
-                break;
-            }
-        }
-
-        bool newState = !anyVisible;
-
-        for (int i = 0; i < 6; ++i) {
-            if (!agentsList[i]->IsDropped) {
-                agentsList[i]->setVisible(newState);
-            }
-        }
-        this->setVisible(true);
-        return;
     }
 
-    for (int i = 0; i < 6; ++i) {
-        if (this == agentsList[i]) {
-            if (SelectedAgents && SelectedAgents != this) {
-                SelectedAgents->setScale(1.0);
-            }
+    if (!isSelected) return;
 
-            if (SelectedAgents == this) {
-                this->setScale(1.0);
-                SelectedAgents = nullptr;
-            } else {
-                this->setScale(1.1);
-                SelectedAgents = this;
-            }
-            break;
+    // Deselect all agents
+    for (auto* agent : agentsList) {
+        if (agent == SelectedAgents) {
+            agent->setScale(1.0);
         }
+    }
+
+    // Toggle selection
+    if (SelectedAgents == this) {
+        this->setScale(1.0);
+        SelectedAgents = nullptr;
+    } else {
+        this->setScale(1.1);
+        SelectedAgents = this;
+    }
+
+    for (auto* agent : agentsList) {
+        agent->update();
     }
 }
 
-void hexagonAgents::StoreAddress(QPointF pos, QString path)
+QString hexagonAgents::ImagePath(QString name)
 {
-    HexAddress.insert(qMakePair(pos.x(), pos.y()), path);
-}
-
-QString hexagonAgents::getAgentAddress(QPointF pos)
-{
-    QString path =  HexAddress[qMakePair(this->x(), this->y())];
+    QString adjustedName = nameToFilename.contains(name) ? nameToFilename[name] : name;
+    QString path = ":/preAgent/Agents/" + adjustedName + ".webp";
     return path;
 }
 
@@ -110,7 +132,7 @@ int hexagonAgents::PlayerTurn()
 
 void hexagonAgents::InActive(QVector<hexagonAgents *> agents)
 {
-    for(int i=0; i<agents.size() -1 ;++i)
+    for(int i=0; i<agents.size() ;++i)
     {
         agents[i]->setEnabled(false);
     }
@@ -118,19 +140,31 @@ void hexagonAgents::InActive(QVector<hexagonAgents *> agents)
 
 void hexagonAgents::EnableAll(QVector<hexagonAgents *> agents)
 {
-    for(int i=0; i<agents.size() -1 ;++i)
+    for(int i=0; i<agents.size() ;++i)
     {
         agents[i]->setEnabled(true);
     }
 }
 
-void hexagonAgents::SetType(QString t)
+void hexagonAgents::SetType(QString name)
 {
-    Type = t;
+    Type = name;
 }
 
 QString hexagonAgents::getType()
 {
     return Type;
 }
+
+void hexagonAgents::SetName(QString n)
+{
+    Name = n;
+}
+
+QString hexagonAgents::GetName()
+{
+    return Name;
+}
+
+
 

@@ -34,6 +34,45 @@ private:
         {"Colonel Baba", "Colonel_baba"}
     };
 
+
+    QStringList GroundedList =
+        {
+            "Kabu",
+            "Sir Lamorak",
+            "Rajakal",
+            "Salih",
+            "Khan",
+            "Boi",  // 6
+            "Eloi",   // 7
+            "Kanar",
+            "Elsa",
+            "Karissa",
+            "Sir Philip",
+            "Frust",
+            "Tusk"  // 13
+        };
+
+    QStringList WaterAgentsList =
+        {
+            "Billy",
+            "Reketon",
+            "Duraham",
+            "Angus",
+            "Colonel Baba",
+            "Medusa",
+            "Bunka",
+            "Sanka"
+        };
+    QStringList FloatingList =
+        {
+            "Sabrina",
+            "Death"
+        };
+    QStringList FlyingList =
+        {
+            "Rambu"
+        };
+
     Ui::GalleryAgents *ui;
     QStringList PlayerOneAgents;
     QStringList PlayerTwoAgents;

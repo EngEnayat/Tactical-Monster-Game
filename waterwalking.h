@@ -5,7 +5,7 @@
 class WaterWalking : public hexagonAgents
 {
 public:
-    WaterWalking();
+    WaterWalking(qreal size, const QString &imagePath, QGraphicsItem *parent = nullptr);
 private:
     QString Name; // Billy, Abgus, ...
     int HP;

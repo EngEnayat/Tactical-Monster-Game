@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include "widget.h"
+#include "hexagonagents.h"
 
 int GalleryAgents::agentCount = 0;
 GalleryAgents::GalleryAgents(QWidget *parent)
@@ -139,8 +140,6 @@ GalleryAgents::GalleryAgents(QWidget *parent)
         showProperties(400, 2, "Grounded",100, 1,"Tusk", ":/preAgent/Agents/Tusk.webp");
     });
 
-
-
     // WATER WALKING AGENTS
 
     connect(ui->billy, &QPushButton::clicked,[=](){
@@ -178,6 +177,7 @@ GalleryAgents::GalleryAgents(QWidget *parent)
     connect(ui->Death, &QPushButton::clicked,[=](){
         showProperties(240, 2, "Floating",120, 2,"Death", ":/preAgent/Agents/death.webp");
     });
+
 
     // Flying
 
@@ -333,41 +333,36 @@ void GalleryAgents::showProperties(int hp, int mobility, QString type, int Damag
         if(agentCount <=5)
         {       PlayerOneAgents.append(name);
                 agentCount++;
-            this->AddAddress(name, 1);
         }
         else if(agentCount>5 && agentCount <= 11)
         {
             PlayerTwoAgents.append(name);
             agentCount++;;
-            this->AddAddress(name, 2);
         }
     } else {
         qDebug() << "User canceled.";
     }
 }
 
-void GalleryAgents::AddAddress(QString name, int Player)
-{
-    QString adjustedName = nameToFilename.contains(name) ? nameToFilename[name] : name;
-    QString path = ":/preAgent/Agents/" + adjustedName + ".webp";
-
-    if (Player == 1)
-        PlayerOneImages.append(path);
-    else if (Player == 2)
-        PlayerTwoImages.append(path);
-    qDebug() << "the image path: "<< path;
-}
 
 void GalleryAgents::on_StartButton_clicked()
 {
-    if(agentCount <=11)
-    {
-        QMessageBox msgBox;
-        msgBox.setText("PLEASE try after completion of selection");
-        msgBox.exec();
-        return;
-    }
-    Widget *w = new Widget(PlayerOneImages, PlayerTwoImages);
+    // if(agentCount <=11)
+    // {
+    //     QMessageBox msgBox;
+    //     msgBox.setText("PLEASE try after completion of selection");
+    //     msgBox.exec();
+    //     return;
+    // }
+    Widget *w = new Widget(PlayerOneAgents, PlayerTwoAgents);
+
+    qDebug() << "Player one Agents";
+    for(auto it : PlayerOneAgents)
+        qDebug() << it;
+
+    qDebug() << "Player Two Agents";
+    for(auto it : PlayerTwoAgents)
+        qDebug() << it;
     w->show();
     this->hide();
 }

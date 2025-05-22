@@ -500,4 +500,7 @@ CMakeFiles/PointerBoard.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qdialog.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsItem \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.h
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grounded.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/waterwalking.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/floating.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/flying.h

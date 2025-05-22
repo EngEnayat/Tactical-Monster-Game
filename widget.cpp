@@ -13,8 +13,21 @@
 #include <QMessageBox>
 #include <QGraphicsItem>
 #include "grounded.h"
+#include "waterwalking.h"
+#include "floating.h"
+#include "flying.h"
+
+
+//                                          HOW to deal with many datatypes
+// Grounded *m = new Grounded(23, "f", nullptr);
+// hexagonAgents *n = m;
+// if (auto* groundedAgent = dynamic_cast<Grounded*>(n)) {
+//     groundedAgent->specialGroundedMethod();  // ✅ Safe and works
+// };
+
+
 int Widget::PlayerTurn = 1;
-Widget::Widget(QStringList PathImages,QStringList imageAddres2,QWidget *parent)
+Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelectedAgents ,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
@@ -68,10 +81,10 @@ Widget::Widget(QStringList PathImages,QStringList imageAddres2,QWidget *parent)
     }
 
 
-    this->LoadingAgents(ui->agentOne, PathImages);
-    this->LoadingAgents(ui->agentTwo, imageAddres2);
-    agentsTwo[6]->setVisible(true);
-    agentsOne[6]->setVisible(true);
+    this->LoadingAgents(ui->agentOne, PlayerOneSelectedAgents);
+    this->LoadingAgents(ui->agentTwo, PlayerTwoSelectedAgents);
+    for(auto it: agentsOne)
+        it->setEnabled(true);
 }
 
 void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
@@ -147,17 +160,17 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
                 }
 
             } else if(view == ui->agentOne){
-                hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos);
+                hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos, ui->agentOne);
                 if (agentHex){
                     qDebug() << "Clicked agent hex at position:" << agentHex->pos();
-                        agentHex->HideAgents(agentsOne);
+                        agentHex->AgentClicked(agentsOne);
                 }
             }
             else if(view == ui->agentTwo)
             {
-                hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos);
+                hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos, ui->agentTwo);
                 if (agentHex){
-                    agentHex->HideAgents(agentsTwo);
+                    agentHex->AgentClicked(agentsTwo);
                 }
             }
             return false;
@@ -178,80 +191,83 @@ HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
 
 void Widget::ClickHexagon(QPointF scenePos)
 {
-
-    if(!hexagonAgents::getSelectedAgent())
-    {
+    if (!hexagonAgents::getSelectedAgent()) {
         QMessageBox msgBox;
         msgBox.setText("NO Agent has selected!\nPlease first select one.");
         msgBox.exec();
         return;
     }
 
-
     HexagonItems *hexItem = getHexagonAtPosition(scenePos);
     hexagonAgents *hex = hexagonAgents::getSelectedAgent();
 
-    if(hexItem->PlayerOwn() == 1 && PlayerTurn == 2)
-    {
+
+    // Validate ownership
+    if ((hexItem->PlayerOwn() == 1 && PlayerTurn == 2) ||
+        (hexItem->PlayerOwn() == 2 && PlayerTurn == 1)) {
         QMessageBox msgBox;
         msgBox.setText("PLEASE set your agents on your own CELLS");
         msgBox.exec();
         return;
-    }
-    else if(hexItem->PlayerOwn() == 2 && PlayerTurn == 1)
-    {
-        QMessageBox msgBox;
-        msgBox.setText("PLEASE set your agents on your own CELLS");
-        msgBox.exec();
-        return;
-    }
-    if(agentsOne.size()>=7 && PlayerTurn == 1)
-    {
-        agentsTwo[6]->setScale(1);
-        agentsOne[6]->setEnabled(true);
-        hex->InActive(agentsOne);
-        hex->EnableAll(agentsTwo);
-    }
-    if(agentsTwo.size()>=7 && PlayerTurn == 2)
-    {
-        agentsOne[6]->setScale(1);
-        agentsTwo[6]->setScale(1.1);
-        agentsTwo[6]->setEnabled(true);
-        hex->InActive(agentsTwo);
-        hex->EnableAll(agentsOne);
     }
 
-    QPixmap agentPixmap;
-    QString add = hex->getAgentAddress(hex->pos());
-    Grounded *m = new Grounded(25, add);
-    if(hexItem->isOccupied())
-    {
+    if (agentsOne.size() >= 7 && PlayerTurn == 1) {
+        // hex->InActive(agentsOne);
+
+        // hex->EnableAll(agentsTwo);
+    }
+    if (agentsTwo.size() >= 7 && PlayerTurn == 2) {
+        // hex->InActive(agentsTwo);
+        // hex->EnableAll(agentsOne);
+    }
+
+    if (hexItem->isOccupied()) {
         QMessageBox msgBox;
         msgBox.setText("CELL is already occupied, try another.");
         msgBox.exec();
         return;
     }
 
-    else if (hex && (hexItem->HexType() != '~' && hexItem->HexType() != '#' && hexItem->HexType() !=' ')){
-        agentPixmap = QPixmap(add);
-        hexItem->setBrush(Qt::NoBrush);
-        qDebug() << add << "is the grounded one";
-        qDebug() << "\n" << hex->getAgentAddress(hex->pos());
+    if (hexItem->HexType() == '~' || hexItem->HexType() == '#' || hexItem->HexType() == ' ') {
+        return;
     }
-    else return;
 
+    QString add;
+    add = hex->ImagePath(hex->GetName());
+    //Get image path and load pixmap
+    QPixmap agentPixmap(add);
+    if (agentPixmap.isNull()) {
+        qDebug() << "Failed to load image.";
+        return;
+    }
+
+    QString type = hex->getType();
+
+    hex->setVisible(false);
+    hex->setEnabled(false);
+
+    hex->setScale(0.9);
+    hex->setDropped(true);
+    hex->CleanSelection();
+
+
+
+    scene->addItem(hex);
+    activeAgents.append(hex);
+
+    // Update hexagon appearance
     hexItem->setBrush(QBrush(agentPixmap.scaled(
         hexItem->boundingRect().size().toSize(),
         Qt::IgnoreAspectRatio,
         Qt::SmoothTransformation
         )));
-    hex->setVisible(false);
-    hex->setDropped(true);
-    hex->setEnabled(false);
-    hex->CleanSelection();
-    hexItem->ChangeOccupied(true);
+
     hexItem->setScale(0.9);
-    PlayerTurn = ((PlayerTurn == 1) ? 2 : 1);
+    hexItem->ChangeOccupied(true);
+
+    // Switch turn
+    PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
+    // delete hex
 }
 
 void Widget::HoverHexagon(QPointF scenePos)
@@ -276,100 +292,119 @@ void Widget::HoverHexagon(QPointF scenePos)
     }
 }
 
-void Widget::LoadingAgents(QGraphicsView *agent, QStringList agentImages)
+void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
 {
+    int CurrentTurn = (agent == ui->agentOne) ? 1 : 2;
     QGraphicsScene* scene = new QGraphicsScene(this);
     agent->setScene(scene);
 
     qreal hexSize = 25;
-
     qreal hDist = hexSize * std::sqrt(10);
+    QVector<QPointF> positions = (agent == ui->agentOne)
+                                     ? QVector<QPointF>({ {0, 0}, {0, hDist * 0.7}, {0, hDist * 1.4}, {0, hDist * 2.1}, {0, hDist * 2.8}, {0, 3.5 * hDist}, {0, 4.5 * hDist} })
+                                     : QVector<QPointF>({ {100, 0}, {100, hDist * 0.7}, {100, hDist * 1.4}, {100, hDist * 2.1}, {100, hDist * 2.8}, {100, 3.5 * hDist}, {100, 4.5 * hDist} });
 
-    QVector<QPointF> positions ;
-    if(agent == ui->agentOne)
-    {
-    positions = {
-                {0, 0},
-                {0, hDist *0.7},
-                {0, hDist *1.4},
+    qDebug() << "Player " << CurrentTurn << " Agent Types";
 
-                {0, hDist*2.1},
-                {0, hDist * 2.8},
+    for (int i = 0; i < positions.size(); ++i) {
+        hexagonAgents* hex = nullptr;
+        QString agentName = (i < PlayerAgents.size()) ? PlayerAgents[i] : "";
 
-                {0, 3.5 * hDist},
-                {0, 4.5 * hDist},
-                };
-    }
-    else if(agent == ui->agentTwo)
-    {
-        positions = {
-                                      {100, 0},
-                                      {100, hDist * 0.7},
-                                      {100, hDist *1.4},
+        if (!agentName.isEmpty())
+        {
+            QString type;
+            if (hexagonAgents::GroundedList.contains(agentName)) {
+                type = "Grounded";
+            } else if (hexagonAgents::WaterAgentsList.contains(agentName)) {
+                type = "Water Walking";
+            } else if (hexagonAgents::FloatingList.contains(agentName)) {
+                type = "Floating";
+            } else if (hexagonAgents::FlyingList.contains(agentName)) {
+                type = "Flying";
+            } else {
+                qDebug() << "Unknown agent name:" << agentName;
+                continue;
+            }
 
-                                      {100, hDist*2.1},
-                                      {100, hDist * 2.8},
+            QString imagePath = hexagonAgents::ImagePath(agentName);
+            if (type == "Grounded") {
+                hex = new Grounded(hexSize, imagePath);
+            } else if (type == "Water Walking") {
+                hex = new WaterWalking(hexSize, imagePath);
+            } else if (type == "Floating") {
+                hex = new Floating(hexSize, imagePath);
+            } else if (type == "Flying") {
+                hex = new Flying(hexSize, imagePath);
+            }
 
-                                      {100, 3.5 * hDist},
-                                    {100, 4.5 * hDist},
-                                      };
-    }
-
-    for (int i = 0; i < positions.size() ; ++i) {
-        hexagonAgents* hex;
-
-        if (i < agentImages.size() ) {
-            hex = new hexagonAgents(hexSize, agentImages[i]);
-            hex->StoreAddress(positions[i], agentImages[i]);
+            if (hex) {
+                hex->setPos(positions[i]);
+                scene->addItem(hex);
+                if (agent == ui->agentOne)
+                    agentsOne.append(hex);
+                else if (agent == ui->agentTwo)
+                    agentsTwo.append(hex);
+                agentHexList.append(hex);
+                qDebug() << "Created" << type << "agent:" << agentName;
+                hex->SetName(agentName);
+                hex->SetType(type);
+            }
         } else {
-            // Fill with placeholders if not enough agents were selected
             QString placeholder = (agent == ui->agentOne)
-                                      ? ":/near/youtubers_headline.webp"
-                                      : ":/near/valorant-header-1 (1).webp";
+            ? ":/preAgent/Agents/Eloi.webp"
+            : ":/near/valorant-header-1 (1).webp";
             hex = new hexagonAgents(hexSize + 7, placeholder);
+            hex->setPos(positions[i]);
+            scene->addItem(hex);
         }
 
-        hex->setPos(positions[i]);
-        scene->addItem(hex);
-
-        if (agent == ui->agentOne)
-            agentsOne.append(hex);
-        else if (agent == ui->agentTwo)
-            agentsTwo.append(hex);
-
-        agentHexList.append(hex);
-        hex->InActive(agentsTwo);
+        if (hex && (agent == ui->agentOne || agent == ui->agentTwo)) {
+            QVector<hexagonAgents*>& agentList = (agent == ui->agentOne) ? agentsOne : agentsTwo;
+            hex->InActive(agentList);
+        }
     }
 
-
-
-
-
-    QLabel* status;
-    if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
-    else if(agent == ui->agentTwo) status = new QLabel("👑 Karim Benzima");
-    status->setStyleSheet(
-        "QLabel {"
-        "  background-color: rgba(30, 30, 30, 180);"
-        "  color: white;"
-        "  font-size: 20px;"
-        "  font-weight: bold;"
-        "  border: 2px solid #FFD700;"
-        "  border-radius: 10px;"
-        "  padding: 6px 12px;"
-        "  font-family: 'Segoe UI', 'Arial';"
-        "}"
-        );
+    QLabel* status = new QLabel((agent == ui->agentOne) ? "👑 Ali Ahmad" : "👑 Karim Benzima");
+    status->setStyleSheet("QLabel { background-color: rgba(30, 30, 30, 180); color: white; font-size: 20px; font-weight: bold; border: 2px solid #FFD700; border-radius: 10px; padding: 6px 12px; font-family: 'Segoe UI', 'Arial'; }");
     QGraphicsProxyWidget* statusItem = scene->addWidget(status);
     statusItem->setZValue(100);
     statusItem->setPos(-70, scene->height() + 70);
+
 }
 
-hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos)
+// QLabel* status;
+// if(agent == ui->agentOne) status = new QLabel("👑 Ali Ahmad");
+// else if(agent == ui->agentTwo) status = new QLabel("👑 Karim Benzima");
+// status->setStyleSheet(
+//     "QLabel {"
+//     "  background-color: rgba(30, 30, 30, 180);"
+//     "  color: white;"
+//     "  font-size: 20px;"
+//     "  font-weight: bold;"
+//     "  border: 2px solid #FFD700;"
+//     "  border-radius: 10px;"
+//     "  padding: 6px 12px;"
+//     "  font-family: 'Segoe UI', 'Arial';"
+//     "}"
+//     );
+// QGraphicsProxyWidget* statusItem = scene->addWidget(status);
+// statusItem->setZValue(100);
+// statusItem->setPos(-70, scene->height() + 70);
+
+hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos, QGraphicsView* currentView)
 {
     for (auto agentHex : agentHexList) {
-        if (agentHex->contains(agentHex->mapFromScene(pos))) {
-            if(!agentHex->isEnabled()) return nullptr;
+        if (!agentHex || !agentHex->scene()) continue;
+
+        QPointF itemPos = agentHex->mapFromScene(pos);
+
+        if (currentView == ui->agentOne && !agentsOne.contains(agentHex)) continue;
+        if (currentView == ui->agentTwo && !agentsTwo.contains(agentHex)) continue;
+
+        if (!agentHex->boundingRect().contains(itemPos)) continue;
+
+        if (agentHex->contains(itemPos)) {
+            if (!agentHex->isEnabled()) return nullptr;
             return agentHex;
         }
     }
@@ -382,5 +417,7 @@ Widget::~Widget()
     {
         delete agentHexList[i];
     }
+    for(auto it: activeAgents)
+        delete it;
     delete ui;
 }
