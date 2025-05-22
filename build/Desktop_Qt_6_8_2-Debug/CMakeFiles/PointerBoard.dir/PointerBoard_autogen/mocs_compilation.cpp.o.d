@@ -450,4 +450,10 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextcursor.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextformat.h

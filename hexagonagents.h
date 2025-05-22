@@ -56,6 +56,13 @@ public:
     static QStringList WaterAgentsList;
     static QStringList FloatingList;
     static QStringList FlyingList;
+
+public:
+    int GetHp(){return 0;};
+    int GetMobility(){return 0;};
+    int getDamage(){return 0;};
+    int GetAttackRange(){return 0;};
+    int GetPlayerOwn(){return 0;};
 };
 
 #endif

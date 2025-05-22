@@ -165,6 +165,7 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainterpath.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpalette.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixelformat.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpointingdevice.h \
@@ -174,6 +175,7 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qrgba64.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qscreen.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qscreen_platform.h \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtgui-config.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtguiexports.h \
@@ -185,12 +187,14 @@
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsitem.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qscrollarea.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h \
   /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtwidgets-config.h \

@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QGraphicsView>
 #include "hexagonagents.h"
+#include <QLabel>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Widget;
@@ -27,15 +28,9 @@ public:
     QPixmap getCircularPixmap(const QPixmap &src, int size);
     hexagonAgents* getAgentHexagonAtPosition(const QPointF &pos, QGraphicsView*);
     void addAgentToggleButton();
+    void HoverAgents(QPointF, int);
 private:
     HexagonItems* lastHoveredHex = nullptr;
-
-    QGraphicsPolygonItem *top;
-    QGraphicsPolygonItem *topLeft;
-    QGraphicsPolygonItem topRight;
-    QGraphicsPolygonItem *buttom;
-    QGraphicsPolygonItem *buttomLeft;
-    QGraphicsPolygonItem *buttomRight;
 
     QGraphicsScene* scene;
     const qreal hexWidth = 80;
@@ -53,5 +48,10 @@ private:
     void ClickHexagon(QPointF);
 
     QVector<hexagonAgents*> activeAgents;
+
+private:
+private:
+    QGraphicsProxyWidget* hoverInfoProxy[2] = {nullptr, nullptr}; // index 0 = player 1, index 1 = player 2
+    QLabel* hoverLabel[2] = {nullptr, nullptr};
 };
 #endif

@@ -35,7 +35,7 @@ public:
         if (Widget->objectName().isEmpty())
             Widget->setObjectName("Widget");
         Widget->setEnabled(false);
-        Widget->resize(1185, 724);
+        Widget->resize(1278, 842);
         Widget->setMinimumSize(QSize(1185, 724));
         Widget->setStyleSheet(QString::fromUtf8("this->setStyleSheet(\n"
 "    \"QLabel {\"\n"

@@ -143,6 +143,10 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             if (view == ui->graphicsView) {
                 HoverHexagon(scenePos);
             }
+            else if(view == ui->agentOne)
+                HoverAgents(scenePos, 1);
+            else if(view == ui->agentTwo)
+                HoverAgents(scenePos, 2);
             return false;
         }
 
@@ -386,10 +390,109 @@ hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos, QGraphicsVi
 
         if (agentHex->contains(itemPos)) {
             if (!agentHex->isEnabled()) return nullptr;
-            return agentHex;
+            return (agentHex->isVisible()) ? agentHex: nullptr;
         }
     }
     return nullptr;
+}
+
+void Widget::HoverAgents(QPointF p, int player)
+{
+    hexagonAgents *h = (player == 1)
+                           ? getAgentHexagonAtPosition(p, ui->agentOne)
+                           : getAgentHexagonAtPosition(p, ui->agentTwo);
+
+    if (!h) {
+        if (hoverInfoProxy[player - 1]) {
+            hoverInfoProxy[player - 1]->hide();
+        }
+        return;
+    }
+
+    hexagonAgents *n = h;
+    int hp, mob, damag, attack;
+    QString name;
+    if (auto* groundedAgent = dynamic_cast<Grounded*>(n)) {
+        hp = groundedAgent->GetHp();
+        damag = groundedAgent->getDamage();
+        mob = groundedAgent->GetMobility();
+        attack = groundedAgent->GetAttackRange();
+        name = groundedAgent->GetName();
+    };
+    if (auto* f = dynamic_cast<Floating*>(n)) {
+        hp = f->GetHp();
+        damag = f->getDamage();
+        mob = f->GetMobility();
+        attack = f->GetAttackRange();
+        name = f->GetName();
+    };
+    if (auto* w = dynamic_cast<WaterWalking*>(n)) {
+        hp = w->GetHp();
+        damag = w->getDamage();
+        mob = w->GetMobility();
+        attack = w->GetAttackRange();
+        name = w->GetName();
+    };
+    if (auto* fl = dynamic_cast<Flying*>(n)) {
+        hp = fl->GetHp();
+        damag = fl->getDamage();
+        mob = fl->GetMobility();
+        attack = fl->GetAttackRange();
+        name = fl->GetName();
+    };
+    QGraphicsScene* sceneToShow = (player == 1)
+                                      ? ui->agentOne->scene()
+                                      : ui->agentTwo->scene();
+
+    if (!sceneToShow) {
+        qDebug() << "No scene found for player" << player;
+        return;
+    }
+
+    if (!hoverLabel[player - 1]) {
+        QLabel* label = new QLabel();
+        label->setStyleSheet(
+            "background-color: rgba(40, 40, 40, 220);"
+            "color: white;"
+            "padding: 8px 12px;"
+            "border-radius: 6px;"
+            "font-family: 'Segoe UI';"
+            "font-size: 12px;");
+        label->setFixedWidth(150);
+        label->setWordWrap(true);
+        label->setAttribute(Qt::WA_TransparentForMouseEvents);
+        hoverLabel[player - 1] = label;
+
+        QGraphicsProxyWidget* proxy = sceneToShow->addWidget(label);
+        proxy->setZValue(1000);
+        hoverInfoProxy[player - 1] = proxy;
+    }
+
+    // Set text
+    QString text = QString("<b>%1</b><br/>HP: %2<br/>Mobility: %3<br/>Damage: %4<br/>Attack Range: %5")
+                       .arg(name)
+                       .arg(hp)
+                       .arg(mob)
+                       .arg(damag)
+                       .arg(attack);
+
+    hoverLabel[player - 1]->setText(text);
+    hoverLabel[player - 1]->adjustSize();
+
+    QPointF pos = h->pos();
+    if (player == 1) {
+        pos += QPointF(30, -30);
+    } else {
+        pos += QPointF(-30, 70);
+    }
+
+    if (hoverInfoProxy[player - 1]->scene() != sceneToShow) {
+        qWarning() << "Tooltip was added to wrong scene!";
+        return;
+    }
+
+    hoverInfoProxy[player - 1]->setPos(pos);
+    hoverInfoProxy[player - 1]->show();
 }
 
 Widget::~Widget()

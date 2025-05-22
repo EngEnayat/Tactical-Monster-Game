@@ -435,6 +435,10 @@ CMakeFiles/PointerBoard.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/include/./ui_widget.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QVariant \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qvariant.h \
@@ -450,9 +454,6 @@ CMakeFiles/PointerBoard.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QHBoxLayout \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QFile \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qfile.h \

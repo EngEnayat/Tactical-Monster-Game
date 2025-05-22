@@ -435,6 +435,10 @@ CMakeFiles/PointerBoard.dir/main.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/galleryagents.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QPushButton \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qpushbutton.h \

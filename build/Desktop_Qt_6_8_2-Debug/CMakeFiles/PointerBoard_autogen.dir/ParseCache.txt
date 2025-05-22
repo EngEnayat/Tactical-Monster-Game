@@ -996,6 +996,7 @@
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainterpath.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpalette.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h
+ mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixelformat.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpointingdevice.h
@@ -1005,6 +1006,7 @@
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qrgba64.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qscreen.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qscreen_platform.h
+ mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextdocument.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtgui-config.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtguiexports.h
@@ -1016,12 +1018,14 @@
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsPolygonItem
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView
+ mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsitem.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsview.h
+ mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qscrollarea.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qsizepolicy.h
  mdp:/home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qtwidgets-config.h
