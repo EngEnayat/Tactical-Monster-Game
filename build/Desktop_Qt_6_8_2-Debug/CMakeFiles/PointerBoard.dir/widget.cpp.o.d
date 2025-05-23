@@ -453,7 +453,6 @@ CMakeFiles/PointerBoard.dir/widget.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgridlayout.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QHBoxLayout \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qboxlayout.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QWidget \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/QFile \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qfile.h \

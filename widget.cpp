@@ -26,6 +26,7 @@
 
 
 int Widget::PlayerTurn = 1;
+int Widget::DroppedCount = 0;
 
 Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelectedAgents ,QWidget *parent)
     : QWidget(parent)
@@ -47,7 +48,6 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    // this->setBackground();
     qDebug() << "Created";
     QFile file(":/grids/grid1.txt");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -58,9 +58,9 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
         }
         file.close();
 
-        for (int row = 0; row < lines.size()-1; row++) {
+        for (int row = 0, gridRow = 0; row < lines.size()-1; row++) {
             const QString &line = lines[row];
-            for (int col = 0; col < line.length()-1; ) {
+            for (int col = 0, gridCol = 0; col < line.length()-1; ) {
                 if (line[col] == '/') {
                     QChar ch = line[col+1];
                     if (ch == '\\' || ch == '_' || ch == '|') {
@@ -71,6 +71,8 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
                     qreal x = (col / 6.0) * hexWidth * 1.5;
                     qreal y = row * hexHeight * 0.5;
                     createHexagon(x, y, ch, row, col / 6);
+                    HexagonItems * h = getHexagonAtPosition(QPointF(x,y));
+                    // if(gridCol<9)
                     col += 5;
                 }
                 else {
@@ -79,12 +81,15 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
             }
         }
     }
+
+
     this->LoadingAgents(ui->agentOne, PlayerOneSelectedAgents);
     this->LoadingAgents(ui->agentTwo, PlayerTwoSelectedAgents);
     for(auto it: agentsOne)
         it->setEnabled(true);
     this->SetPropertiesAgents(agentsOne);
     this->SetPropertiesAgents(agentsTwo);
+    this->AddHexNeighbor();
 }
 
 void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
@@ -98,6 +103,9 @@ void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
             << QPointF(0, hexHeight*0.5);
 
     HexagonItems *hexItem = new HexagonItems(hexagon, row, col);
+
+    hexMap[{row, col}] = hexItem;
+
     hexItem->setPos(x, y);
 
     if (ch == '1') {
@@ -116,7 +124,6 @@ void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
         hexItem->setProperties(10, false, ' ');
         hexItem->setBrush(Qt::white);
     }
-    hexMap[{row, col}] = hexItem;
 
     hexItem->setPen(QPen(Qt::black, 1));
     hexItem->setScale(0.9);
@@ -154,6 +161,19 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             QPointF scenePos = view->mapToScene(mouseEvent->pos());
 
             if (view == ui->graphicsView) {
+
+
+                HexagonItems * h = getHexagonAtPosition(scenePos);
+                QVector<HexagonItems*> n= h->getNeighbors();
+                qDebug() << "All Neighbors";
+                for(auto it: n)
+                {
+                    if(it->getPlacedAgent()){
+                        qDebug() << it->getPlacedAgent()->GetName() << " Has Already Dropped";
+                        continue;
+                    }
+                    qDebug() << it->row << it->col << it->PlayerOwn();
+                }
                 HexagonItems* hex = getHexagonAtPosition(scenePos);
                 if (hex)
                     this->ClickHexagon(scenePos);
@@ -195,6 +215,12 @@ HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
 
 void Widget::ClickHexagon(QPointF scenePos)
 {
+    if(DroppedCount>11){
+        // this->BFS(GridAgents[0][0], 3);
+        qDebug() << "All Agents Have Dropped";
+        return;
+    }
+
     if (!hexagonAgents::getSelectedAgent()) {
         QMessageBox msgBox;
         msgBox.setText("NO Agent has selected!\nPlease first select one.");
@@ -204,7 +230,6 @@ void Widget::ClickHexagon(QPointF scenePos)
 
     HexagonItems *hexItem = getHexagonAtPosition(scenePos);
     hexagonAgents *hex = hexagonAgents::getSelectedAgent();
-
 
     if ((hexItem->PlayerOwn() == 1 && PlayerTurn == 2) ||
         (hexItem->PlayerOwn() == 2 && PlayerTurn == 1)) {
@@ -268,9 +293,34 @@ void Widget::ClickHexagon(QPointF scenePos)
     hexItem->ChangeOccupied(true);
     hexItem->setPlacedAgent(hex);
     qDebug() << hexItem->agentName() << " has dropped in hexItem";
-    // Switch turn
     PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
-    // delete hex
+    DroppedCount++;
+}
+
+void Widget::BFS(HexagonItems* start, int MapDepth)
+{
+
+}
+
+void Widget::AddHexNeighbor()
+{
+    qreal expectedDistance = hexWidth * 0.87;
+    qreal tolerance = hexWidth * 0.15;
+
+    for (HexagonItems* h1 : hexMap) {
+        QPointF pos1 = h1->scenePos();
+
+        for (HexagonItems* h2 : hexMap) {
+            if (h1 == h2) continue;
+
+            QPointF pos2 = h2->scenePos();
+            qreal dist = QLineF(pos1, pos2).length();
+
+            if (qAbs(dist - expectedDistance) < tolerance) {
+                h1->addNeighbor(h2);
+            }
+        }
+    }
 }
 
 void Widget::HoverHexagon(QPointF scenePos)
@@ -467,9 +517,9 @@ void Widget::HoverAgents(QPointF p, int player)
 
     QPointF pos = h->pos();
     if (player == 1) {
-        pos += QPointF(30, -30);
+        pos += QPointF(10, -30);
     } else {
-        pos += QPointF(-30, 70);
+        pos += QPointF(-170, 0);
     }
 
     if (hoverInfoProxy[player - 1]->scene() != sceneToShow) {

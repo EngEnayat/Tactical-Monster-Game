@@ -22,7 +22,19 @@ public:
     hexagonAgents* getPlacedAgent() const;
     bool hasAgent() const;
     QString agentName() const;
+
+    void addNeighbor(HexagonItems* n) {
+        if (n && !neighbors.contains(n))
+            neighbors.append(n);
+    }
+
+    QVector<HexagonItems*> getNeighbors() const {
+        return neighbors;
+    }
+
+
 private:
+    QVector<HexagonItems*> neighbors;  // NEW: stores the 6 neighbors
     hexagonAgents *placedAgent = nullptr;
     char type = '\0';
     bool occupied = false;

@@ -51,10 +51,33 @@ private:
     void ClickHexagon(QPointF);
 
     QVector<hexagonAgents*> activeAgents;
-    QVector<QVector<hexagonAgents*>> GridAgents;
+    QVector<QVector<HexagonItems*>> GridAgents;
     // all agents in the board
+
+    static int DroppedCount;
+    void BFS(HexagonItems*, int );
+    void AddHexNeighbor();
 private:
     QGraphicsProxyWidget* hoverInfoProxy[2] = {nullptr, nullptr}; // index 0 = player 1, index 1 = player 2
     QLabel* hoverLabel[2] = {nullptr, nullptr};
+
+public:
+    const int even_dirs[6][2] = {
+        { 0, -1},
+        { 0,  1},
+        {-1, -1},
+        {-1,  0},
+        { 1, -1},
+        { 1,  0}
+    };
+    const int odd_dirs[6][2] = {
+        { 0, -1},
+        { 0,  1},
+        {-1,  0},
+        {-1,  1},
+        { 1,  0},
+        { 1,  1}
+    };
+
 };
 #endif

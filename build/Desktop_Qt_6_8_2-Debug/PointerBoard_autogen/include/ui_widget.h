@@ -14,7 +14,6 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,9 +23,7 @@ class Ui_Widget
 public:
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
-    QLabel *label;
     QGraphicsView *agentOne;
-    QLabel *label_2;
     QGraphicsView *graphicsView;
     QGraphicsView *agentTwo;
 
@@ -58,12 +55,6 @@ public:
         gridLayout->setObjectName("gridLayout");
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        label = new QLabel(Widget);
-        label->setObjectName("label");
-        label->setStyleSheet(QString::fromUtf8(""));
-
-        horizontalLayout->addWidget(label);
-
         agentOne = new QGraphicsView(Widget);
         agentOne->setObjectName("agentOne");
         agentOne->setEnabled(false);
@@ -77,11 +68,6 @@ public:
 ""));
 
         horizontalLayout->addWidget(agentOne);
-
-        label_2 = new QLabel(Widget);
-        label_2->setObjectName("label_2");
-
-        horizontalLayout->addWidget(label_2);
 
         graphicsView = new QGraphicsView(Widget);
         graphicsView->setObjectName("graphicsView");
@@ -116,8 +102,6 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
-        label->setText(QString());
-        label_2->setText(QString());
     } // retranslateUi
 
 };

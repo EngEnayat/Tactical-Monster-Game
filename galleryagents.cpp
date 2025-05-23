@@ -5,7 +5,6 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include "widget.h"
-#include "hexagonagents.h"
 
 int GalleryAgents::agentCount = 0;
 GalleryAgents::GalleryAgents(QWidget *parent)
@@ -317,8 +316,8 @@ void GalleryAgents::showProperties(int hp, int mobility, QString type, int Damag
     connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
 
     QString playerWEl = "";
-    if(agentCount <= 4) playerWEl = "Player ONE Choose your " + QString::number(agentCount + 1) + "th" + " agent";
-    else if(agentCount > 4) playerWEl= "Player TWO Choose your " + QString::number(agentCount-4) + "th" + " agent";
+    if(agentCount <= 5) playerWEl = "Player ONE Choose your " + QString::number(agentCount + 1) + "th" + " agent";
+    else if(agentCount > 5 ) playerWEl= "Player TWO Choose your " + QString::number(agentCount-4) + "th" + " agent";
     QLabel* headerLabel = new QLabel(playerWEl);
     headerLabel->setFont(QFont("Segoe UI", 14, QFont::Bold));
     headerLabel->setStyleSheet("color: #333; margin-bottom: 10px;");
@@ -355,14 +354,6 @@ void GalleryAgents::on_StartButton_clicked()
     //     return;
     // }
     Widget *w = new Widget(PlayerOneAgents, PlayerTwoAgents);
-
-    qDebug() << "Player one Agents";
-    for(auto it : PlayerOneAgents)
-        qDebug() << it;
-
-    qDebug() << "Player Two Agents";
-    for(auto it : PlayerTwoAgents)
-        qDebug() << it;
     w->show();
     this->hide();
 }
