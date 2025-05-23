@@ -89,7 +89,11 @@ PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Dow
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Colonel_baba.webp
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/youtubers_headline.webp
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/mainBoardCopy/PointerBoard/imageGPT.png
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Flying.txt
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Ground.txt
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Floating.txt
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/grid1.txt
+PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Water.txt
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Lamorak.webp
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Tusk.webp
 PointerBoard_autogen/EWIEGA46WW/qrc_resources.cpp: /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/Agents/Kanar.webp

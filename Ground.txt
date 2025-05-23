@@ -1,0 +1,13 @@
+Sir Lamorak 320 3 110 1
+Kabu 400 2 120 1
+Rajakal 320 2 130 1
+Salih 400 2 80 1
+Khan 320 2 90 1
+Boi 400 2 100 1
+Eloi 240 2 100 2
+Kanar 160 2 100 2
+Elsa 320 2 140 2
+Karissa 280 2 80 2
+Sir Philip 400 2 100 1
+Frust 260 2 80 2
+Tusk 400 2 100 1

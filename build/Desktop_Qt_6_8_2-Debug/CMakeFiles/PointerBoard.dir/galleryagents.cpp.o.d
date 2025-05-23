@@ -427,6 +427,17 @@ CMakeFiles/PointerBoard.dir/galleryagents.cpp.o: \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonitems.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPolygonF \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpolygon.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QBrush \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPixmap \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QMouseEvent \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qevent.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qeventpoint.h \
@@ -450,17 +461,6 @@ CMakeFiles/PointerBoard.dir/galleryagents.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsView \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsview.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qscrollarea.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QBrush \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPixmap \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h

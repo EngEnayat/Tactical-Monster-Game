@@ -411,6 +411,7 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonitems.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPolygonF \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpolygon.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QMouseEvent \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qevent.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qcoreevent.h \
@@ -450,7 +451,6 @@ CMakeFiles/PointerBoard.dir/PointerBoard_autogen/mocs_compilation.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qframe.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
- /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/build/Desktop_Qt_6_8_2-Debug/PointerBoard_autogen/EWIEGA46WW/../../../../hexagonagents.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QLabel \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qlabel.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpicture.h \

@@ -1,32 +1,33 @@
 #include "grounded.h"
 
-Grounded::Grounded(qreal size, const QString &imagePath, QGraphicsItem *parent):
-    hexagonAgents(size, imagePath, parent)
+Grounded::Grounded(qreal size, const QString& imagePath, QGraphicsItem* parent)
+    : hexagonAgents(size, imagePath, parent)
 {
-
+    // Initialize default stats or load from file later
+    if(this->GetName()  =="Sir Philip" )
+    {
+        this->HP = 400;
+        this->mobility = 2;
+        this->Damage = 100;
+        this->AttackRange = 1;
+    }
+    else if(this->GetName()  =="Sir Lamorak" )
+    {
+        this->HP = 320;
+        this->mobility = 3;
+        this->Damage = 110;
+        this->AttackRange = 1;
+    }
 }
 
-int Grounded::GetHp()
-{
-    return HP;
-}
+int Grounded::GetHp() const { return HP; }
+int Grounded::GetMobility() const { return mobility; }
+int Grounded::getDamage() const { return Damage; }
+int Grounded::GetAttackRange() const { return AttackRange; }
+int Grounded::GetPlayerOwn() const { return PlayerOwn; }
 
-int Grounded::GetMobility()
-{
-    return mobility;
-}
-
-int Grounded::getDamage()
-{
-    return Damage;
-}
-
-int Grounded::GetAttackRange()
-{
-    return AttackRange;
-}
-
-int Grounded::GetPlayerOwn()
-{
-    return PlayerOwn;
-}
+void Grounded::setHP(int hp) { HP = hp; }
+void Grounded::setMobility(int m) { mobility = m; }
+void Grounded::setDamage(int d) { Damage = d; }
+void Grounded::setAttackRange(int r) { AttackRange = r; }
+void Grounded::setPlayerOwn(int p) { PlayerOwn = p; }

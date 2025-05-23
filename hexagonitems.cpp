@@ -21,6 +21,24 @@ int HexagonItems::PlayerOwn() const
 {
     return player;
 }
+
+void HexagonItems::setPlacedAgent(hexagonAgents *p)
+{
+    this->placedAgent = p;
+}
+
+hexagonAgents* HexagonItems::getPlacedAgent() const
+{
+    return placedAgent;
+}
+
+QString HexagonItems::agentName() const {
+    return placedAgent ? placedAgent->GetName() : "None";
+}
+
+bool HexagonItems::hasAgent() const {
+    return placedAgent != nullptr;
+}
 void HexagonItems::resetColor() {
     if (type == '1' && !this->occupied) setBrush(QColor(120, 170, 120)), this->setScale(1), this->setScale(0.9);
     else if (type == '2' && !this->occupied) setBrush(QColor(255, 255, 100)), this->setScale(1), setScale(0.9);

@@ -1,6 +1,10 @@
 <RCC>
     <qresource prefix="/grids">
         <file>grid1.txt</file>
+        <file>Water.txt</file>
+        <file>Ground.txt</file>
+        <file>Floating.txt</file>
+        <file>Flying.txt</file>
     </qresource>
     <qresource prefix="/images">
         <file>../../mainBoardCopy/PointerBoard/imageGPT.png</file>

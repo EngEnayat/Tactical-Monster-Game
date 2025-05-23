@@ -2,7 +2,7 @@
 #define HEXAGONITEMS_H
 #include <QPolygonF>
 #include <QGraphicsPolygonItem>
-
+#include "hexagonagents.h"
 
 class HexagonItems : public QGraphicsPolygonItem {
 public:
@@ -18,8 +18,12 @@ public:
     void ChangeOccupied(bool b){occupied = b;}
     bool isOccupied() const{return occupied;}
     char HexType() const {return type;}
-
+    void setPlacedAgent(hexagonAgents*);
+    hexagonAgents* getPlacedAgent() const;
+    bool hasAgent() const;
+    QString agentName() const;
 private:
+    hexagonAgents *placedAgent = nullptr;
     char type = '\0';
     bool occupied = false;
     int player = 0;

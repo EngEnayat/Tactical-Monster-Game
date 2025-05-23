@@ -368,10 +368,24 @@ CMakeFiles/PointerBoard.dir/hexagonitems.cpp.o: \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qrgba64.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qimage.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixelformat.h \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QColor \
- /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qcolor.h \
+ /home/enayatullah-balaghi/Downloads/QT/QtExcercise/PointerBoard/hexagonagents.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsScene \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfont.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qendian.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpen.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QBrush \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qbrush.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPixmap \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpixmap.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QPainter \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qpainter.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qtextoption.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontinfo.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qfontmetrics.h \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/QColor \
+ /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtGui/qcolor.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
  /home/enayatullah-balaghi/Qt/6.8.2/gcc_64/include/QtCore/qcoreevent.h

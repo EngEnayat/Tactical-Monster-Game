@@ -4,30 +4,23 @@
 WaterWalking::WaterWalking(qreal size, const QString &imagePath, QGraphicsItem *parent):
     hexagonAgents(size, imagePath, parent)
 {
-
+    if(this->GetName() == "Colonel Baba")
+    {
+        this->HP = 400;
+        this->mobility = 2;
+        this->Damage = 100;
+        this->AttackRange = 1;
+    }
 }
 
-int WaterWalking::GetHp()
-{
-    return HP;
-}
+int WaterWalking::GetHp() const { return HP; }
+int WaterWalking::GetMobility() const { return mobility; }
+int WaterWalking::getDamage() const { return Damage; }
+int WaterWalking::GetAttackRange() const { return AttackRange; }
+int WaterWalking::GetPlayerOwn() const { return PlayerOwn; }
 
-int WaterWalking::GetMobility()
-{
-    return mobility;
-}
-
-int WaterWalking::getDamage()
-{
-    return Damage;
-}
-
-int WaterWalking::GetAttackRange()
-{
-    return AttackRange;
-}
-
-int WaterWalking::GetPlayerOwn()
-{
-    return PlayerOwn;
-}
+void WaterWalking::setHP(int hp) { HP = hp; }
+void WaterWalking::setMobility(int m) { mobility = m; }
+void WaterWalking::setDamage(int d) { Damage = d; }
+void WaterWalking::setAttackRange(int r) { AttackRange = r; }
+void WaterWalking::setPlayerOwn(int p) { PlayerOwn = p; }

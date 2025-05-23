@@ -17,7 +17,6 @@
 #include "floating.h"
 #include "flying.h"
 
-
 //                                          HOW to deal with many datatypes
 // Grounded *m = new Grounded(23, "f", nullptr);
 // hexagonAgents *n = m;
@@ -80,12 +79,12 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
             }
         }
     }
-
-
     this->LoadingAgents(ui->agentOne, PlayerOneSelectedAgents);
     this->LoadingAgents(ui->agentTwo, PlayerTwoSelectedAgents);
     for(auto it: agentsOne)
         it->setEnabled(true);
+    this->SetPropertiesAgents(agentsOne);
+    this->SetPropertiesAgents(agentsTwo);
 }
 
 void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
@@ -207,7 +206,6 @@ void Widget::ClickHexagon(QPointF scenePos)
     hexagonAgents *hex = hexagonAgents::getSelectedAgent();
 
 
-    // Validate ownership
     if ((hexItem->PlayerOwn() == 1 && PlayerTurn == 2) ||
         (hexItem->PlayerOwn() == 2 && PlayerTurn == 1)) {
         QMessageBox msgBox;
@@ -268,7 +266,8 @@ void Widget::ClickHexagon(QPointF scenePos)
 
     hexItem->setScale(0.9);
     hexItem->ChangeOccupied(true);
-
+    hexItem->setPlacedAgent(hex);
+    qDebug() << hexItem->agentName() << " has dropped in hexItem";
     // Switch turn
     PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
     // delete hex
@@ -333,8 +332,32 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
             QString imagePath = hexagonAgents::ImagePath(agentName);
             if (type == "Grounded") {
                 hex = new Grounded(hexSize, imagePath);
+                if(agentName == "Sir Lamorak")
+                {
+                    hex->SetName("Sir Lamorak");
+                    hex->setHP(320);
+                    hex->setMobility(3);
+                    hex->setDamage(110);
+                    hex->setAttackRange(1);
+                }
+                else if(agentName == "Sir Philip")
+                {
+                    hex->SetName("Sir Philip");
+                    hex->setHP(400);
+                    hex->setMobility(2);
+                    hex->setDamage(100);
+                    hex->setAttackRange(1);
+                }
             } else if (type == "Water Walking") {
                 hex = new WaterWalking(hexSize, imagePath);
+                if(agentName == "Colonel Baba")
+                {
+                    hex->SetName("Colonel Baba");
+                    hex->setHP(400);
+                    hex->setMobility(2);
+                    hex->setDamage(100);
+                    hex->setAttackRange(1);
+                }
             } else if (type == "Floating") {
                 hex = new Floating(hexSize, imagePath);
             } else if (type == "Flying") {
@@ -344,22 +367,18 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
             if (hex) {
                 hex->setPos(positions[i]);
                 scene->addItem(hex);
-                if (agent == ui->agentOne)
-                    agentsOne.append(hex);
-                else if (agent == ui->agentTwo)
+                if (agent == ui->agentOne){
+                    hex->setPlayerOwn(1);
+                    agentsOne.append(hex);}
+                else if (agent == ui->agentTwo){
                     agentsTwo.append(hex);
+                    hex->setPlayerOwn(2);
+                }
                 agentHexList.append(hex);
                 qDebug() << "Created" << type << "agent:" << agentName;
                 hex->SetName(agentName);
                 hex->SetType(type);
             }
-        } else {
-            QString placeholder = (agent == ui->agentOne)
-            ? ":/preAgent/Agents/Eloi.webp"
-            : ":/near/valorant-header-1 (1).webp";
-            hex = new hexagonAgents(hexSize + 7, placeholder);
-            hex->setPos(positions[i]);
-            scene->addItem(hex);
         }
 
         if (hex && (agent == ui->agentOne || agent == ui->agentTwo)) {
@@ -374,7 +393,6 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
     statusItem->setZValue(100);
     statusItem->setPos(-70, scene->height() + 70);
 }
-
 
 hexagonAgents* Widget::getAgentHexagonAtPosition(const QPointF &pos, QGraphicsView* currentView)
 {
@@ -408,38 +426,6 @@ void Widget::HoverAgents(QPointF p, int player)
         }
         return;
     }
-
-    hexagonAgents *n = h;
-    int hp, mob, damag, attack;
-    QString name;
-    if (auto* groundedAgent = dynamic_cast<Grounded*>(n)) {
-        hp = groundedAgent->GetHp();
-        damag = groundedAgent->getDamage();
-        mob = groundedAgent->GetMobility();
-        attack = groundedAgent->GetAttackRange();
-        name = groundedAgent->GetName();
-    };
-    if (auto* f = dynamic_cast<Floating*>(n)) {
-        hp = f->GetHp();
-        damag = f->getDamage();
-        mob = f->GetMobility();
-        attack = f->GetAttackRange();
-        name = f->GetName();
-    };
-    if (auto* w = dynamic_cast<WaterWalking*>(n)) {
-        hp = w->GetHp();
-        damag = w->getDamage();
-        mob = w->GetMobility();
-        attack = w->GetAttackRange();
-        name = w->GetName();
-    };
-    if (auto* fl = dynamic_cast<Flying*>(n)) {
-        hp = fl->GetHp();
-        damag = fl->getDamage();
-        mob = fl->GetMobility();
-        attack = fl->GetAttackRange();
-        name = fl->GetName();
-    };
     QGraphicsScene* sceneToShow = (player == 1)
                                       ? ui->agentOne->scene()
                                       : ui->agentTwo->scene();
@@ -470,11 +456,11 @@ void Widget::HoverAgents(QPointF p, int player)
 
     // Set text
     QString text = QString("<b>%1</b><br/>HP: %2<br/>Mobility: %3<br/>Damage: %4<br/>Attack Range: %5")
-                       .arg(name)
-                       .arg(hp)
-                       .arg(mob)
-                       .arg(damag)
-                       .arg(attack);
+                       .arg(h->GetName())
+                       .arg(h->GetHp())
+                       .arg(h->GetMobility())
+                       .arg(h->getDamage())
+                       .arg(h->GetAttackRange());
 
     hoverLabel[player - 1]->setText(text);
     hoverLabel[player - 1]->adjustSize();
@@ -495,6 +481,89 @@ void Widget::HoverAgents(QPointF p, int player)
     hoverInfoProxy[player - 1]->show();
 }
 
+void Widget::SetPropertiesAgents(QVector<hexagonAgents *> agents)
+{
+    if (agents.isEmpty()) return;
+
+    QMap<QString, QString> typeToFile = {
+        {"Grounded", ":/grids/Ground.txt"},
+        {"Water Walking", ":/grids/Water.txt"},
+        {"Floating", ":/grids/Floating.txt"},
+        {"Flying", ":/grids/Flying.txt"}
+    };
+    for (hexagonAgents* agent : agents)
+    {
+        QString type = agent->getType();
+        QString agentName = agent->GetName();
+
+        if (type.isEmpty() || agentName.isEmpty()) continue;
+
+        QString filePath = typeToFile.value(type);
+        if (filePath.isEmpty()) {
+            qDebug() << "No property file found for type:" << type;
+            continue;
+        }
+
+        QFile file(filePath);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qDebug() << "Failed to open property file:" << filePath;
+            continue;
+        }
+
+        QTextStream in(&file);
+        bool found = false;
+
+        while (!in.atEnd() && !found) {
+            QString line = in.readLine().trimmed();
+            if (line.isEmpty()) continue;
+
+            QStringList parts = line.split(" ", Qt::SkipEmptyParts);
+            if (parts.size() < 5) continue;
+
+            QString nameInFile = parts[0];
+
+            if (nameInFile == agentName) {
+                bool ok;
+                int hp = parts[1].toInt(&ok);
+                int mobility = parts[2].toInt(&ok);
+                int damage = parts[3].toInt(&ok);
+                int attackRange = parts[4].toInt(&ok);
+
+                if (!ok) {
+                    qDebug() << "Invalid numeric value in file for agent:" << agentName;
+                    continue;
+                }
+                    agent->setHP(hp);
+                    agent->setMobility(mobility);
+                    agent->setDamage(damage);
+                    agent->setAttackRange(attackRange);
+                qDebug() << "Set properties for" << type << "agent:" << agentName
+                         << "| HP:" << hp
+                         << "| Mobility:" << mobility
+                         << "| Damage:" << damage
+                         << "| Attack Range:" << attackRange;
+
+                found = true;
+            }
+        }
+
+        if (!found) {
+            qDebug() << "No matching entry found for agent:" << agentName << "of type:" << type;
+        }
+
+        file.close();
+    }
+    qDebug() << "For Player ";
+    for(auto it: agents)
+    {
+        qDebug() << "Name " << it->GetName();
+        qDebug() << "PlayerOwn " << it->GetPlayerOwn();
+        qDebug() << "HP: " << it->GetHp();
+        qDebug() << "Mobility: " << it->GetMobility();
+        qDebug() << "Type: " << it->getType();
+        qDebug() << "Attack Range: " << it->GetAttackRange();
+    }
+}
 Widget::~Widget()
 {
     for(int i=0; i<agentHexList.size();i++)

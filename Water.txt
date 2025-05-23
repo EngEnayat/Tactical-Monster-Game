@@ -1,0 +1,8 @@
+Billy 320 3 90 1
+Reketon 320 2 80 2
+Angus 400 2 100 1
+Duraham 320 2 100 2
+Colonel Baba 400 2 100 1
+Medusa 320 2 90 2
+Bunka 320 3 100 1
+Sanka 320 3 100 1

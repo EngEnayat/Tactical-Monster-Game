@@ -28,7 +28,7 @@ public:
     QString getType();
 
     static void getSelectedAgents();
-    virtual ~hexagonAgents() override {delete SelectedAgents;}
+    virtual ~hexagonAgents() = default;
     void SetName(QString);
     QString GetName();
 protected:
@@ -58,11 +58,16 @@ public:
     static QStringList FlyingList;
 
 public:
-    int GetHp(){return 0;};
-    int GetMobility(){return 0;};
-    int getDamage(){return 0;};
-    int GetAttackRange(){return 0;};
-    int GetPlayerOwn(){return 0;};
+    virtual void setHP(int hp) = 0;
+    virtual void setMobility(int m) = 0;
+    virtual void setDamage(int d) = 0;
+    virtual void setAttackRange(int r) = 0;
+    virtual void setPlayerOwn(int p) = 0;
+    virtual int GetHp() const = 0;
+    virtual int GetMobility() const = 0;
+    virtual int getDamage() const = 0;
+    virtual int GetAttackRange() const = 0;
+    virtual int GetPlayerOwn() const = 0;
 };
 
 #endif

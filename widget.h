@@ -29,6 +29,8 @@ public:
     hexagonAgents* getAgentHexagonAtPosition(const QPointF &pos, QGraphicsView*);
     void addAgentToggleButton();
     void HoverAgents(QPointF, int);
+
+    void SetPropertiesAgents(QVector<hexagonAgents*>);
 private:
     HexagonItems* lastHoveredHex = nullptr;
 
@@ -37,6 +39,7 @@ private:
     const qreal hexHeight = 69.4;
     Ui::Widget *ui;
     QMap<QPair<int, int>, HexagonItems*> hexMap;
+
     QMap<QPair<int, int>, hexagonAgents*> Player1;
     void LoadingAgents(QGraphicsView *, QStringList);
 
@@ -48,8 +51,8 @@ private:
     void ClickHexagon(QPointF);
 
     QVector<hexagonAgents*> activeAgents;
-
-private:
+    QVector<QVector<hexagonAgents*>> GridAgents;
+    // all agents in the board
 private:
     QGraphicsProxyWidget* hoverInfoProxy[2] = {nullptr, nullptr}; // index 0 = player 1, index 1 = player 2
     QLabel* hoverLabel[2] = {nullptr, nullptr};
