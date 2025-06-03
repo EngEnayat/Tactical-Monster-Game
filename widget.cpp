@@ -12,6 +12,7 @@
 #include <QGraphicsProxyWidget>
 #include <QMessageBox>
 #include <QGraphicsItem>
+#include <queue>
 #include "grounded.h"
 #include "waterwalking.h"
 #include "floating.h"
@@ -109,19 +110,19 @@ void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
     hexItem->setPos(x, y);
 
     if (ch == '1') {
-        hexItem->setProperties(1, false, '1');
+        hexItem->setProperties(1, false, "One");
         hexItem->setBrush(QColor(120,170,120));
     } else if (ch == '2') {
-        hexItem->setProperties(2, false, '2');
+        hexItem->setProperties(2, false, "Two");
         hexItem->setBrush(QColor(255, 255, 100));
     } else if (ch == '#') {
-        hexItem->setProperties(0, true, '#');
+        hexItem->setProperties(0, true, "Water");
         hexItem->setBrush(QColor(32, 107, 186));
     } else if (ch == '~') {
-        hexItem->setProperties(0, true, '~');
+        hexItem->setProperties(0, true, "Banned");
         hexItem->setBrush(QColor(189, 40, 117));
     } else {
-        hexItem->setProperties(10, false, ' ');
+        hexItem->setProperties(10, false, "Ground");
         hexItem->setBrush(Qt::white);
     }
 
@@ -147,7 +148,7 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             QPointF scenePos = view->mapToScene(mouseEvent->pos());
 
             if (view == ui->graphicsView) {
-                HoverHexagon(scenePos);
+                if(DroppedCount <=11)HoverHexagon(scenePos);
             }
             else if(view == ui->agentOne)
                 HoverAgents(scenePos, 1);
@@ -162,18 +163,16 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
 
             if (view == ui->graphicsView) {
 
+                if(!hexagonAgents::getSelectedAgent() && DroppedCount <=11)
+                    qDebug() << "Invalid hex";
 
-                HexagonItems * h = getHexagonAtPosition(scenePos);
-                QVector<HexagonItems*> n= h->getNeighbors();
-                qDebug() << "All Neighbors";
-                for(auto it: n)
-                {
-                    if(it->getPlacedAgent()){
-                        qDebug() << it->getPlacedAgent()->GetName() << " Has Already Dropped";
-                        continue;
-                    }
-                    qDebug() << it->row << it->col << it->PlayerOwn();
+                else if(DroppedCount > 11){
+                HexagonItems* hex = getHexagonAtPosition(scenePos);
+                if (hex)
+                    this->ClickHexagon(scenePos);
+                    // qDebug() << "Clicked on agent" ;
                 }
+                else{
                 HexagonItems* hex = getHexagonAtPosition(scenePos);
                 if (hex)
                     this->ClickHexagon(scenePos);
@@ -182,11 +181,11 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
                      msgBox.setText("NO hex on that position.");
                      msgBox.exec();
                 }
+                }
 
             } else if(view == ui->agentOne){
                 hexagonAgents* agentHex = getAgentHexagonAtPosition(scenePos, ui->agentOne);
                 if (agentHex){
-                    qDebug() << "Clicked agent hex at position:" << agentHex->pos();
                         agentHex->AgentClicked(agentsOne);
                 }
             }
@@ -213,11 +212,70 @@ HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
     return nullptr;
 }
 
+bool Widget::CheckAttack(HexagonItems* TargetHex)
+{
+    qDebug() << "Top of Check Attack";
+    if(!lastClickedHex) return false;
+    else if (!lastVisited.contains(TargetHex)) return false;
+    if(lastClickedHex->getPlacedAgent()->getType() != TargetHex->HexType()) return false;
+
+    if (TargetHex->getPlacedAgent() != nullptr || TargetHex->HexType() == "Banned")
+        return false;
+
+    qDebug() << "INSIDE the check ATtack";
+    TargetHex->setPlacedAgent(lastClickedHex->getPlacedAgent());
+
+    QString path = lastClickedHex->getPlacedAgent()->ImagePath(lastClickedHex->getPlacedAgent()->GetName());
+    TargetHex->setBrush(QBrush(QPixmap(path).scaled(
+        TargetHex->boundingRect().size().toSize(),
+        Qt::IgnoreAspectRatio,
+        Qt::SmoothTransformation
+        )));
+    TargetHex->setScale(0.9);
+    TargetHex->setPlayerOwn(lastClickedHex->PlayerOwn());
+
+    if(lastClickedHex->getOriginalType() == "One")
+        lastClickedHex->setBrush(QColor(120,170,120));
+    else if(lastClickedHex->getOriginalType() == "Two")
+        lastClickedHex->setBrush(QColor(255, 255, 100));
+    else if(lastClickedHex->getOriginalType() == "Water")
+        lastClickedHex->setBrush(QColor(32, 107, 186));
+    else if(lastClickedHex->getOriginalType() =="Ground")
+        lastClickedHex->setBrush(Qt::white);
+
+    lastClickedHex = nullptr;
+
+    PlayerTurn = (PlayerTurn == 1)? 2 : 1;
+
+    for (HexagonItems* hex : lastVisited) {
+        hex->unhighlight();
+    }
+    lastVisited.clear();
+    qDebug() << "last of Check Attack";
+
+    return true;
+}
+
 void Widget::ClickHexagon(QPointF scenePos)
 {
     if(DroppedCount>11){
-        // this->BFS(GridAgents[0][0], 3);
-        qDebug() << "All Agents Have Dropped";
+        HexagonItems* start = getHexagonAtPosition(scenePos);
+
+        if(!start) return;
+
+        if(PlayerTurn != start->getPlacedAgent()->GetPlayerOwn() || lastClickedHex) return;
+        qDebug() << "Calling AttaCk";
+
+        if(!CheckAttack(start)) return;
+
+        qDebug() << "AFTER check Attack";
+        if(start->getPlacedAgent())
+        {
+            hexagonAgents *placed = start->getPlacedAgent();
+            this->BFS(start, placed->GetMobility());
+        }
+        
+        else qDebug() << "No Agent has Placed at that cell";
         return;
     }
 
@@ -240,12 +298,12 @@ void Widget::ClickHexagon(QPointF scenePos)
     }
 
     if (PlayerTurn == 1) {
-        for(auto it: agentsOne) it->setEnabled(false);
-        for(auto it: agentsTwo) it->setEnabled(true);
+        for(auto it: std::as_const(agentsOne)) it->setEnabled(false);
+        for(auto it: std::as_const(agentsTwo)) it->setEnabled(true);
     }
     if (PlayerTurn == 2) {
-        for(auto it: agentsOne) it->setEnabled(true);
-        for(auto it: agentsTwo) it->setEnabled(false);
+        for(auto it: std::as_const(agentsOne)) it->setEnabled(true);
+        for(auto it: std::as_const(agentsTwo)) it->setEnabled(false);
     }
 
     if (hexItem->isOccupied()) {
@@ -255,7 +313,7 @@ void Widget::ClickHexagon(QPointF scenePos)
         return;
     }
 
-    if (hexItem->HexType() == '~' || hexItem->HexType() == '#' || hexItem->HexType() == ' ') {
+    if (hexItem->HexType() == "Ground" || hexItem->HexType() == "Water" || hexItem->HexType() == "Banned") {
         return;
     }
 
@@ -278,11 +336,9 @@ void Widget::ClickHexagon(QPointF scenePos)
     hex->CleanSelection();
 
 
-
     scene->addItem(hex);
     activeAgents.append(hex);
 
-    // Update hexagon appearance
     hexItem->setBrush(QBrush(agentPixmap.scaled(
         hexItem->boundingRect().size().toSize(),
         Qt::IgnoreAspectRatio,
@@ -299,6 +355,54 @@ void Widget::ClickHexagon(QPointF scenePos)
 
 void Widget::BFS(HexagonItems* start, int MapDepth)
 {
+    
+    if(lastClickedHex) return;
+
+    if (!start || MapDepth <= 0) return;
+    qDebug() << "TOP of BFS";
+    QVector<HexagonItems*> visited;
+    std::queue<QPair<HexagonItems*, int>> Queue;
+
+    visited.append(start);
+    Queue.push(qMakePair(start, 0));
+
+    while (!Queue.empty()) {
+        QPair<HexagonItems*, int> current = Queue.front();
+        Queue.pop();
+
+        HexagonItems* hex = current.first;
+        int depth = current.second;
+
+        if (depth >= MapDepth)
+            continue;
+
+        for (HexagonItems* neighbor : hex->getNeighbors()) {
+            if (!visited.contains(neighbor)) {
+                visited.append(neighbor);
+                Queue.push(qMakePair(neighbor, depth + 1));
+            }
+        }
+    }
+
+    //!hex->getPlacedAgent() &&
+    //if(lastClickedHex) qDebug() << "The Clicked Agent type: " << lastClickedHex->HexType() << "\nAnd its neighbors types";
+
+
+    lastVisited = visited;
+    lastClickedHex = start;
+
+    for (HexagonItems* hex : std::as_const(visited)) {
+       // qDebug() << hex->HexType();
+        if ( hex->HexType() != "Banned") {
+           if(!lastClickedHex)
+                continue;
+            if( lastClickedHex->hasAgent())
+            {
+                hex->highlight(Qt::red);
+            }
+        }
+    }
+    qDebug() << "LAST of BFS" << "\n THE last hex: " << lastClickedHex->getPlacedAgent()->GetName();
 
 }
 
@@ -382,6 +486,7 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
             QString imagePath = hexagonAgents::ImagePath(agentName);
             if (type == "Grounded") {
                 hex = new Grounded(hexSize, imagePath);
+                hex->SetType("Ground");
                 if(agentName == "Sir Lamorak")
                 {
                     hex->SetName("Sir Lamorak");
@@ -400,6 +505,7 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
                 }
             } else if (type == "Water Walking") {
                 hex = new WaterWalking(hexSize, imagePath);
+                hex->SetType("Water");
                 if(agentName == "Colonel Baba")
                 {
                     hex->SetName("Colonel Baba");
@@ -410,8 +516,10 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
                 }
             } else if (type == "Floating") {
                 hex = new Floating(hexSize, imagePath);
+                hex->SetType("Float");
             } else if (type == "Flying") {
                 hex = new Flying(hexSize, imagePath);
+                    hex->SetType("Fly");
             }
 
             if (hex) {
@@ -425,7 +533,6 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
                     hex->setPlayerOwn(2);
                 }
                 agentHexList.append(hex);
-                qDebug() << "Created" << type << "agent:" << agentName;
                 hex->SetName(agentName);
                 hex->SetType(type);
             }
@@ -614,6 +721,7 @@ void Widget::SetPropertiesAgents(QVector<hexagonAgents *> agents)
         qDebug() << "Attack Range: " << it->GetAttackRange();
     }
 }
+
 Widget::~Widget()
 {
     for(int i=0; i<agentHexList.size();i++)

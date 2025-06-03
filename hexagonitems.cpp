@@ -5,10 +5,11 @@
 HexagonItems::HexagonItems(const QPolygonF& polygon, int row, int col)
     : QGraphicsPolygonItem(polygon), row(row), col(col) {}
 
-void HexagonItems::setProperties(int player, bool occupied, char type) {
+void HexagonItems::setProperties(int player, bool occupied, QString type) {
     this->player = player;
     this->occupied = occupied;
     this->type = type;
+    this->OriginalType = type;
 }
 void HexagonItems::getPro() const
 {
@@ -24,7 +25,10 @@ int HexagonItems::PlayerOwn() const
 
 void HexagonItems::setPlacedAgent(hexagonAgents *p)
 {
-    this->placedAgent = p;
+    if(p)this->placedAgent = p;
+    if (p) {
+        p->setParentItem(this);
+    }
 }
 
 hexagonAgents* HexagonItems::getPlacedAgent() const
@@ -36,13 +40,52 @@ QString HexagonItems::agentName() const {
     return placedAgent ? placedAgent->GetName() : "None";
 }
 
+void HexagonItems::setPlayerOwn(int PlayerNew)
+{
+    player = PlayerNew;
+}
+
+
+void HexagonItems::highlight(QColor color)
+{
+    if (!highlighted) {
+        highlighted = true;
+
+        if (!this->getPlacedAgent()) {
+            originalColor = brush().color();
+            setBrush(QBrush(color));
+        } else {
+            hexagonAgents* a = this->getPlacedAgent();
+            originalPath = a->ImagePath(a->GetName());
+        }
+    }
+}
+
+void HexagonItems::unhighlight()
+{
+    if (!highlighted) return;
+
+    highlighted = false;
+
+    if (!this->getPlacedAgent()) {
+        setBrush(QBrush(originalColor));
+    } else {
+        this->setBrush(QBrush(QPixmap(originalPath).scaled(
+            this->boundingRect().size().toSize(),
+            Qt::IgnoreAspectRatio,
+            Qt::SmoothTransformation
+            )));
+        this->setScale(0.9);
+    }
+}
+
 bool HexagonItems::hasAgent() const {
     return placedAgent != nullptr;
 }
 void HexagonItems::resetColor() {
-    if (type == '1' && !this->occupied) setBrush(QColor(120, 170, 120)), this->setScale(1), this->setScale(0.9);
-    else if (type == '2' && !this->occupied) setBrush(QColor(255, 255, 100)), this->setScale(1), setScale(0.9);
-    else if (type == '#') setBrush(QColor(32, 107, 186)), this->setScale(0.9);
-    else if (type == '~') setBrush(QColor(189, 40, 117)), setScale(0.9);
+    if (type == "One" && !this->occupied) setBrush(QColor(120, 170, 120)), this->setScale(1), this->setScale(0.9);
+    else if (type == "Two" && !this->occupied) setBrush(QColor(255, 255, 100)), this->setScale(1), setScale(0.9);
+    else if (type == "Water") setBrush(QColor(32, 107, 186)), this->setScale(0.9);
+    else if (type == "Banned") setBrush(QColor(189, 40, 117)), setScale(0.9);
     else if(player == 0) setBrush(Qt::white);
 }
