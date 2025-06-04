@@ -23,11 +23,24 @@ int HexagonItems::PlayerOwn() const
     return player;
 }
 
-void HexagonItems::setPlacedAgent(hexagonAgents *p)
+void HexagonItems::setPlacedAgent(hexagonAgents *p, QString where)
 {
-    if(p)this->placedAgent = p;
+
+    if(where == "Attack")
+    {
+    this->placedAgent = p;
+    if(p)p->setParentItem(this);
+    return;
+    }
+    else{
+    if(p)
+    {
+        placedAgent = nullptr;
+        this->placedAgent = p;
+    }
     if (p) {
         p->setParentItem(this);
+    }
     }
 }
 
@@ -87,5 +100,6 @@ void HexagonItems::resetColor() {
     else if (type == "Two" && !this->occupied) setBrush(QColor(255, 255, 100)), this->setScale(1), setScale(0.9);
     else if (type == "Water") setBrush(QColor(32, 107, 186)), this->setScale(0.9);
     else if (type == "Banned") setBrush(QColor(189, 40, 117)), setScale(0.9);
+    else if(type == "Ground") setBrush(Qt::white);
     else if(player == 0) setBrush(Qt::white);
 }

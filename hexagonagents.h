@@ -10,7 +10,7 @@
 
 class hexagonAgents : public QObject, public QGraphicsPolygonItem {
     QPixmap pix;
-    Q_OBJECT;
+    Q_OBJECT
 public:
     explicit hexagonAgents(qreal size =0 , const QString& imagePath = "",QGraphicsItem* parent = nullptr);
     static hexagonAgents* getSelectedAgent();
@@ -68,6 +68,7 @@ public:
     virtual int getDamage() const = 0;
     virtual int GetAttackRange() const = 0;
     virtual int GetPlayerOwn() const = 0;
+    virtual QString getAgentType() const = 0;
 };
 
 #endif

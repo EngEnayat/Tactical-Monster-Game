@@ -111,18 +111,23 @@ void Widget::createHexagon(qreal x, qreal y, QChar ch, int row, int col)
 
     if (ch == '1') {
         hexItem->setProperties(1, false, "One");
+        hexItem->setOwn(1); // original own
         hexItem->setBrush(QColor(120,170,120));
     } else if (ch == '2') {
         hexItem->setProperties(2, false, "Two");
+        hexItem->setOwn(2);
         hexItem->setBrush(QColor(255, 255, 100));
     } else if (ch == '#') {
         hexItem->setProperties(0, true, "Water");
+        hexItem->setOwn(3);
         hexItem->setBrush(QColor(32, 107, 186));
     } else if (ch == '~') {
         hexItem->setProperties(0, true, "Banned");
+        hexItem->setOwn(0);
         hexItem->setBrush(QColor(189, 40, 117));
     } else {
         hexItem->setProperties(10, false, "Ground");
+        hexItem->setOwn(10);
         hexItem->setBrush(Qt::white);
     }
 
@@ -216,14 +221,16 @@ bool Widget::CheckAttack(HexagonItems* TargetHex)
 {
     qDebug() << "Top of Check Attack";
     if(!lastClickedHex) return false;
+
     else if (!lastVisited.contains(TargetHex)) return false;
+
     if(lastClickedHex->getPlacedAgent()->getType() != TargetHex->HexType()) return false;
 
     if (TargetHex->getPlacedAgent() != nullptr || TargetHex->HexType() == "Banned")
         return false;
 
     qDebug() << "INSIDE the check ATtack";
-    TargetHex->setPlacedAgent(lastClickedHex->getPlacedAgent());
+    TargetHex->setPlacedAgent(lastClickedHex->getPlacedAgent(), "");
 
     QString path = lastClickedHex->getPlacedAgent()->ImagePath(lastClickedHex->getPlacedAgent()->GetName());
     TargetHex->setBrush(QBrush(QPixmap(path).scaled(
@@ -263,13 +270,142 @@ void Widget::ClickHexagon(QPointF scenePos)
 
         if(!start) return;
 
-        if(PlayerTurn != start->getPlacedAgent()->GetPlayerOwn() || lastClickedHex) return;
+        if(start->hasAgent())
+        {
+            if(start->getPlacedAgent()->GetPlayerOwn() != PlayerTurn && !lastClickedHex) return;
+        }
+
+        //if(PlayerTurn != start->getPlacedAgent()->GetPlayerOwn()) return;
         qDebug() << "Calling AttaCk";
 
-        if(!CheckAttack(start)) return;
+        // if(!CheckAttack(start)) return;
+
+        if(lastClickedHex)
+        {
+            qDebug() << "Enter the try block";
+            try {
+                if(lastClickedHex == start)
+                {
+                    qDebug() << "Double Click on hex";
+                    lastClickedHex->setScale(0.9);
+                    lastClickedHex = nullptr;
+                    return;
+                }
+                if(start->hasAgent())
+                {
+                    if(start->getPlacedAgent()->GetPlayerOwn() == lastClickedHex->getPlacedAgent()->GetPlayerOwn())
+                    {
+                        lastClickedHex->setScale(0.9);
+                        lastClickedHex = nullptr; // when user wants to work with another agent
+                        this->BFS(start, start->getPlacedAgent()->GetMobility());
+                    }
+                    else
+                    {
+                        qDebug() << "Attack Starts";
+                        hexagonAgents* Attacker = lastClickedHex->getPlacedAgent();
+                        hexagonAgents* Target = start->getPlacedAgent();
+                        int enemyDamage = start->getPlacedAgent()->getDamage();
+                        int AttackerDamage = lastClickedHex->getPlacedAgent()->getDamage();
+                        if(enemyDamage < (AttackerDamage))
+                        {
+                            qDebug() << "Destroying enemy";
+                            start->setPlayerOwn(start->getOriginalOwn());
+                            start->setPlacedAgent(nullptr, "Attack");
+                            start->ChangeOccupied(false);
+                            start->setBrush(Qt::NoBrush);
+                            start->resetColor();
+                            start->setScale(0.9);
+
+                            Attacker->setHP(Attacker->GetHp() - (enemyDamage/2));
+                            start->update();
+                            qDebug() << "Enemy Destroyed";
+                        }
+
+                        else
+                        {
+                            qDebug() << "Calling Move Agent Func";
+                            MoveAgent(Target);
+                        }
+
+
+
+                    } // end of else
+
+
+                }
+
+
+                if (!lastVisited.contains(start)) return;
+                if ( start->HexType() == "Banned") return;
+
+
+                if(lastClickedHex->getPlacedAgent()->getAgentType() != start->HexType())
+                {
+                    if(!(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == start->getOriginalOwn() && start->getPlacedAgent() == nullptr))
+                        return;
+                }
+
+                qDebug() << "Agent Type: " << lastClickedHex->getPlacedAgent()->getAgentType() << " hex type: " << start->HexType();
+
+                QString name = lastClickedHex->getPlacedAgent()->GetName();
+                QString path = lastClickedHex->getPlacedAgent()->ImagePath(name);
+
+                qDebug() << "The " << lastClickedHex->getPlacedAgent()->GetName() << "properties: ";
+                qDebug() << "Type: " << lastClickedHex->getPlacedAgent()->getAgentType() << "Mobility: " << lastClickedHex->getPlacedAgent()->GetMobility();
+
+                QPixmap pix(path);
+                if (pix.isNull()) {
+                    qDebug() << "❌ Failed to load pixmap!";
+                    return;
+                }
+
+                start->setBrush(QBrush(pix.scaled(
+                    start->boundingRect().size().toSize(),
+                    Qt::IgnoreAspectRatio,
+                    Qt::SmoothTransformation
+                    )));
+                start->setScale(0.9);
+
+                start->setPlacedAgent(lastClickedHex->getPlacedAgent(), "");
+                start->setPlayerOwn(lastClickedHex->getPlacedAgent()->GetPlayerOwn());
+                start->ChangeOccupied(true);
+                start->update();
+
+
+
+                lastClickedHex->setPlacedAgent(nullptr, "Attack");
+                if(lastClickedHex->hasAgent()) qDebug() << "Doesn't removed the agent";
+                lastClickedHex->ChangeOccupied(false);
+                if(lastClickedHex->isOccupied())  qDebug() << "Didn't get empty";
+
+                lastClickedHex->setPlayerOwn(lastClickedHex->getOriginalOwn());
+                lastClickedHex->setBrush(Qt::NoBrush);
+                lastClickedHex->resetColor();
+                lastClickedHex->setScale(0.9);
+                lastClickedHex->update();
+
+                lastClickedHex = nullptr;
+
+
+                // for (HexagonItems* hex : std::as_const(lastVisited)) {
+                //     hex->unhighlight();
+                // }
+
+                lastVisited.clear();
+
+                qDebug() << "✅ Agent moved successfully";
+                PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
+                return;
+
+            } catch (...) {
+                qDebug() << "❌ Exception during agent movement";
+            }
+
+
+        }
 
         qDebug() << "AFTER check Attack";
-        if(start->getPlacedAgent())
+        if(start->hasAgent())
         {
             hexagonAgents *placed = start->getPlacedAgent();
             this->BFS(start, placed->GetMobility());
@@ -346,8 +482,9 @@ void Widget::ClickHexagon(QPointF scenePos)
         )));
 
     hexItem->setScale(0.9);
+
     hexItem->ChangeOccupied(true);
-    hexItem->setPlacedAgent(hex);
+    hexItem->setPlacedAgent(hex, "");
     qDebug() << hexItem->agentName() << " has dropped in hexItem";
     PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
     DroppedCount++;
@@ -385,23 +522,23 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
     }
 
     //!hex->getPlacedAgent() &&
-    //if(lastClickedHex) qDebug() << "The Clicked Agent type: " << lastClickedHex->HexType() << "\nAnd its neighbors types";
-
-
     lastVisited = visited;
     lastClickedHex = start;
 
-    for (HexagonItems* hex : std::as_const(visited)) {
-       // qDebug() << hex->HexType();
-        if ( hex->HexType() != "Banned") {
-           if(!lastClickedHex)
-                continue;
-            if( lastClickedHex->hasAgent())
-            {
-                hex->highlight(Qt::red);
-            }
-        }
-    }
+    if(lastClickedHex) qDebug() << "The Clicked Agent type: " << lastClickedHex->HexType() << "\nAnd its neighbors types";
+
+    lastClickedHex->setScale(1.0);
+    // for (HexagonItems* hex : std::as_const(visited)) {
+    //    // qDebug() << hex->HexType();
+    //     if ( hex->HexType() != "Banned") {
+    //        if(!lastClickedHex)
+    //             continue;
+    //         if( lastClickedHex->hasAgent())
+    //         {
+    //             hex->highlight(Qt::red);
+    //         }
+    //     }
+    // }
     qDebug() << "LAST of BFS" << "\n THE last hex: " << lastClickedHex->getPlacedAgent()->GetName();
 
 }
@@ -425,6 +562,43 @@ void Widget::AddHexNeighbor()
             }
         }
     }
+}
+
+void Widget::MoveAgent(hexagonAgents *Target)
+{
+    qDebug() << "Starting Moving Agent";
+        hexagonAgents * Attacker = lastClickedHex->getPlacedAgent();
+        int AttackerDamage  = Attacker->getDamage();
+        int enemyDamage = Target->getDamage();
+        Target->setHP(Target->GetHp()- AttackerDamage);
+        Attacker->setHP(Attacker->GetHp()-(enemyDamage/2));
+
+        for (HexagonItems* hex : std::as_const(lastVisited))
+        {
+            if(hex->hasAgent()) continue;
+            if( (hex->HexType() == Attacker->getAgentType() || hex->PlayerOwn() == Attacker->GetPlayerOwn()) && !hex->isOccupied() )
+            {
+                hex->setPlayerOwn(Attacker->GetPlayerOwn());
+                hex->setPlacedAgent(Attacker, "");
+                hex->ChangeOccupied(true);
+                hex->setBrush(Qt::NoBrush);
+
+                QPixmap pix(Attacker->ImagePath(Attacker->GetName()));
+                if (pix.isNull()) {
+                    qDebug() << "❌ Failed to load pixmap!";
+                    return;
+                }
+
+                hex->setBrush(QBrush(pix.scaled(
+                    Target->boundingRect().size().toSize(),
+                    Qt::IgnoreAspectRatio,
+                    Qt::SmoothTransformation
+                    )));
+                hex->setScale(0.9);
+                return;
+            }
+        }
+        qDebug() << "Agent Moved";
 }
 
 void Widget::HoverHexagon(QPointF scenePos)
@@ -475,9 +649,9 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
             } else if (hexagonAgents::WaterAgentsList.contains(agentName)) {
                 type = "Water Walking";
             } else if (hexagonAgents::FloatingList.contains(agentName)) {
-                type = "Floating";
+                type = "Float";
             } else if (hexagonAgents::FlyingList.contains(agentName)) {
-                type = "Flying";
+                type = "Fly";
             } else {
                 qDebug() << "Unknown agent name:" << agentName;
                 continue;
@@ -514,10 +688,10 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
                     hex->setDamage(100);
                     hex->setAttackRange(1);
                 }
-            } else if (type == "Floating") {
+            } else if (type == "Float") {
                 hex = new Floating(hexSize, imagePath);
                 hex->SetType("Float");
-            } else if (type == "Flying") {
+            } else if (type == "Fly") {
                 hex = new Flying(hexSize, imagePath);
                     hex->SetType("Fly");
             }
