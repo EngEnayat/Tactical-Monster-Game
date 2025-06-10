@@ -31,3 +31,14 @@ void Grounded::setMobility(int m) { mobility = m; }
 void Grounded::setDamage(int d) { Damage = d; }
 void Grounded::setAttackRange(int r) { AttackRange = r; }
 void Grounded::setPlayerOwn(int p) { PlayerOwn = p; }
+
+QString Grounded::getAgentType() const { return AgentType; }
+
+
+bool Grounded::WaterMoving(){return false;}
+bool Grounded::GroundMoving(){return true;}
+bool Grounded::BannedMoving(){return false;}
+
+bool Grounded::CanStayGround(){return true;}
+bool Grounded::CanStayWater(){return false;}
+bool Grounded::canStayBanned() {return false;}

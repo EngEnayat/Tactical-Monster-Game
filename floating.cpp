@@ -17,3 +17,15 @@ void Floating::setMobility(int m) { mobility = m; }
 void Floating::setDamage(int d) { Damage = d; }
 void Floating::setAttackRange(int r) { AttackRange = r; }
 void Floating::setPlayerOwn(int p) { PlayerOwn = p; }
+
+QString Floating::getAgentType() const
+{
+    return AgentType;
+}
+
+bool Floating::WaterMoving(){return true;}
+bool Floating::GroundMoving(){return true;}
+bool Floating::BannedMoving(){return true;}
+bool Floating::CanStayGround(){return true;}
+bool Floating::CanStayWater(){return true;}
+bool Floating::canStayBanned() {return true;}

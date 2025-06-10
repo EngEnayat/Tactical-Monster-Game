@@ -24,3 +24,17 @@ void WaterWalking::setMobility(int m) { mobility = m; }
 void WaterWalking::setDamage(int d) { Damage = d; }
 void WaterWalking::setAttackRange(int r) { AttackRange = r; }
 void WaterWalking::setPlayerOwn(int p) { PlayerOwn = p; }
+
+QString WaterWalking::getAgentType() const
+{
+    return AgentType;
+}
+
+
+bool WaterWalking::WaterMoving(){return true;}
+bool WaterWalking::GroundMoving(){return true;}
+bool WaterWalking::BannedMoving(){return false;}
+
+bool WaterWalking::CanStayGround(){return true;}
+bool WaterWalking::CanStayWater(){return true;}
+bool WaterWalking::canStayBanned() {return false;}

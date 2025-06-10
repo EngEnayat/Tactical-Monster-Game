@@ -31,6 +31,14 @@ public:
     virtual ~hexagonAgents() = default;
     void SetName(QString);
     QString GetName();
+    void SetAttackCheck(bool var);
+    bool getAttackCheck();
+    virtual bool WaterMoving() = 0;
+    virtual bool GroundMoving() = 0;
+    virtual bool BannedMoving() = 0;
+    virtual bool CanStayGround() = 0;
+    virtual bool CanStayWater() = 0;
+    virtual bool canStayBanned() = 0;
 protected:
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override
     {
@@ -50,6 +58,8 @@ private:
     bool IsDropped = false;
     static hexagonAgents *SelectedAgents;
     static QMap<QString, QString> nameToFilename ;
+
+    bool isAttackRange = false; // for checking the attack condition
 
 public:
     static QStringList GroundedList;

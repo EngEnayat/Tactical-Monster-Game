@@ -16,3 +16,17 @@ void Flying::setMobility(int m) { mobility = m; }
 void Flying::setDamage(int d) { Damage = d; }
 void Flying::setAttackRange(int r) { AttackRange = r; }
 void Flying::setPlayerOwn(int p) { PlayerOwn = p; }
+
+QString Flying::getAgentType() const
+{
+    return AgentType;
+}
+
+
+bool Flying::WaterMoving(){return true;}
+bool Flying::GroundMoving(){return true;}
+bool Flying::BannedMoving(){return true;}
+
+bool Flying::CanStayGround(){return true;}
+bool Flying::CanStayWater(){return false;}
+bool Flying::canStayBanned() {return false;}

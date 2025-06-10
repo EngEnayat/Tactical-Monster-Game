@@ -16,13 +16,24 @@ public:
     void setDamage(int d) override;
     void setAttackRange(int r) override;
     void setPlayerOwn(int p) override;
+    QString getAgentType() const override;
+
+
+    bool WaterMoving() override;
+    bool GroundMoving() override;
+    bool BannedMoving() override;
+    bool CanStayGround() override;
+    bool CanStayWater() override;
+    bool canStayBanned() override;
+
 private:
-    QString Name = "Float"; // Billy, Abgus, ...
+    QString Name = "Fly"; // Billy, Abgus, ...
     int HP = 1;
     int mobility = 10;
     int Damage = 10;
     int AttackRange = 10;
     int PlayerOwn = 10;
+    QString AgentType = "Fly";
 };
 
 #endif
