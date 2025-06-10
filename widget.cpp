@@ -18,14 +18,26 @@
 #include "floating.h"
 #include "flying.h"
 
-//                                          HOW to deal with many datatypes
-// Grounded *m = new Grounded(23, "f", nullptr);
-// hexagonAgents *n = m;
-// if (auto* groundedAgent = dynamic_cast<Grounded*>(n)) {
-//     groundedAgent->specialGroundedMethod();  // ✅ Safe and works
-// };
+#include <QGraphicsSceneHoverEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QColor>
 
 
+void ClickableRect::hoverEnterEvent(QGraphicsSceneHoverEvent*)
+{
+    this->setBrush(QColor("#43A047")); // Darker green on hover
+}
+
+void ClickableRect::hoverLeaveEvent(QGraphicsSceneHoverEvent*)
+{
+    this->setBrush(QColor("#4CAF50")); // Original color
+}
+
+void ClickableRect::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    emit clicked(); // Emit signal when clicked
+    event->setAccepted(true); // Prevent event from propagating
+}
 int Widget::PlayerTurn = 1;
 int Widget::DroppedCount = 0;
 
@@ -35,6 +47,10 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
 {
 
     ui->setupUi(this);
+
+
+    ui->graphicsView->setInteractive(true); // Enable interaction
+    ui->graphicsView->setMouseTracking(true); // Track mouse movements
     ui->agentOne->setMinimumWidth(150);
     ui->agentTwo->setMinimumWidth(150);
 
@@ -209,7 +225,7 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
 
 HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
 {
-    for (auto hex : hexMap) {
+    for (auto hex : std::as_const(hexMap)) {
         if (hex->contains(hex->mapFromScene(pos))) {
             return hex;
         }
@@ -219,7 +235,7 @@ HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
 
 void Widget::MovingAgent(HexagonItems* Target)
 {
-    qDebug() << "Enter the try block";
+    // qDebug() << "Enter the try block";
 
     try {
         qDebug() << "top of try";
@@ -242,8 +258,11 @@ void Widget::MovingAgent(HexagonItems* Target)
                 qDebug() << "Attacker Damage before attack: " << Attacker->getDamage();
                 qDebug() << "Target hp before attack: " << Target->getPlacedAgent()->GetHp();
 
-                if(Attacker->GetHp()<0)
+                if(Attacker->GetHp()<=0)
                 {
+                    if(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == 1) PlayerOneDeletedAgents--;
+                    else if(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == 2) PlayerTwoDeletedAgents--;
+
                     lastClickedHex->setPlacedAgent(nullptr,"Attack");
                     lastClickedHex->ChangeOccupied(false);
                     lastClickedHex->setPlayerOwn(lastClickedHex->getOriginalOwn());
@@ -251,8 +270,13 @@ void Widget::MovingAgent(HexagonItems* Target)
                     lastClickedHex->resetColor();
                     lastClickedHex->setScale(0.9);
                     lastClickedHex = nullptr;
-                    qDebug() << "The Agent Die Due to less HP";
+                    qDebug() << "The Agent Dies Due to less HP";
                     PlayerTurn = (PlayerTurn == 1)? 2: 1;
+
+                    qDebug() << "Agent Deleted";
+                    qDebug() << "Player One Total Agents: " << PlayerOneDeletedAgents;
+                    qDebug() << "Player Two Total Agents: " << PlayerTwoDeletedAgents;
+                    if(PlayerOneDeletedAgents <= 0 || PlayerTwoDeletedAgents <=0 ) Vectory();
                     return;
                 }
 
@@ -263,6 +287,12 @@ void Widget::MovingAgent(HexagonItems* Target)
                     qDebug()<< "Attacker health: " << lastClickedHex->getPlacedAgent()->GetHp() << "    Attacker Damage: " << lastClickedHex->getPlacedAgent()->getDamage();
                     qDebug() << "Target health: " << Target->getPlacedAgent()->GetHp() << " Target Damage: " << Target->getPlacedAgent()->getDamage();
 
+
+                    if(Target->getPlacedAgent()->GetPlayerOwn() == 1) PlayerOneDeletedAgents--;
+                    else if(Target->getPlacedAgent()->GetPlayerOwn() == 2) PlayerTwoDeletedAgents--;
+
+                    qDebug() << "Player One Total Agents: " << PlayerOneDeletedAgents;
+                    qDebug() << "Player Two Total Agents: " << PlayerTwoDeletedAgents;
 
                     Target->setPlayerOwn(Target->getOriginalOwn());
                     Target->setPlacedAgent(nullptr, "Attack");
@@ -275,12 +305,13 @@ void Widget::MovingAgent(HexagonItems* Target)
                     Target->update();
                     qDebug() << "Enemy Destroyed";
                     qDebug()<< "Our Health after destroying enemy: " << Attacker->GetHp();
+                    if(PlayerOneDeletedAgents <= 0 || PlayerTwoDeletedAgents<= 0) Vectory();
                 }
 
                 else
                 {
                     qDebug() << "Calling Move Agent Func";
-                    MoveAgent(Target->getPlacedAgent());
+                    ReplaceAgent(Target);
                     PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
                     return;
                 }
@@ -293,14 +324,21 @@ void Widget::MovingAgent(HexagonItems* Target)
 
 
         if (!lastVisited.contains(Target)) return;
-        if ( Target->HexType() == "Banned") return;
 
 
+        bool CanStay;
+        if(Target->HexType() == "Ground" || Target->HexType() == "One" || Target->HexType() == "Two") CanStay = lastClickedHex->getPlacedAgent()->CanStayGround();
+        else if(Target->HexType() == "Water") CanStay = lastClickedHex->getPlacedAgent()->CanStayWater();
+        else if(Target->HexType() == "Banned") CanStay = lastClickedHex->getPlacedAgent()->canStayBanned();
+
+        if(!CanStay) return;
 
         qDebug() << "Agent Type: " << lastClickedHex->getPlacedAgent()->getAgentType() << " hex type: " << Target->HexType();
 
         QString name = lastClickedHex->getPlacedAgent()->GetName();
         QString path = lastClickedHex->getPlacedAgent()->ImagePath(name);
+
+
 
         qDebug() << "The " << lastClickedHex->getPlacedAgent()->GetName() << "properties: ";
         qDebug() << "Type: " << lastClickedHex->getPlacedAgent()->getAgentType() << "Mobility: " << lastClickedHex->getPlacedAgent()->GetMobility();
@@ -350,9 +388,82 @@ void Widget::MovingAgent(HexagonItems* Target)
         return;
 
     } catch (...) {
-        qDebug() << "❌ Exception during agent movement";
+        qDebug() << "Exception during agent movement";
     }
 
+}
+
+
+// Inside widget.cpp
+
+void Widget::Vectory()
+{
+    if (!scene) {
+        qDebug() << "Scene is null!";
+        return;
+    }
+
+    // 1. Create overlay (dark semi-transparent background)
+    QGraphicsRectItem* overlay = new QGraphicsRectItem(scene->sceneRect());
+    overlay->setBrush(QBrush(QColor(0, 0, 0, 150)));
+    overlay->setZValue(10);
+    scene->addItem(overlay);
+
+    QPainterPath path;
+    QRectF rect(0, 0, 400, 250);
+    path.addRoundedRect(rect, 15, 15);
+
+    QGraphicsPathItem* box = new QGraphicsPathItem(path);
+    box->setBrush(QBrush(QColor(255, 255, 255, 230)));
+    box->setPen(Qt::NoPen);
+    box->setZValue(11);
+    box->setPos(scene->width()/2 - 200, scene->height()/2 - 125);
+    scene->addItem(box);
+
+    QGraphicsTextItem* text = new QGraphicsTextItem();
+    QString Winner = "Enayatullah Balaghi";
+    QString PlayerWin = (PlayerOneDeletedAgents<=0) ? "Player TWO" : "Player ONE";
+    QString winnerColor = "red"; // or "blue" depending on player
+    text->setHtml(QString(R"(<h1>Congratulations!</h1>
+                        <p style='font-size:18pt;'>%1<br>
+                        <b><span style='color:%2;'>%3</span> Wins!</b></p>)")
+                      .arg(Winner).arg(winnerColor).arg(PlayerWin));
+
+    text->setTextWidth(380);
+    text->setDefaultTextColor(Qt::black);
+    text->setPos(scene->width()/2 - 190, scene->height()/2 - 100);
+    text->setZValue(12);
+    scene->addItem(text);
+
+    ClickableRect* buttonRect = new ClickableRect(0, 0, 200, 50);
+    buttonRect->setBrush(QColor("#4CAF50"));
+    buttonRect->setPen(Qt::NoPen);
+    buttonRect->setPos(scene->width()/2 - 100, scene->height()/2 + 75);
+    buttonRect->setZValue(13); // Ensure high z-value
+    buttonRect->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable); // Allow selection and focus
+    scene->addItem(buttonRect);
+
+    QGraphicsTextItem* buttonText = new QGraphicsTextItem("Tap To Finish", buttonRect);
+    buttonText->setDefaultTextColor(Qt::white);
+    buttonText->setFont(QFont("Arial", 14));
+    buttonText->setPos(20, 12);
+    buttonText->setZValue(14);
+
+    connect(buttonRect, &ClickableRect::clicked, [=]() {
+        qDebug() << "[DEBUG] Victory button clicked!";
+
+        scene->clear();
+
+        delete overlay;
+        delete box;
+        delete text;
+        delete buttonRect;
+        delete buttonText;
+
+        hide();
+    });
+
+    qDebug() << "[DEBUG] Victory screen created successfully.";
 }
 
 void Widget::ClickHexagon(QPointF scenePos)
@@ -384,7 +495,13 @@ void Widget::ClickHexagon(QPointF scenePos)
 
             if(lastClickedHex->getPlacedAgent()->getAgentType() != start->HexType())
             {
-                   if(!(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == start->getOriginalOwn() && start->getPlacedAgent() == nullptr)) return;
+                bool IsValidMove;
+                //if(!(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == start->getOriginalOwn() && start->getPlacedAgent() == nullptr)) return;
+                if(start->HexType() == "Ground" || start->HexType() == "One" || start->HexType() == "Two")
+                    IsValidMove = lastClickedHex->getPlacedAgent()->GroundMoving();
+                else if(start->HexType() == "Water") IsValidMove = lastClickedHex->getPlacedAgent()->WaterMoving();
+                else if(start->HexType() == "Banned") IsValidMove  = lastClickedHex->getPlacedAgent()->BannedMoving();
+                if(!IsValidMove) return;
             }
         }
 
@@ -539,7 +656,7 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
 
     for (HexagonItems* hex : std::as_const(visited)) {
        // qDebug() << hex->HexType();
-        if ( hex->HexType() != "Banned") {
+        {
            if(hex->HexType() == "Water" && !Walk_Water) continue;
            else if(hex->HexType() == "Banned" && !Walk_Banned) continue;
            hex->highlight(Qt::red);
@@ -573,8 +690,9 @@ void Widget::AddHexNeighbor()
     }
 }
 
-void Widget::MoveAgent(hexagonAgents *Target)
+void Widget::ReplaceAgent(HexagonItems *Start)
 {
+    hexagonAgents* Target = Start->getPlacedAgent();
     qDebug() << "Starting Moving Agent";
     qDebug()<< "Attacker health: " << lastClickedHex->getPlacedAgent()->GetHp() << "    Attacker Damage: " << lastClickedHex->getPlacedAgent()->getDamage();
     qDebug() << "Target health: " << Target->GetHp() << " Target Damage: " << Target->getDamage();
@@ -589,10 +707,14 @@ void Widget::MoveAgent(hexagonAgents *Target)
         qDebug()<< "Attacker health after attacking: " << lastClickedHex->getPlacedAgent()->GetHp();
         qDebug() << "Target health after attacking: " << Target->GetHp();
 
-        for (HexagonItems* hex : std::as_const(lastVisited))
+        for (HexagonItems* hex : Start->getNeighbors())
         {
             if(hex->hasAgent()) continue;
-            if( (hex->HexType() == Attacker->getAgentType() || hex->PlayerOwn() == Attacker->GetPlayerOwn()) && !hex->isOccupied() )
+            bool isValidReplacement;
+            if(hex->HexType() == "Ground") isValidReplacement =  Attacker->CanStayGround();
+            else if(hex->HexType() == "Banned") isValidReplacement =  Attacker->canStayBanned();
+            else if(hex->HexType() == "Water") isValidReplacement =  Attacker->CanStayWater();
+            if(isValidReplacement)
             {
                 hex->setPlayerOwn(Attacker->GetPlayerOwn());
                 hex->setPlacedAgent(Attacker, "");

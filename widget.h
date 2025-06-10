@@ -7,7 +7,11 @@
 #include <QMouseEvent>
 #include <QGraphicsView>
 #include "hexagonagents.h"
+#include "hexagonitems.h"
 #include <QLabel>
+#include <QGraphicsRectItem>
+#include <QObject>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Widget;
@@ -31,7 +35,18 @@ public:
     void HoverAgents(QPointF, int);
 
     void SetPropertiesAgents(QVector<hexagonAgents*>);
+
+    bool CheckAttack(HexagonItems*);
+
+    void MovingAgent(HexagonItems *);
+
+    int PlayerOneDeletedAgents = 6;
+    int PlayerTwoDeletedAgents = 6;
+
+    void Vectory();
+
 private:
+    QGraphicsScene *Scence ;
     HexagonItems* lastHoveredHex = nullptr;
 
     QGraphicsScene* scene;
@@ -51,33 +66,42 @@ private:
     void ClickHexagon(QPointF);
 
     QVector<hexagonAgents*> activeAgents;
-    QVector<QVector<HexagonItems*>> GridAgents;
-    // all agents in the board
 
     static int DroppedCount;
     void BFS(HexagonItems*, int );
     void AddHexNeighbor();
+    void ReplaceAgent(HexagonItems*);
 private:
     QGraphicsProxyWidget* hoverInfoProxy[2] = {nullptr, nullptr}; // index 0 = player 1, index 1 = player 2
     QLabel* hoverLabel[2] = {nullptr, nullptr};
 
-public:
-    const int even_dirs[6][2] = {
-        { 0, -1},
-        { 0,  1},
-        {-1, -1},
-        {-1,  0},
-        { 1, -1},
-        { 1,  0}
-    };
-    const int odd_dirs[6][2] = {
-        { 0, -1},
-        { 0,  1},
-        {-1,  0},
-        {-1,  1},
-        { 1,  0},
-        { 1,  1}
-    };
+    HexagonItems* lastClickedHex = nullptr;
+    QVector<HexagonItems*> lastVisited;
+
 
 };
+
+
+class ClickableRect : public QObject, public QGraphicsRectItem {
+    Q_OBJECT
+
+public:
+    explicit ClickableRect(qreal x, qreal y, qreal w, qreal h, QObject* parent = nullptr)
+        : QObject(parent), QGraphicsRectItem(x, y, w, h)
+    {
+        setAcceptHoverEvents(true); // Accept hover events
+        setCursor(Qt::PointingHandCursor); // Change cursor on hover
+        setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable); // Allow selection and focus
+    }
+
+protected:
+    void hoverEnterEvent(QGraphicsSceneHoverEvent*) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent*) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent*) override;
+
+signals:
+    void clicked();
+};
+
+
 #endif
