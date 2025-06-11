@@ -77,7 +77,8 @@ private:
 
     HexagonItems* lastClickedHex = nullptr;
     QVector<HexagonItems*> lastVisited;
-
+    QVector<HexagonItems*> InAttackRange;
+    void SetEnemyRange();
 
 };
 

@@ -245,8 +245,12 @@ void Widget::MovingAgent(HexagonItems* Target)
         {
             qDebug() << "Inside Try block";
 
-
+            if(!InAttackRange.contains(Target)){
+                    qDebug() << "Not in Attack Range";
+                    return;
+            }
             {
+                InAttackRange.clear();
                 if(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == Target->getPlacedAgent()->GetPlayerOwn()) return;
 
                 qDebug() << "Attack Targets";
@@ -277,6 +281,7 @@ void Widget::MovingAgent(HexagonItems* Target)
                     qDebug() << "Player One Total Agents: " << PlayerOneDeletedAgents;
                     qDebug() << "Player Two Total Agents: " << PlayerTwoDeletedAgents;
                     if(PlayerOneDeletedAgents <= 0 || PlayerTwoDeletedAgents <=0 ) Vectory();
+
                     return;
                 }
 
@@ -305,6 +310,7 @@ void Widget::MovingAgent(HexagonItems* Target)
                     Target->update();
                     qDebug() << "Enemy Destroyed";
                     qDebug()<< "Our Health after destroying enemy: " << Attacker->GetHp();
+
                     if(PlayerOneDeletedAgents <= 0 || PlayerTwoDeletedAgents<= 0) Vectory();
                 }
 
@@ -312,6 +318,7 @@ void Widget::MovingAgent(HexagonItems* Target)
                 {
                     qDebug() << "Calling Move Agent Func";
                     ReplaceAgent(Target);
+
                     PlayerTurn = (PlayerTurn == 1) ? 2 : 1;
                     return;
                 }
@@ -519,7 +526,15 @@ void Widget::ClickHexagon(QPointF scenePos)
 
         if(lastClickedHex)
         {
+            if(start->hasAgent())
+            {
+                if(!InAttackRange.contains(start)){
+                    qDebug() << "Not in Attack Range";
+                    return;
+                }
+            }
             MovingAgent(start);
+
             return;
         }
 
@@ -614,6 +629,7 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
     
     if(lastClickedHex) return;
 
+    if(!InAttackRange.isEmpty()) InAttackRange.clear();
     if(!start->hasAgent()) return;
     if (!start || MapDepth <= 0) return;
     qDebug() << "TOP of BFS";
@@ -663,6 +679,7 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
         }
     }
 
+    this->SetEnemyRange();
     qDebug() << "LAST of BFS" << "\n THE last hex: " << lastClickedHex->getPlacedAgent()->GetName();
 
 }
@@ -749,6 +766,19 @@ void Widget::ReplaceAgent(HexagonItems *Start)
 
         qDebug() << "Agent Moved";
 
+}
+
+void Widget::SetEnemyRange()
+{
+    if(lastClickedHex->getPlacedAgent()->GetAttackRange() == 1){
+        InAttackRange = lastClickedHex->getNeighbors();
+        return;
+    }
+    for(HexagonItems* h1: lastClickedHex->getNeighbors())
+    {
+        for(HexagonItems* h2 : h1->getNeighbors())
+            if(!InAttackRange.contains(h2)) InAttackRange.push_back(h2);
+    }
 }
 
 void Widget::HoverHexagon(QPointF scenePos)
