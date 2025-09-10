@@ -1,4 +1,3 @@
-// winnerpage.h
 #ifndef WINNERPAGE_H
 #define WINNERPAGE_H
 
