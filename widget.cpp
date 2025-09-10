@@ -473,79 +473,10 @@ void Widget::MovingAgent(HexagonItems* Target)
 
 }
 
-
-// Inside widget.cpp
-
 void Widget::Vectory()
 {
     WinnerPage *m = new WinnerPage("Enayatullah");
     m->show();
-    // if (!scene) {
-    //     qDebug() << "Scene is null!";
-    //     return;
-    // }
-
-    // // 1. Create overlay (dark semi-transparent background)
-    // QGraphicsRectItem* overlay = new QGraphicsRectItem(scene->sceneRect());
-    // overlay->setBrush(QBrush(QColor(0, 0, 0, 150)));
-    // overlay->setZValue(10);
-    // scene->addItem(overlay);
-
-    // QPainterPath path;
-    // QRectF rect(0, 0, 400, 250);
-    // path.addRoundedRect(rect, 15, 15);
-
-    // QGraphicsPathItem* box = new QGraphicsPathItem(path);
-    // box->setBrush(QBrush(QColor(255, 255, 255, 230)));
-    // box->setPen(Qt::NoPen);
-    // box->setZValue(11);
-    // box->setPos(scene->width()/2 - 200, scene->height()/2 - 125);
-    // scene->addItem(box);
-
-    // QGraphicsTextItem* text = new QGraphicsTextItem();
-    // QString Winner = "Enayatullah Balaghi";
-    // QString PlayerWin = (PlayerOneDeletedAgents<=0) ? "Player TWO" : "Player ONE";
-    // QString winnerColor = "red"; // or "blue" depending on player
-    // text->setHtml(QString(R"(<h1>Congratulations!</h1>
-    //                     <p style='font-size:18pt;'>%1<br>
-    //                     <b><span style='color:%2;'>%3</span> Wins!</b></p>)")
-    //                   .arg(Winner).arg(winnerColor).arg(PlayerWin));
-
-    // text->setTextWidth(380);
-    // text->setDefaultTextColor(Qt::black);
-    // text->setPos(scene->width()/2 - 190, scene->height()/2 - 100);
-    // text->setZValue(12);
-    // scene->addItem(text);
-
-    // ClickableRect* buttonRect = new ClickableRect(0, 0, 200, 50);
-    // buttonRect->setBrush(QColor("#4CAF50"));
-    // buttonRect->setPen(Qt::NoPen);
-    // buttonRect->setPos(scene->width()/2 - 100, scene->height()/2 + 75);
-    // buttonRect->setZValue(13); // Ensure high z-value
-    // buttonRect->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable); // Allow selection and focus
-    // scene->addItem(buttonRect);
-
-    // QGraphicsTextItem* buttonText = new QGraphicsTextItem("Tap To Finish", buttonRect);
-    // buttonText->setDefaultTextColor(Qt::white);
-    // buttonText->setFont(QFont("Arial", 14));
-    // buttonText->setPos(20, 12);
-    // buttonText->setZValue(14);
-
-    // connect(buttonRect, &ClickableRect::clicked, [=]() {
-    //     qDebug() << "[DEBUG] Victory button clicked!";
-
-    //     scene->clear();
-
-    //     delete overlay;
-    //     delete box;
-    //     delete text;
-    //     delete buttonRect;
-    //     delete buttonText;
-
-    //     hide();
-    // });
-
-    // qDebug() << "[DEBUG] Victory screen created successfully.";
 }
 
 void Widget::ClickHexagon(QPointF scenePos)
