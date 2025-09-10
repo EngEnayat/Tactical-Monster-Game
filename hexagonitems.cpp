@@ -68,10 +68,7 @@ void HexagonItems::highlight(QColor color)
             originalColor = brush().color();
             setBrush(QBrush(color));
         }
-        /*else {
-            hexagonAgents* a = this->getPlacedAgent();
-            originalPath = a->ImagePath(a->GetName());
-        }*/
+
     }
 }
 
