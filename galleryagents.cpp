@@ -317,7 +317,7 @@ void GalleryAgents::showProperties(int hp, int mobility, QString type, int Damag
 
     QString playerWEl = "";
     if(agentCount <= 5) playerWEl = "Player ONE Choose your " + QString::number(agentCount + 1) + "th" + " agent";
-    else if(agentCount > 5 ) playerWEl= "Player TWO Choose your " + QString::number(agentCount-4) + "th" + " agent";
+    else if(agentCount > 5 ) playerWEl= "Player TWO Choose your " + QString::number(agentCount-5) + "th" + " agent";
     QLabel* headerLabel = new QLabel(playerWEl);
     headerLabel->setFont(QFont("Segoe UI", 14, QFont::Bold));
     headerLabel->setStyleSheet("color: #333; margin-bottom: 10px;");

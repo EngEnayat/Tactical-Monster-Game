@@ -155,7 +155,6 @@ QString hexagonAgents::getType()
 {
     return Type;
 }
-
 void hexagonAgents::SetName(QString n)
 {
     Name = n;
@@ -165,6 +164,13 @@ QString hexagonAgents::GetName()
 {
     return Name;
 }
+
+void hexagonAgents::SetAttackCheck(bool var)
+{
+    isAttackRange = var;
+}
+
+bool hexagonAgents::getAttackCheck() { return isAttackRange; }
 
 
 

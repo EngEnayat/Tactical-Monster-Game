@@ -11,18 +11,17 @@ public:
     int row;
     int col;
 
-    void setProperties(int player, bool occupied, char type);
+    void setProperties(int player, bool occupied, QString type);
     void getPro() const;
     void resetColor();
     int PlayerOwn() const;
     void ChangeOccupied(bool b){occupied = b;}
     bool isOccupied() const{return occupied;}
-    char HexType() const {return type;}
-    void setPlacedAgent(hexagonAgents*);
+    QString HexType() const {return type;}
+    void setPlacedAgent(hexagonAgents*, QString);
     hexagonAgents* getPlacedAgent() const;
     bool hasAgent() const;
     QString agentName() const;
-
     void addNeighbor(HexagonItems* n) {
         if (n && !neighbors.contains(n))
             neighbors.append(n);
@@ -31,14 +30,29 @@ public:
     QVector<HexagonItems*> getNeighbors() const {
         return neighbors;
     }
-
-
+    void setPlayerOwn(int);
+    QString getOriginalType() {return OriginalType;}
+    void setOwn(int o){OriginalOwn = o;};
+    int getOriginalOwn(){return OriginalOwn;}
 private:
-    QVector<HexagonItems*> neighbors;  // NEW: stores the 6 neighbors
+    QVector<HexagonItems*> neighbors;
     hexagonAgents *placedAgent = nullptr;
-    char type = '\0';
+    QString type = "Unknwon"; // 1 for player 1 places, 2 for player 2, # for water, ~ for banned, " " for ground
     bool occupied = false;
     int player = 0;
+    int OriginalOwn;
+
+private:
+    bool highlighted = false;
+    QColor originalColor;
+    QString originalPath = "";
+    QString OriginalType;
+
+public:
+    void highlight(QColor color);
+    void unhighlight();
+
+    bool isHighlighted() const { return highlighted; }
 };
 
 #endif

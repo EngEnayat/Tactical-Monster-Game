@@ -21,22 +21,23 @@
 #include <QGraphicsSceneHoverEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QColor>
-
+#include "temppopup.h"
+#include "winnerpage.h"
 
 void ClickableRect::hoverEnterEvent(QGraphicsSceneHoverEvent*)
 {
-    this->setBrush(QColor("#43A047")); // Darker green on hover
+    this->setBrush(QColor("#43A047"));
 }
 
 void ClickableRect::hoverLeaveEvent(QGraphicsSceneHoverEvent*)
 {
-    this->setBrush(QColor("#4CAF50")); // Original color
+    this->setBrush(QColor("#4CAF50"));
 }
 
 void ClickableRect::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-    emit clicked(); // Emit signal when clicked
-    event->setAccepted(true); // Prevent event from propagating
+    emit clicked();
+    event->setAccepted(true);
 }
 int Widget::PlayerTurn = 1;
 int Widget::DroppedCount = 0;
@@ -169,10 +170,14 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
             QPointF scenePos = view->mapToScene(mouseEvent->pos());
 
             if (view == ui->graphicsView) {
-                if(DroppedCount <=11)HoverHexagon(scenePos);
+                if(DroppedCount <=11)
+                    HoverHexagon(scenePos);
+                else HexHover(scenePos);
             }
             else if(view == ui->agentOne)
+            {
                 HoverAgents(scenePos, 1);
+            }
             else if(view == ui->agentTwo)
                 HoverAgents(scenePos, 2);
             return false;
@@ -221,6 +226,68 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
         }
     }
     return QWidget::eventFilter(obj, event);
+}
+
+void Widget::HexHover(QPointF scenePos)
+{
+    HexagonItems* hex = getHexagonAtPosition(scenePos);
+
+    if(!hex || !hex->hasAgent() || hex->PlayerOwn() != PlayerTurn || lastClickedHex) {
+        if(activePopup) {
+            activePopup->close();
+            activePopup->deleteLater();
+            activePopup = nullptr;
+            hoveredHex = nullptr;
+        }
+        return;
+    }
+
+    if(!activePopup || hex != hoveredHex) {
+        if(activePopup) {
+            activePopup->close();
+            activePopup->deleteLater();
+        }
+
+        QString text = QString("%1\nMobility: %2\nHealth: %3\nAttack Range: %4\nDanger: %5")
+                           .arg(hex->getPlacedAgent()->GetName())
+                           .arg(hex->getPlacedAgent()->GetMobility())
+                           .arg(hex->getPlacedAgent()->GetHp())
+                           .arg(hex->getPlacedAgent()->GetAttackRange())
+                           .arg(hex->getPlacedAgent()->getDamage());
+
+        activePopup = new TempPopup(text);
+        activePopup->show();
+        hoveredHex = hex;
+    }
+    if(activePopup) {
+        QRect screenGeometry = QApplication::primaryScreen()->availableGeometry();
+
+        int x = screenGeometry.right() - activePopup->width() - 20;
+        int y = screenGeometry.bottom() - activePopup->height() - 20;
+
+        activePopup->move(x, y);
+    }
+}
+void Widget::HoverHexagon(QPointF scenePos)
+{
+    if (lastHoveredHex && lastHoveredHex != getHexagonAtPosition(scenePos)) {
+        lastHoveredHex->resetColor();
+        lastHoveredHex = nullptr;
+    }
+    HexagonItems* hex = getHexagonAtPosition(scenePos);
+    if (hex && hex != lastHoveredHex) {
+        if (hex->PlayerOwn() == 1 && !hex->isOccupied() && PlayerTurn == 1)
+        {
+            hex->setScale(1.05);
+            hex->setBrush(QColor(44, 118, 41));
+        }
+        else if (hex->PlayerOwn() == 2 && !hex->isOccupied() && PlayerTurn == 2)
+        {
+            hex->setScale(1.05);
+            hex->setBrush(QColor(223, 238, 25));
+        }
+        lastHoveredHex = hex;
+    }
 }
 
 HexagonItems* Widget::getHexagonAtPosition(const QPointF &pos)
@@ -282,6 +349,9 @@ void Widget::MovingAgent(HexagonItems* Target)
                     qDebug() << "Player Two Total Agents: " << PlayerTwoDeletedAgents;
                     if(PlayerOneDeletedAgents <= 0 || PlayerTwoDeletedAgents <=0 ) Vectory();
 
+                    QString text = QString("%1 has destroyed").arg(Attacker->GetName());
+                    activePopup = new TempPopup(text);
+                    activePopup->show();
                     return;
                 }
 
@@ -293,11 +363,14 @@ void Widget::MovingAgent(HexagonItems* Target)
                     qDebug() << "Target health: " << Target->getPlacedAgent()->GetHp() << " Target Damage: " << Target->getPlacedAgent()->getDamage();
 
 
+                    QString text = QString("%1 has Destroyed the %2").arg(Attacker->GetName()).arg(Target->getPlacedAgent()->GetName());
+
+                    activePopup = new TempPopup(text);
+                    activePopup->show();
+
+
                     if(Target->getPlacedAgent()->GetPlayerOwn() == 1) PlayerOneDeletedAgents--;
                     else if(Target->getPlacedAgent()->GetPlayerOwn() == 2) PlayerTwoDeletedAgents--;
-
-                    qDebug() << "Player One Total Agents: " << PlayerOneDeletedAgents;
-                    qDebug() << "Player Two Total Agents: " << PlayerTwoDeletedAgents;
 
                     Target->setPlayerOwn(Target->getOriginalOwn());
                     Target->setPlacedAgent(nullptr, "Attack");
@@ -405,72 +478,74 @@ void Widget::MovingAgent(HexagonItems* Target)
 
 void Widget::Vectory()
 {
-    if (!scene) {
-        qDebug() << "Scene is null!";
-        return;
-    }
+    WinnerPage *m = new WinnerPage("Enayatullah");
+    m->show();
+    // if (!scene) {
+    //     qDebug() << "Scene is null!";
+    //     return;
+    // }
 
-    // 1. Create overlay (dark semi-transparent background)
-    QGraphicsRectItem* overlay = new QGraphicsRectItem(scene->sceneRect());
-    overlay->setBrush(QBrush(QColor(0, 0, 0, 150)));
-    overlay->setZValue(10);
-    scene->addItem(overlay);
+    // // 1. Create overlay (dark semi-transparent background)
+    // QGraphicsRectItem* overlay = new QGraphicsRectItem(scene->sceneRect());
+    // overlay->setBrush(QBrush(QColor(0, 0, 0, 150)));
+    // overlay->setZValue(10);
+    // scene->addItem(overlay);
 
-    QPainterPath path;
-    QRectF rect(0, 0, 400, 250);
-    path.addRoundedRect(rect, 15, 15);
+    // QPainterPath path;
+    // QRectF rect(0, 0, 400, 250);
+    // path.addRoundedRect(rect, 15, 15);
 
-    QGraphicsPathItem* box = new QGraphicsPathItem(path);
-    box->setBrush(QBrush(QColor(255, 255, 255, 230)));
-    box->setPen(Qt::NoPen);
-    box->setZValue(11);
-    box->setPos(scene->width()/2 - 200, scene->height()/2 - 125);
-    scene->addItem(box);
+    // QGraphicsPathItem* box = new QGraphicsPathItem(path);
+    // box->setBrush(QBrush(QColor(255, 255, 255, 230)));
+    // box->setPen(Qt::NoPen);
+    // box->setZValue(11);
+    // box->setPos(scene->width()/2 - 200, scene->height()/2 - 125);
+    // scene->addItem(box);
 
-    QGraphicsTextItem* text = new QGraphicsTextItem();
-    QString Winner = "Enayatullah Balaghi";
-    QString PlayerWin = (PlayerOneDeletedAgents<=0) ? "Player TWO" : "Player ONE";
-    QString winnerColor = "red"; // or "blue" depending on player
-    text->setHtml(QString(R"(<h1>Congratulations!</h1>
-                        <p style='font-size:18pt;'>%1<br>
-                        <b><span style='color:%2;'>%3</span> Wins!</b></p>)")
-                      .arg(Winner).arg(winnerColor).arg(PlayerWin));
+    // QGraphicsTextItem* text = new QGraphicsTextItem();
+    // QString Winner = "Enayatullah Balaghi";
+    // QString PlayerWin = (PlayerOneDeletedAgents<=0) ? "Player TWO" : "Player ONE";
+    // QString winnerColor = "red"; // or "blue" depending on player
+    // text->setHtml(QString(R"(<h1>Congratulations!</h1>
+    //                     <p style='font-size:18pt;'>%1<br>
+    //                     <b><span style='color:%2;'>%3</span> Wins!</b></p>)")
+    //                   .arg(Winner).arg(winnerColor).arg(PlayerWin));
 
-    text->setTextWidth(380);
-    text->setDefaultTextColor(Qt::black);
-    text->setPos(scene->width()/2 - 190, scene->height()/2 - 100);
-    text->setZValue(12);
-    scene->addItem(text);
+    // text->setTextWidth(380);
+    // text->setDefaultTextColor(Qt::black);
+    // text->setPos(scene->width()/2 - 190, scene->height()/2 - 100);
+    // text->setZValue(12);
+    // scene->addItem(text);
 
-    ClickableRect* buttonRect = new ClickableRect(0, 0, 200, 50);
-    buttonRect->setBrush(QColor("#4CAF50"));
-    buttonRect->setPen(Qt::NoPen);
-    buttonRect->setPos(scene->width()/2 - 100, scene->height()/2 + 75);
-    buttonRect->setZValue(13); // Ensure high z-value
-    buttonRect->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable); // Allow selection and focus
-    scene->addItem(buttonRect);
+    // ClickableRect* buttonRect = new ClickableRect(0, 0, 200, 50);
+    // buttonRect->setBrush(QColor("#4CAF50"));
+    // buttonRect->setPen(Qt::NoPen);
+    // buttonRect->setPos(scene->width()/2 - 100, scene->height()/2 + 75);
+    // buttonRect->setZValue(13); // Ensure high z-value
+    // buttonRect->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable); // Allow selection and focus
+    // scene->addItem(buttonRect);
 
-    QGraphicsTextItem* buttonText = new QGraphicsTextItem("Tap To Finish", buttonRect);
-    buttonText->setDefaultTextColor(Qt::white);
-    buttonText->setFont(QFont("Arial", 14));
-    buttonText->setPos(20, 12);
-    buttonText->setZValue(14);
+    // QGraphicsTextItem* buttonText = new QGraphicsTextItem("Tap To Finish", buttonRect);
+    // buttonText->setDefaultTextColor(Qt::white);
+    // buttonText->setFont(QFont("Arial", 14));
+    // buttonText->setPos(20, 12);
+    // buttonText->setZValue(14);
 
-    connect(buttonRect, &ClickableRect::clicked, [=]() {
-        qDebug() << "[DEBUG] Victory button clicked!";
+    // connect(buttonRect, &ClickableRect::clicked, [=]() {
+    //     qDebug() << "[DEBUG] Victory button clicked!";
 
-        scene->clear();
+    //     scene->clear();
 
-        delete overlay;
-        delete box;
-        delete text;
-        delete buttonRect;
-        delete buttonText;
+    //     delete overlay;
+    //     delete box;
+    //     delete text;
+    //     delete buttonRect;
+    //     delete buttonText;
 
-        hide();
-    });
+    //     hide();
+    // });
 
-    qDebug() << "[DEBUG] Victory screen created successfully.";
+    // qDebug() << "[DEBUG] Victory screen created successfully.";
 }
 
 void Widget::ClickHexagon(QPointF scenePos)
@@ -724,6 +799,16 @@ void Widget::ReplaceAgent(HexagonItems *Start)
         qDebug()<< "Attacker health after attacking: " << lastClickedHex->getPlacedAgent()->GetHp();
         qDebug() << "Target health after attacking: " << Target->GetHp();
 
+
+
+        QString text = QString("%1 has attacked to %2\n%3 health after attacking %4\n%5 health after attacked %6")
+            .arg(Attacker->GetName()).arg(Target->GetName()).arg(Attacker->GetName()).arg(Attacker->GetHp()).arg(Target->GetName()).arg(Target->GetHp());
+
+        activePopup = new TempPopup(text);
+        activePopup->show();
+
+
+
         for (HexagonItems* hex : Start->getNeighbors())
         {
             if(hex->hasAgent()) continue;
@@ -778,28 +863,6 @@ void Widget::SetEnemyRange()
     {
         for(HexagonItems* h2 : h1->getNeighbors())
             if(!InAttackRange.contains(h2)) InAttackRange.push_back(h2);
-    }
-}
-
-void Widget::HoverHexagon(QPointF scenePos)
-{
-    if (lastHoveredHex && lastHoveredHex != getHexagonAtPosition(scenePos)) {
-        lastHoveredHex->resetColor();
-        lastHoveredHex = nullptr;
-    }
-    HexagonItems* hex = getHexagonAtPosition(scenePos);
-    if (hex && hex != lastHoveredHex) {
-        if (hex->PlayerOwn() == 1 && !hex->isOccupied() && PlayerTurn == 1)
-        {
-            hex->setScale(1.05);
-            hex->setBrush(QColor(44, 118, 41));
-        }
-        else if (hex->PlayerOwn() == 2 && !hex->isOccupied() && PlayerTurn == 2)
-        {
-            hex->setScale(1.05);
-            hex->setBrush(QColor(223, 238, 25));
-        }
-        lastHoveredHex = hex;
     }
 }
 

@@ -11,6 +11,8 @@
 #include <QLabel>
 #include <QGraphicsRectItem>
 #include <QObject>
+#include <QPointer>
+#include "temppopup.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -45,6 +47,7 @@ public:
 
     void Vectory();
 
+    void HexHover(QPointF);
 private:
     QGraphicsScene *Scence ;
     HexagonItems* lastHoveredHex = nullptr;
@@ -71,6 +74,10 @@ private:
     void BFS(HexagonItems*, int );
     void AddHexNeighbor();
     void ReplaceAgent(HexagonItems*);
+
+private:
+    QPointer<TempPopup> activePopup = nullptr;
+    HexagonItems* hoveredHex = nullptr;
 private:
     QGraphicsProxyWidget* hoverInfoProxy[2] = {nullptr, nullptr}; // index 0 = player 1, index 1 = player 2
     QLabel* hoverLabel[2] = {nullptr, nullptr};

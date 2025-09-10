@@ -26,8 +26,6 @@ public:
 
     void SetType(QString);  // set its type Grounded, WATER, ...
     QString getType();
-
-    static void getSelectedAgents();
     virtual ~hexagonAgents() = default;
     void SetName(QString);
     QString GetName();

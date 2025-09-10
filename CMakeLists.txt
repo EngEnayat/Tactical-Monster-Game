@@ -35,6 +35,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         floating.h floating.cpp
         waterwalking.h waterwalking.cpp
         galleryagents.h galleryagents.cpp galleryagents.ui
+        temppopup.h temppopup.cpp
+        winnerpage.h winnerpage.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET PointerBoard APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

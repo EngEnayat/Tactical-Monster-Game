@@ -64,13 +64,14 @@ void HexagonItems::highlight(QColor color)
     if (!highlighted) {
         highlighted = true;
 
-        if (!this->getPlacedAgent()) {
+        if (!this->hasAgent()) {
             originalColor = brush().color();
             setBrush(QBrush(color));
-        } else {
+        }
+        /*else {
             hexagonAgents* a = this->getPlacedAgent();
             originalPath = a->ImagePath(a->GetName());
-        }
+        }*/
     }
 }
 
@@ -80,16 +81,18 @@ void HexagonItems::unhighlight()
 
     highlighted = false;
 
-    if (!this->getPlacedAgent()) {
-        setBrush(QBrush(originalColor));
-    } else {
+    if (!this->hasAgent()) {
+        this->resetColor();
+    }
+
+    /*else {
         this->setBrush(QBrush(QPixmap(originalPath).scaled(
             this->boundingRect().size().toSize(),
             Qt::IgnoreAspectRatio,
             Qt::SmoothTransformation
             )));
         this->setScale(0.9);
-    }
+    }*/
 }
 
 bool HexagonItems::hasAgent() const {
