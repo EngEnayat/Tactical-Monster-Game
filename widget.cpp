@@ -50,8 +50,9 @@ Widget::Widget(QStringList PlayerOneSelectedAgents ,QStringList PlayerTwoSelecte
     ui->setupUi(this);
 
 
-    ui->graphicsView->setInteractive(true); // Enable interaction
-    ui->graphicsView->setMouseTracking(true); // Track mouse movements
+    graphicsView = ui->graphicsView;
+    ui->graphicsView->setInteractive(true);
+    ui->graphicsView->setMouseTracking(true);
     ui->agentOne->setMinimumWidth(150);
     ui->agentTwo->setMinimumWidth(150);
 
@@ -171,8 +172,8 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
 
             if (view == ui->graphicsView) {
                 if(DroppedCount <=11)
-                    HoverHexagon(scenePos);
-                else HexHover(scenePos);
+                    HoverHexagon(scenePos); // while drag and dropping
+                else HexHover(scenePos); // while was is started
             }
             else if(view == ui->agentOne)
             {
@@ -192,21 +193,24 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
                 if(!hexagonAgents::getSelectedAgent() && DroppedCount <=11)
                     qDebug() << "Invalid hex";
 
-                else if(DroppedCount > 11){
-                HexagonItems* hex = getHexagonAtPosition(scenePos);
-                if (hex)
-                    this->ClickHexagon(scenePos);
-                    // qDebug() << "Clicked on agent" ;
+                else if(DroppedCount > 11)
+                {
+                    HexagonItems* hex = getHexagonAtPosition(scenePos);
+                    if (hex)
+                        this->ClickHexagon(scenePos);
+                        // qDebug() << "Clicked on agent" ;
                 }
-                else{
-                HexagonItems* hex = getHexagonAtPosition(scenePos);
-                if (hex)
-                    this->ClickHexagon(scenePos);
-                else{
-                    QMessageBox msgBox;
-                     msgBox.setText("NO hex on that position.");
-                     msgBox.exec();
-                }
+                else
+                {
+                    HexagonItems* hex = getHexagonAtPosition(scenePos);
+                    if (hex)
+                       this->ClickHexagon(scenePos);
+                    else
+                    {
+                       QMessageBox msgBox;
+                        msgBox.setText("NO hex on that position.");
+                        msgBox.exec();
+                    }
                 }
 
             } else if(view == ui->agentOne){
@@ -228,12 +232,31 @@ bool Widget::eventFilter(QObject *obj, QEvent *event)
     return QWidget::eventFilter(obj, event);
 }
 
+void Widget::movePopupToHex(HexagonItems* hex, const QPointF &offset)
+{
+    if (!hex || !activePopup || !graphicsView) return;
+
+    QPointF sceneCenter = hex->sceneBoundingRect().center() + offset;
+
+
+    QPoint viewPoint = graphicsView->mapFromScene(sceneCenter);
+    QPoint globalPoint = graphicsView->viewport()->mapToGlobal(viewPoint);
+
+
+    if (!activePopup->isVisible()) {
+        activePopup->show();
+        activePopup->adjustSize();
+    }
+
+
+    activePopup->move(globalPoint);
+}
+
 void Widget::HexHover(QPointF scenePos)
 {
     HexagonItems* hex = getHexagonAtPosition(scenePos);
-
-    if(!hex || !hex->hasAgent() || hex->PlayerOwn() != PlayerTurn || lastClickedHex) {
-        if(activePopup) {
+    if (!hex || !hex->hasAgent() || hex->PlayerOwn() != PlayerTurn || lastClickedHex) {
+        if (activePopup) {
             activePopup->close();
             activePopup->deleteLater();
             activePopup = nullptr;
@@ -242,31 +265,41 @@ void Widget::HexHover(QPointF scenePos)
         return;
     }
 
-    if(!activePopup || hex != hoveredHex) {
-        if(activePopup) {
-            activePopup->close();
-            activePopup->deleteLater();
-        }
-
-        QString text = QString("%1\nMobility: %2\nHealth: %3\nAttack Range: %4\nDanger: %5")
-                           .arg(hex->getPlacedAgent()->GetName())
-                           .arg(hex->getPlacedAgent()->GetMobility())
-                           .arg(hex->getPlacedAgent()->GetHp())
-                           .arg(hex->getPlacedAgent()->GetAttackRange())
-                           .arg(hex->getPlacedAgent()->getDamage());
-
-        activePopup = new TempPopup(text);
-        activePopup->show();
-        hoveredHex = hex;
+    if (hex == hoveredHex && activePopup) {
+        movePopupToHex(hex);
+        return;
     }
-    if(activePopup) {
-        QRect screenGeometry = QApplication::primaryScreen()->availableGeometry();
 
-        int x = screenGeometry.right() - activePopup->width() - 20;
-        int y = screenGeometry.bottom() - activePopup->height() - 20;
-
-        activePopup->move(x, y);
+    if (activePopup) {
+        activePopup->close();
+        activePopup->deleteLater();
+        activePopup = nullptr;
+        hoveredHex = nullptr;
     }
+
+
+    QString text = QString("%1\nMobility: %2\nHealth: %3\nAttack Range: %4\nDanger: %5")
+                       .arg(hex->getPlacedAgent()->GetName())
+                       .arg(hex->getPlacedAgent()->GetMobility())
+                       .arg(hex->getPlacedAgent()->GetHp())
+                       .arg(hex->getPlacedAgent()->GetAttackRange())
+                       .arg(hex->getPlacedAgent()->getDamage());
+
+
+    activePopup = new TempPopup(text);
+
+
+    connect(activePopup, &QObject::destroyed, this, [this]() {
+        activePopup = nullptr;
+        hoveredHex = nullptr;
+    });
+
+    activePopup->show();
+    activePopup->adjustSize();
+    movePopupToHex(hex);
+
+
+    hoveredHex = hex;
 }
 void Widget::HoverHexagon(QPointF scenePos)
 {
@@ -331,8 +364,7 @@ void Widget::MovingAgent(HexagonItems* Target)
 
                 if(Attacker->GetHp()<=0)
                 {
-                    if(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == 1) PlayerOneDeletedAgents--;
-                    else if(lastClickedHex->getPlacedAgent()->GetPlayerOwn() == 2) PlayerTwoDeletedAgents--;
+                    lastClickedHex->getPlacedAgent()->GetPlayerOwn() == 1? PlayerOneDeletedAgents-- : PlayerTwoDeletedAgents --;
 
                     lastClickedHex->setPlacedAgent(nullptr,"Attack");
                     lastClickedHex->ChangeOccupied(false);
@@ -387,7 +419,7 @@ void Widget::MovingAgent(HexagonItems* Target)
                     if(PlayerOneDeletedAgents <= 0 || PlayerTwoDeletedAgents<= 0) Vectory();
                 }
 
-                else
+                else // now the attacker should move to the nearst hex of target
                 {
                     qDebug() << "Calling Move Agent Func";
                     ReplaceAgent(Target);
@@ -400,12 +432,7 @@ void Widget::MovingAgent(HexagonItems* Target)
             } // end of else
 
 
-            }
-
-
-        if (!lastVisited.contains(Target)) return;
-
-
+        }
         bool CanStay;
         if(Target->HexType() == "Ground" || Target->HexType() == "One" || Target->HexType() == "Two") CanStay = lastClickedHex->getPlacedAgent()->CanStayGround();
         else if(Target->HexType() == "Water") CanStay = lastClickedHex->getPlacedAgent()->CanStayWater();
@@ -455,12 +482,6 @@ void Widget::MovingAgent(HexagonItems* Target)
         lastClickedHex->update();
 
         lastClickedHex = nullptr;
-
-
-        // for (HexagonItems* hex : std::as_const(lastVisited)) {
-        //     hex->unhighlight();
-        // }
-
         lastVisited.clear();
 
         qDebug() << "✅ Agent moved successfully";
@@ -481,7 +502,8 @@ void Widget::Vectory()
 
 void Widget::ClickHexagon(QPointF scenePos)
 {
-    if(DroppedCount>11){
+    if(DroppedCount>11)
+    {
         HexagonItems* start = getHexagonAtPosition(scenePos);
 
         if(!start) return;
@@ -573,6 +595,14 @@ void Widget::ClickHexagon(QPointF scenePos)
         return;
     }
 
+
+    if (hexItem->isOccupied()) {
+        QMessageBox msgBox;
+        msgBox.setText("CELL is already occupied, try another.");
+        msgBox.exec();
+        return;
+    }
+
     if (PlayerTurn == 1) {
         for(auto it: std::as_const(agentsOne)) it->setEnabled(false);
         for(auto it: std::as_const(agentsTwo)) it->setEnabled(true);
@@ -580,13 +610,6 @@ void Widget::ClickHexagon(QPointF scenePos)
     if (PlayerTurn == 2) {
         for(auto it: std::as_const(agentsOne)) it->setEnabled(true);
         for(auto it: std::as_const(agentsTwo)) it->setEnabled(false);
-    }
-
-    if (hexItem->isOccupied()) {
-        QMessageBox msgBox;
-        msgBox.setText("CELL is already occupied, try another.");
-        msgBox.exec();
-        return;
     }
 
     if (hexItem->HexType() == "Ground" || hexItem->HexType() == "Water" || hexItem->HexType() == "Banned") {
@@ -648,6 +671,8 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
     bool Walk_Water = start->getPlacedAgent()->WaterMoving();
     bool Walk_Banned = start->getPlacedAgent()->BannedMoving();
 
+    int AttackRange = start->getPlacedAgent()->GetAttackRange();
+
     while (!Queue.empty()) {
         QPair<HexagonItems*, int> current = Queue.front();
         Queue.pop();
@@ -655,9 +680,9 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
         HexagonItems* hex = current.first;
         int depth = current.second;
 
+        if(depth <= AttackRange && start != current.first) InAttackRange.push_back(current.first);
         if (depth >= MapDepth)
             continue;
-
         for (HexagonItems* neighbor : hex->getNeighbors()) {
             if (!visited.contains(neighbor)) {
                 if(neighbor->HexType() == "Banned" && !Walk_Banned) continue;
@@ -668,6 +693,14 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
         }
     }
 
+    qDebug() << "Attacker Attack Range: " << AttackRange;
+    for(HexagonItems* it: InAttackRange)
+    {
+        if(it->hasAgent())
+        {
+            qDebug() << "In Attack Range: " << it->getPlacedAgent()->GetName();
+        }
+    }
     //!hex->getPlacedAgent() &&
     lastVisited = visited;
     lastClickedHex = start;
@@ -676,16 +709,18 @@ void Widget::BFS(HexagonItems* start, int MapDepth)
 
     lastClickedHex->setScale(1.0);
 
+
     for (HexagonItems* hex : std::as_const(visited)) {
        // qDebug() << hex->HexType();
         {
            if(hex->HexType() == "Water" && !Walk_Water) continue;
            else if(hex->HexType() == "Banned" && !Walk_Banned) continue;
-           hex->highlight(Qt::red);
+           (PlayerTurn == 1 ?hex->highlight(Qt::green) : hex->highlight(Qt::yellow));
         }
     }
 
-    this->SetEnemyRange();
+    //this->SetEnemyRange();
+
     qDebug() << "LAST of BFS" << "\n THE last hex: " << lastClickedHex->getPlacedAgent()->GetName();
 
 }
@@ -705,8 +740,6 @@ void Widget::AddHexNeighbor()
             qreal dist = QLineF(pos1, pos2).length();
 
             if (qAbs(dist - expectedDistance) < tolerance) {
-                // if(h2->hasAgent()) h2->getPlacedAgent()->SetAttackCheck(true);
-
                 h1->addNeighbor(h2);
             }
         }
@@ -832,7 +865,8 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
             }
 
             QString imagePath = hexagonAgents::ImagePath(agentName);
-            if (type == "Grounded") {
+            if (type == "Grounded")
+            {
                 hex = new Grounded(hexSize, imagePath);
                 hex->SetType("Ground");
                 if(agentName == "Sir Lamorak")
@@ -851,7 +885,8 @@ void Widget::LoadingAgents(QGraphicsView *agent, QStringList PlayerAgents)
                     hex->setDamage(100);
                     hex->setAttackRange(1);
                 }
-            } else if (type == "Water Walking") {
+            }
+            else if (type == "Water Walking") {
                 hex = new WaterWalking(hexSize, imagePath);
                 hex->SetType("Water");
                 if(agentName == "Colonel Baba")
