@@ -9,6 +9,5 @@ int main(int argc, char *argv[])
     Widget w;
     GalleryAgents m;
     m.show();
-    // w.show();
     return a.exec();
 }
