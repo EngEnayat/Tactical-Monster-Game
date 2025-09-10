@@ -78,6 +78,8 @@ private:
 private:
     QPointer<TempPopup> activePopup = nullptr;
     HexagonItems* hoveredHex = nullptr;
+    QGraphicsView* graphicsView = nullptr;
+    void movePopupToHex(HexagonItems* hex, const QPointF &offset = QPointF(20,20));
 private:
     QGraphicsProxyWidget* hoverInfoProxy[2] = {nullptr, nullptr}; // index 0 = player 1, index 1 = player 2
     QLabel* hoverLabel[2] = {nullptr, nullptr};
